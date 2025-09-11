@@ -11,6 +11,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavGraph
+import com.ramcosta.composedestinations.DestinationsNavHost
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,21 +24,20 @@ class MainActivity : ComponentActivity() {
         setContent {
             CardRacterTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    DestinationsNavHost(
+                        navGraph = NavGraphs.root,
+                        modifier = Modifier.padding(innerPadding))
                 }
             }
         }
     }
 }
 
+@Destination(start = true)
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(name: String ?, navigator: DestinationsNavigator) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "Hello",
     )
 }
 
@@ -42,6 +45,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     CardRacterTheme {
-        Greeting("Android")
+//        Greeting("Android")
     }
 }
