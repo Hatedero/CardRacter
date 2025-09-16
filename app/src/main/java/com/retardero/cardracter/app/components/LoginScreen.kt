@@ -32,7 +32,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.CardRacterTheme
+import com.retardero.cardracter.ui.theme.Primary
 
 @Destination
 @Composable
@@ -40,10 +42,10 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
 
     Column (
         modifier = Modifier.fillMaxSize()
-            .background(Color.White)
+            .background(Background)
     ) {
         Row (
-            modifier = Modifier.background(Color.Yellow)
+            modifier = Modifier.background(Primary)
                 .fillMaxWidth()
                 .height(200.dp)
         ) {  }
@@ -72,7 +74,7 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
             ) {
                 Box(
                     modifier = Modifier.clip(CircleShape)
-                        .background(Color.Cyan)
+                        .background(Primary)
                         .width(80.dp)
                         .height(80.dp)
                 ) {
@@ -80,7 +82,7 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
                 }
                 Box(
                     modifier = Modifier.clip(CircleShape)
-                        .background(Color.Cyan)
+                        .background(Primary)
                         .width(80.dp)
                         .height(80.dp)
                 ) {
