@@ -4,10 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
@@ -34,13 +37,15 @@ import com.retardero.cardracter.ui.theme.Secondary
 @Composable
 fun NavBar(index : List<ImageVector>? = listOf<ImageVector>(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
     Row (
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .fillMaxHeight(0.08f)
+        ,
         horizontalArrangement = Arrangement.SpaceEvenly,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
             modifier = Modifier.clip(RoundedCornerShape(15.dp))
-                .fillMaxWidth(0.9f)
+                .fillMaxWidth()
                 .background(Color.LightGray)
                 .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -57,7 +62,8 @@ fun NavBar(index : List<ImageVector>? = listOf<ImageVector>(Icons.Default.Home, 
                         imageVector = icon,
                         contentDescription = "icon",
                         tint = Primary,
-                        modifier = Modifier.size(30.dp)
+                        modifier = Modifier.fillMaxHeight()
+                            .aspectRatio(1f)
                     )
                 }
 
