@@ -2,6 +2,7 @@ package com.retardero.cardracter.app.components
 
 import android.view.RoundedCorner
 import androidx.compose.foundation.background
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,8 +12,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Label
 import androidx.compose.material3.Text
@@ -34,13 +37,14 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 
-@Destination
+@Destination(start = true)
 @Composable
-fun LoginScreen(navigator: DestinationsNavigator?) {
+fun SignupScreen(navigator: DestinationsNavigator?) {
 
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Color.White)
+            .verticalScroll(rememberScrollState())
     ) {
         Row (
             modifier = Modifier.background(Color.Yellow)
@@ -56,15 +60,17 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
             field("Email/Username")
             Spacer(modifier = Modifier.height(10.dp))
             field("Password")
+            Spacer(modifier = Modifier.height(10.dp))
+            field("Confirm Password")
         }
         Text("Forgot your password ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(40.dp))
         Column (
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Login with")
+            Text("Sign up with")
             Row (
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
@@ -87,40 +93,21 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
 
                 }
             }
-            Spacer(modifier = Modifier.height(60.dp))
+            Spacer(modifier = Modifier.height(40.dp))
             Button(
                 onClick = { }
-            ) { Text("LOGIN") }
+            ) { Text("SIGN UP") }
             Spacer(modifier = Modifier.height(20.dp))
-            Text("Don't have an account ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
+            Text("Already have an account?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
+            Spacer(modifier = Modifier.height(20.dp))
         }
-    }
-}
-
-@Composable
-fun field(label : String) {
-    var field by remember { mutableStateOf("") }
-
-    Column (
-        modifier = Modifier.fillMaxWidth()
-            .clip(RoundedCornerShape(10.dp)),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text(label)
-
-        TextField(value = field,
-            onValueChange = {
-                field = it
-            },
-            modifier = Modifier.clip(RoundedCornerShape(100)))
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun SignupPreview() {
     CardRacterTheme {
-        LoginScreen(null)
+        SignupScreen(null)
     }
 }

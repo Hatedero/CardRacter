@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Destination(start = true)
+@Destination
 @Composable
 fun Greeting(name: String ?, navigator: DestinationsNavigator) {
     Text(
