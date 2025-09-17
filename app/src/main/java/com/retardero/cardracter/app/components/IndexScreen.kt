@@ -2,13 +2,17 @@ package com.retardero.cardracter.app.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.FabPosition
@@ -38,10 +42,22 @@ fun IndexScreen() {
         modifier = Modifier.padding(16.dp)
             .background(Background)
     ) {
-        var content = listOf("Gwyn, Lord of Cinder", "Solaire of Astora", "Artorias the Abysswalker", "Manus, Father of the Abyss", "Seath the Scaleless")
+        var content = listOf("Aeliana", "Thorn", "Branwen", "Kael", "Selene", "Draven", "Lyra", "Varek", "Eldrin", "Mirael", "Ronan", "Aric", "Saphira", "Fenris", "Elara", "Riven", "Zorin", "Faelan", "Alaric", "Sylas", "Isolde", "Varian", "Lyanna", "Oberon", "Thalindra")
         Row (
 
         ) {
+            LazyVerticalStaggeredGrid(
+                columns = StaggeredGridCells.Fixed(2),
+                verticalItemSpacing = 8.dp,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                content.forEach { card ->
+                    item {
+                        CardDisplay(card)
+                    }
+                }
+            }
+            /*
             Column (
                 modifier = Modifier.fillMaxWidth(0.55f)
                     .padding(8.dp)
@@ -61,7 +77,7 @@ fun IndexScreen() {
                     CardDisplay(card)
                     Spacer(modifier = Modifier.height(16.dp))
                 }
-            }
+            }*/
         }
     }
 }

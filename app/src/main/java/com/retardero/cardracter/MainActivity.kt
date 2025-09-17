@@ -16,6 +16,7 @@ import androidx.navigation.NavGraph
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.app.components.NavGraphs
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 
 class MainActivity : ComponentActivity() {
@@ -31,21 +32,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Destination
-@Composable
-fun Greeting(name: String ?, navigator: DestinationsNavigator) {
-    Text(
-        text = "Hello",
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CardRacterTheme {
-//        Greeting("Android")
     }
 }

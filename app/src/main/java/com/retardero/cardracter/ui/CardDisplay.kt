@@ -47,7 +47,7 @@ fun CardDisplay(title : String? = "Name Firstname") {
             verticalArrangement = Arrangement.Center
         ) {
             Text(title!!, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, color = Primary, fontSize = 20.sp)
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum.", color = Primary)
+            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum.", color = Primary, fontSize = 10.sp)
         }
     }
 }
