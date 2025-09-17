@@ -37,6 +37,7 @@ import com.retardero.cardracter.data.CharacterCard
 import com.retardero.cardracter.ui.CardDisplay
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
+import com.retardero.cardracter.ui.TopBar
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryContainer
@@ -48,27 +49,7 @@ import com.retardero.cardracter.ui.theme.PrimaryContainer
 fun CardDetailScreen (card : Card = CharacterCard.empty()) {
     Scaffold (
         bottomBar = { NavBar() },
-        topBar = { Row (
-            modifier = Modifier.fillMaxWidth()
-                .fillMaxHeight(0.05f),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-                Icon(
-                    imageVector = Icons.Default.Close,
-                    contentDescription = "icon",
-                    tint = Primary,
-                    modifier = Modifier.fillMaxHeight()
-                        .aspectRatio(1f)
-                )
-
-                Icon(
-                    imageVector = Icons.Default.MoreVert,
-                    contentDescription = "icon",
-                    tint = Primary,
-                    modifier = Modifier.fillMaxHeight()
-                        .aspectRatio(1f)
-                )
-        } },
+        topBar = { TopBar() },
         modifier = Modifier.padding(16.dp)
             .background(Background)
     ) {
