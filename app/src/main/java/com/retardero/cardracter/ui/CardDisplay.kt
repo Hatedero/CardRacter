@@ -3,13 +3,8 @@ package com.retardero.cardracter.ui
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,9 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.retardero.cardracter.R
-import com.retardero.cardracter.data.Card
-import com.retardero.cardracter.data.CharacterCard
+import com.retardero.cardracter.data.card.Card
+import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
 
 @Preview(showBackground = true)
