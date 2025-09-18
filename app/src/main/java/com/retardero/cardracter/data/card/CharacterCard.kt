@@ -16,14 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.ui.theme.Primary
 
 class CharacterCard(
     title: String,
@@ -61,9 +64,9 @@ class CharacterCard(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(title!!, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center)
+                    Text(title!!, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(description!!, fontSize = 15.sp)
+                    Text(description!!, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
@@ -84,7 +87,7 @@ class CharacterCard(
         )
 
         fun testData(): CharacterCard = CharacterCard(
-            "Artorias - the abyss walker",
+            "Artorias - The Abyss Walker",
             "A knight consumed by the abyss, fated to save the world",
             R.drawable.artorias,
             listOf(
