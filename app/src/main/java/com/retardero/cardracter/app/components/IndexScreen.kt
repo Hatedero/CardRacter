@@ -37,8 +37,8 @@ fun IndexScreen() {
             ) {
                 for(i in 1..50) {
                     item {
-                        if(i % 2 == 0) CardDisplay(CharacterCard("Oscar Wilde", "A knight of no name", R.drawable.secondary_pp))
-                        else CardDisplay()
+                        if(i % 2 == 0) CardDisplay(CharacterCard("Ornstein - The Dragon Slayer", "", R.drawable.ornstein))
+                        else CardDisplay(CharacterCard.testData())
                     }
                 }
             }

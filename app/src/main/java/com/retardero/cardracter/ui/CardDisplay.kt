@@ -5,8 +5,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,9 +30,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
+import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import java.nio.file.WatchEvent
 
 @Preview(showBackground = true)
 @Composable
@@ -38,22 +46,37 @@ fun CardDisplay(card : Card = CharacterCard.empty()) {
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
             .background(backgroundColor)
             .clickable {
-                backgroundColor = if (backgroundColor == Color.LightGray) Color.DarkGray else Color.LightGray
             }
+            .fillMaxHeight()
+            .aspectRatio(0.6f)
+
     ) {
-        Image(
-            painter = painterResource(card.illustration!!),
-            contentDescription = "icon",
-            contentScale = ContentScale.Fit,
-            modifier = Modifier
-                .fillMaxWidth()
-        )
+        Row (
+            modifier = Modifier.fillMaxWidth()
+                .fillMaxHeight(0.6f)
+        ) {
+            Image(
+                painter = painterResource(card.illustration!!),
+                contentDescription = "icon",
+                contentScale = ContentScale.Crop,
+            )
+        }
         Column (
             modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(card.title!!, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, color = Primary, fontSize = 20.sp)
+            var fontSize by remember {
+                mutableStateOf(20.sp)
+            }
+
+            Text(card.title!!, maxLines = 2,
+                fontSize = fontSize,
+                onTextLayout = {
+                    if (it.multiParagraph.didExceedMaxLines) {
+                        fontSize = fontSize * .9F
+                    }
+                })
             Text(card.description!!, color = Primary, fontSize = 10.sp)
         }
     }

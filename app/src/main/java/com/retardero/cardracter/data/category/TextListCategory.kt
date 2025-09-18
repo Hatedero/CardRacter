@@ -14,8 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.TextAttribute
+import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
 
 class TextListCategory(
@@ -50,7 +52,8 @@ class TextListCategory(
                 TextAttribute("Mother", "Alice Dean"),
                 TextAttribute("Father", "Tom Ward"),
                 TextAttribute("Brother", "Ornstein Pyrii"),
-            )
+                TextAttribute("Spouse", "Linthia Stagerman")
+                )
         )
     }
 

@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
+import com.retardero.cardracter.data.category.CardListCategory
 import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.LongTextCategory
 import com.retardero.cardracter.data.category.TextListCategory
@@ -101,7 +102,8 @@ class CharacterCard(
             illustration =  R.drawable.artorias,
             categories = listOf(
                 TextListCategory.testData(),
-                LongTextCategory.testData()
+                LongTextCategory.testData(),
+                CardListCategory.testData()
             ),
             age = "42 years old",
             story = ""
