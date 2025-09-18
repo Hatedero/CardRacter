@@ -26,14 +26,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.LongTextCategory
+import com.retardero.cardracter.data.category.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class CharacterCard(
     title: String,
     description: String,
     illustration: Int = R.drawable.default_pp,
-    categories: List<CustomCategory>? = emptyList()
+    categories: List<CustomCategory>? = emptyList(),
+    age: String = "",
+    proverb: String = "",
+    story: String = ""
 ) : Card(title, description, illustration, categories) {
+
+    var age: String ? = age
+    var proverb: String ? = proverb
+    var story: String ? = story
 
     @Composable
     override fun Draw() {
@@ -87,14 +96,15 @@ class CharacterCard(
         )
 
         fun testData(): CharacterCard = CharacterCard(
-            "Artorias - The Abyss Walker",
-            "A knight consumed by the abyss, fated to save the world",
-            R.drawable.artorias,
-            listOf(
-                CustomCategory.testData(),
-                CustomCategory.testData(),
-                CustomCategory.testData()
-            )
+            title = "Artorias - The Abyss Walker",
+            description = "A knight consumed by the abyss, fated to save the world",
+            illustration =  R.drawable.artorias,
+            categories = listOf(
+                TextListCategory.testData(),
+                LongTextCategory.testData()
+            ),
+            age = "42 years old",
+            story = ""
         )
     }
 

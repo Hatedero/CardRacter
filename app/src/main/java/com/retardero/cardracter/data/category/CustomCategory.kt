@@ -17,38 +17,11 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.ui.theme.Primary
 
-class CustomCategory (
+abstract class CustomCategory (
     var attributes: List<CustomAttribute> = emptyList(),
     var title: String = "Empty Category"
 ) {
 
     @Composable
-    fun draw() {
-        return Column (
-            modifier = Modifier
-                .fillMaxWidth()
-                .border(
-                    border = BorderStroke(1.dp, Primary),
-                    shape = RoundedCornerShape(10.dp)
-                )
-                .padding(8.dp)
-        ) {
-            Text(text = title, fontWeight = FontWeight.Bold, fontSize = 25.sp)
-            attributes.forEach { it->
-                Spacer(modifier = Modifier.height(4.dp))
-                it.draw()
-            }
-        }
-    }
-
-    companion object {
-        fun testData(): CustomCategory = CustomCategory(
-            title = "Test Category",
-            attributes = listOf(
-                CustomAttribute.testData(),
-                CustomAttribute.testData(),
-                CustomAttribute.testData(),
-                )
-        )
-    }
+    abstract fun draw()
 }

@@ -3,20 +3,12 @@ package com.retardero.cardracter.data.attribute
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
-class CustomAttribute (
-    var value: String?,
+abstract class CustomAttribute (
     var title: String?
 ) {
 
     @Composable
-    fun draw() {
-        return Text("$title : $value")
-    }
+    abstract fun draw()
 
-    companion object {
-        fun testData(): CustomAttribute = CustomAttribute(
-            "value",
-            "title"
-        )
-    }
+
 }
