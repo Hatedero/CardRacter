@@ -1,4 +1,4 @@
-package com.retardero.cardracter.data.category
+package com.retardero.cardracter.data.category.base
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -14,27 +14,46 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ramcosta.composedestinations.navargs.NavTypeSerializer
+import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.LongTextAttribute
+import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.user.CardListCategory
+import com.retardero.cardracter.data.category.user.LongTextCategory
+import com.retardero.cardracter.data.category.user.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
-class LongTextCategory(
+class CardCategory  (
+    CategoryTitle: String = "Card informations",
     attributes: List<CustomAttribute> = emptyList(),
-    title: String = "Empty Category"
-) : CustomCategory(attributes, title) {
 
+    cardTitle: String = "Title",
+    cardDescription: String = "Description",
+    cardIllustration: Int = R.drawable.default_pp,
+    cardCategories: List<CustomCategory> = emptyList()
+) : CustomCategory(attributes, CategoryTitle) {
+
+    var cardTitle: String = cardTitle
+    var cardDescription: String = cardDescription
+    var cardIllustration: Int = cardIllustration
+    var cardCategories: List<CustomCategory>? = cardCategories
 
     companion object {
-        fun testData(): CustomCategory = LongTextCategory(
-            title = "Story",
-            attributes = listOf(
-                LongTextAttribute.testData(),
-            )
+        fun empty(): CardCategory = CardCategory(
+            cardTitle = "",
+            cardDescription = "",
+            cardIllustration = R.drawable.default_pp,
         )
-        fun testData2(): CustomCategory = LongTextCategory(
-            title = "Story",
-            attributes = listOf(
-                LongTextAttribute("Background","Back against the ground my man"),
+
+        fun testData(): CardCategory = CardCategory(
+            cardTitle = "Artorias Pyrii",
+            cardDescription = "A knight promised to save the world.",
+            cardIllustration = R.drawable.artorias,
+            cardCategories = listOf(
+                TextListCategory.testData(),
+                LongTextCategory.testData(),
+                CardListCategory.testData()
             )
         )
     }

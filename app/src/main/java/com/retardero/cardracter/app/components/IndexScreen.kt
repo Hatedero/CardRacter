@@ -57,12 +57,13 @@ fun IndexScreen(navigator: DestinationsNavigator) {
             ) {
                 for(i in 1..50) {
                     item {
-                        if(i % 2 == 0) CardDisplay(CharacterCard("Ornstein - The Dragon Slayer", "A knight guarding the royal city of Anor Londo.", R.drawable.ornstein),
+                        /*if(i % 2 == 0) CardDisplay(CharacterCard("Ornstein - The Dragon Slayer", "A knight guarding the royal city of Anor Londo.", R.drawable.ornstein),
                             {
                             navigator.navigate(CardDetailScreenDestination())
+                        })*/
+                         CardDisplay(CharacterCard.testData(), {
+                            navigator.navigate(CardDetailScreenDestination())
                         })
-                        else CardDisplay(CharacterCard.testData(), {
-                            navigator.navigate(CardDetailScreenDestination())})
                     }
                 }
             }

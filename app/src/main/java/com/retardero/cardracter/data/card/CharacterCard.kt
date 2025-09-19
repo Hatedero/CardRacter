@@ -21,29 +21,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ramcosta.composedestinations.navargs.NavTypeSerializer
 import com.retardero.cardracter.R
-import com.retardero.cardracter.data.category.CardListCategory
+import com.retardero.cardracter.data.attribute.CardAttribute
+import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.LongTextCategory
-import com.retardero.cardracter.data.category.TextListCategory
+import com.retardero.cardracter.data.category.base.CardCategory
+import com.retardero.cardracter.data.category.base.CharacterCardCategory
+import com.retardero.cardracter.data.category.user.LongTextCategory
+import com.retardero.cardracter.data.category.user.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class CharacterCard(
-    title: String,
-    description: String,
-    illustration: Int = R.drawable.default_pp,
-    categories: List<CustomCategory>? = emptyList(),
-    age: String = "",
-    proverb: String = "",
-    story: String = ""
-) : Card(title, description, illustration, categories) {
+    cardAttributes: CardCategory,
+    characterAttributes: CharacterCardCategory
+) : Card(cardAttributes) {
 
-    var age: String ? = age
-    var proverb: String ? = proverb
-    var story: String ? = story
+    var characterAttributes: CharacterCardCategory = characterAttributes
 
     @Composable
     override fun Draw() {
@@ -56,7 +52,7 @@ class CharacterCard(
                 horizontalArrangement = Arrangement.Center
             ) {
                 Image(
-                    painter = painterResource(illustration!!),
+                    painter = painterResource(attributes.cardIllustration),
                     contentDescription = "icon",
                     contentScale = ContentScale.Fit,
                     modifier = Modifier
@@ -74,14 +70,14 @@ class CharacterCard(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(title!!, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
+                    Text(attributes.cardTitle, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
                     Spacer(modifier = Modifier.height(8.dp))
-                    Text(description!!, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
+                    Text(attributes.cardDescription, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))
 
-                categories?.forEach { it ->
+                attributes.cardCategories?.forEach { it ->
                     it.draw()
                     Spacer(modifier = Modifier.height(8.dp))
                 }
@@ -92,21 +88,13 @@ class CharacterCard(
 
     companion object {
         fun empty(): CharacterCard = CharacterCard(
-            "Empty Card",
-            "Lorem ipsum dolores ignut ignam thaum."
+            cardAttributes = CardCategory.empty(),
+            characterAttributes = CharacterCardCategory.empty()
         )
 
         fun testData(): CharacterCard = CharacterCard(
-            title = "Artorias - The Abyss Walker",
-            description = "A knight consumed by the abyss, fated to save the world.",
-            illustration =  R.drawable.artorias,
-            categories = listOf(
-                TextListCategory.testData(),
-                LongTextCategory.testData(),
-                CardListCategory.testData()
-            ),
-            age = "42 years old",
-            story = ""
+            cardAttributes = CardCategory.testData(),
+            characterAttributes = CharacterCardCategory.testData()
         )
     }
 

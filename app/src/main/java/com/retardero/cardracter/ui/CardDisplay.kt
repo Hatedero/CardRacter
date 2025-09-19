@@ -59,7 +59,7 @@ fun CardDisplay(card : Card = CharacterCard.empty(), navigate: () -> Unit) {
                 .fillMaxHeight(0.6f)
         ) {
             Image(
-                painter = painterResource(card.illustration!!),
+                painter = painterResource(card.attributes.cardIllustration),
                 contentDescription = "icon",
                 contentScale = ContentScale.Crop,
             )
@@ -73,14 +73,15 @@ fun CardDisplay(card : Card = CharacterCard.empty(), navigate: () -> Unit) {
                 mutableStateOf(20.sp)
             }
 
-            Text(card.title!!, maxLines = 2,
+            Text(card.attributes.cardTitle, maxLines = 2,
                 fontSize = fontSize,
                 onTextLayout = {
                     if (it.multiParagraph.didExceedMaxLines) {
                         fontSize = fontSize * .9F
                     }
-                })
-            Text(card.description!!, color = Primary, fontSize = 10.sp)
+                },
+                fontWeight = FontWeight.Bold)
+            Text(card.attributes.cardDescription, color = Primary, fontSize = 10.sp)
         }
     }
 }

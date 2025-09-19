@@ -12,7 +12,7 @@ import com.retardero.cardracter.ui.CardDisplay
 
 class CardAttribute(
     title: String?,
-    card: Card = CharacterCard.empty()
+    card: Card = CharacterCard.testData()
 ) : CustomAttribute(title) {
     var card: Card = card
 
