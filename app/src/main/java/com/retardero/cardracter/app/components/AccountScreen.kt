@@ -1,5 +1,7 @@
 package com.retardero.cardracter.app.components
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.R
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,6 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,10 +33,10 @@ import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 import com.retardero.cardracter.ui.theme.Primary
 
-@Destination
+@Destination(start = true)
+@Preview(showBackground = true)
 @Composable
-fun LoginScreen(navigator: DestinationsNavigator?) {
-
+fun AccountScreen(navigator: DestinationsNavigator? = null) {
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Background)
@@ -42,7 +45,8 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
             modifier = Modifier.background(Primary)
                 .fillMaxWidth()
                 .height(200.dp)
-        ) {  }
+        ) {
+        }
 
         Column (
             modifier = Modifier.fillMaxWidth()
@@ -90,13 +94,5 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
             Spacer(modifier = Modifier.height(20.dp))
             Text("Don't have an account ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CardRacterTheme {
-        LoginScreen(null)
     }
 }

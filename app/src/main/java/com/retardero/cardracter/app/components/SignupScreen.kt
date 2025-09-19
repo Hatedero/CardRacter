@@ -1,8 +1,6 @@
 package com.retardero.cardracter.app.components
 
-import android.view.RoundedCorner
 import androidx.compose.foundation.background
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,14 +15,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Label
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,6 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.ui.TextField
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 import com.retardero.cardracter.ui.theme.Primary
@@ -59,11 +52,11 @@ fun SignupScreen(navigator: DestinationsNavigator?) {
                 .clip(RoundedCornerShape(10.dp))
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            field("Email/Username")
+            TextField("Email/Username")
             Spacer(modifier = Modifier.height(10.dp))
-            field("Password")
+            TextField("Password")
             Spacer(modifier = Modifier.height(10.dp))
-            field("Confirm Password")
+            TextField("Confirm Password")
         }
         Text("Forgot your password ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
         Spacer(modifier = Modifier.height(40.dp))

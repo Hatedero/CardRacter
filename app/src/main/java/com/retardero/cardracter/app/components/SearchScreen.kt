@@ -36,7 +36,7 @@ import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Destination(start = true)
+@Destination
 @Preview(showBackground = true)
 @Composable
 fun SearchScreen(navigator: DestinationsNavigator? = null) {
