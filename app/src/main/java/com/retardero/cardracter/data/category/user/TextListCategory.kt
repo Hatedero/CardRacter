@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.TextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class TextListCategory(
     attributes: List<CustomAttribute> = emptyList(),
     title: String = "Empty Category"
-) : MultiCategory(attributes, title) {
+) : MultiAttributesCategory(attributes, title) {
 
     @Composable
     override fun draw() {

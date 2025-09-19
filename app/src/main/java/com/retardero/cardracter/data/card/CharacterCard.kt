@@ -37,7 +37,7 @@ import com.retardero.cardracter.ui.theme.Primary
 class CharacterCard(
     cardAttributes: CardCategory,
     characterAttributes: CharacterCardCategory
-) : Card(cardAttributes) {
+) : MultiCategoryCard(cardAttributes) {
 
     var characterAttributes: CharacterCardCategory = characterAttributes
 

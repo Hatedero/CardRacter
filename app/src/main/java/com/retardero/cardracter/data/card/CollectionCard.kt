@@ -23,22 +23,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ramcosta.composedestinations.navargs.NavTypeSerializer
-import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CardAttribute
-import com.retardero.cardracter.data.category.user.CardListCategory
-import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.SingleAttributeCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
-import com.retardero.cardracter.data.category.user.LongTextCategory
-import com.retardero.cardracter.data.category.user.TextListCategory
+import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.ui.theme.Primary
-/*
-class CollectionCard(
-    cardAttributes: CardCategory,
-) : Card(cardAttributes) {
 
-    var characterAttributes: CharacterCardCategory = characterAttributes
+class CollectionCard(
+    title: String,
+    cardAttributes: CardAttribute,
+    cards: CardListCategory,
+) : SingleCategoryCard(cardAttributes) {
+
+    var cards: CardListCategory = cards
 
     @Composable
     override fun Draw() {
@@ -97,4 +95,4 @@ class CollectionCard(
         )
     }
 
-}*/
+}

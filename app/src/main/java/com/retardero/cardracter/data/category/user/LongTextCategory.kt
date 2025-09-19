@@ -17,13 +17,13 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.LongTextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.SingleCategory
+import com.retardero.cardracter.data.category.SingleAttributeCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class LongTextCategory(
     attribute: CustomAttribute,
     title: String = "Empty Category"
-) : SingleCategory(attribute, title) {
+) : SingleAttributeCategory(attribute, title) {
 
 
     companion object {

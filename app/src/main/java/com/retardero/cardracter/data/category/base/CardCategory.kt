@@ -14,12 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ramcosta.composedestinations.navargs.NavTypeSerializer
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.attribute.LongTextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.data.category.user.LongTextCategory
 import com.retardero.cardracter.data.category.user.TextListCategory
@@ -33,7 +31,7 @@ class CardCategory  (
     cardDescription: String = "Description",
     cardIllustration: Int = R.drawable.default_pp,
     cardCategories: List<CustomCategory> = emptyList()
-) : MultiCategory(attributes, CategoryTitle) {
+) : MultiAttributesCategory(attributes, CategoryTitle) {
 
     var cardTitle: String = cardTitle
     var cardDescription: String = cardDescription

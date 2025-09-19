@@ -14,13 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiCategory
-import com.retardero.cardracter.data.category.user.CardListCategory
-import com.retardero.cardracter.data.category.user.LongTextCategory
-import com.retardero.cardracter.data.category.user.TextListCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class CharacterCardCategory  (
@@ -31,7 +26,7 @@ class CharacterCardCategory  (
 
     characterAge: String,
     characterProverb: String
-) : MultiCategory(attributes, categoryTitle) {
+) : MultiAttributesCategory(attributes, categoryTitle) {
 
     var characterAge: String = characterAge
     var characterProverb: String = characterProverb

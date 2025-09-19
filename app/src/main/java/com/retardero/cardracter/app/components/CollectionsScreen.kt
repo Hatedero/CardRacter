@@ -26,8 +26,6 @@ import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.R
 import com.retardero.cardracter.app.components.destinations.CardDetailScreenDestination
-//import com.retardero.cardracter.data.card.CollectionCard
-//import com.retardero.cardracter.ui.CollectionDisplay
 import com.retardero.cardracter.ui.SeachTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

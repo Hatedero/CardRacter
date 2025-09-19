@@ -22,17 +22,15 @@ import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.R
-import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
 
 class CardListCategory(
     attributes: List<CustomAttribute> = emptyList(),
     title: String = "Empty Category"
-) : MultiCategory(attributes, title) {
+) : MultiAttributesCategory(attributes, title) {
 
     @Composable
     override fun draw() {
