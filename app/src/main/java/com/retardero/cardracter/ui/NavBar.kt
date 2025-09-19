@@ -42,7 +42,7 @@ import com.retardero.cardracter.ui.theme.Secondary
 @Composable
 fun NavBar(index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
         Row(
-            modifier = Modifier.clip(RoundedCornerShape(15.dp))
+            modifier = Modifier.clip(RoundedCornerShape(20.dp))
                 .fillMaxWidth()
                 .fillMaxHeight(0.08f)
 
