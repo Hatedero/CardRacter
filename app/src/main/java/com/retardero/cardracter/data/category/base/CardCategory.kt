@@ -19,6 +19,7 @@ import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.LongTextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.MultiCategory
 import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.data.category.user.LongTextCategory
 import com.retardero.cardracter.data.category.user.TextListCategory
@@ -32,7 +33,7 @@ class CardCategory  (
     cardDescription: String = "Description",
     cardIllustration: Int = R.drawable.default_pp,
     cardCategories: List<CustomCategory> = emptyList()
-) : CustomCategory(attributes, CategoryTitle) {
+) : MultiCategory(attributes, CategoryTitle) {
 
     var cardTitle: String = cardTitle
     var cardDescription: String = cardDescription

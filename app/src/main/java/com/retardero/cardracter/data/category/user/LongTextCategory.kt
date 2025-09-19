@@ -17,26 +17,20 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.LongTextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.SingleCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class LongTextCategory(
-    attributes: List<CustomAttribute> = emptyList(),
+    attribute: CustomAttribute,
     title: String = "Empty Category"
-) : CustomCategory(attributes, title) {
+) : SingleCategory(attribute, title) {
 
 
     companion object {
         fun testData(): CustomCategory = LongTextCategory(
             title = "Story",
-            attributes = listOf(
+            attribute =
                 LongTextAttribute.testData(),
-            )
-        )
-        fun testData2(): CustomCategory = LongTextCategory(
-            title = "Story",
-            attributes = listOf(
-                LongTextAttribute("Background","Back against the ground my man"),
-            )
         )
     }
 
@@ -52,10 +46,10 @@ class LongTextCategory(
                 .padding(8.dp)
         ) {
             Text(text = title, fontWeight = FontWeight.Bold, fontSize = 25.sp)
-            attributes.forEach { it ->
+
                 Spacer(modifier = Modifier.height(4.dp))
-                it.draw()
-            }
+                attribute.draw()
+
         }
     }
 

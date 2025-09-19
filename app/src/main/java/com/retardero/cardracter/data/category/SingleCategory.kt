@@ -1,4 +1,4 @@
-package com.retardero.cardracter.data.category.user
+package com.retardero.cardracter.data.category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -22,17 +22,15 @@ import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.R
-import com.retardero.cardracter.data.card.Card
-import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
 
-class CardListCategory(
-    attributes: List<CustomAttribute> = emptyList(),
+abstract class SingleCategory(
+    attribute: CustomAttribute,
     title: String = "Empty Category"
-) : MultiCategory(attributes, title) {
+) : CustomCategory(title) {
+
+    var attribute: CustomAttribute = attribute
 
     @Composable
     override fun draw() {
@@ -53,21 +51,17 @@ class CardListCategory(
                     .padding(16.dp)
                     .height(200.dp)
             ) {
-                attributes.forEach { it ->
                     Spacer(modifier = Modifier.width(4.dp))
-                    it.draw()
-                }
+                    attribute.draw()
             }
         }
     }
 
     companion object {
-        fun testData(): CustomCategory = CardListCategory(
+        /*fun testData(): CustomCategory = SingleCategory(
             title = "Foes",
-            attributes = listOf(
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-            )
-        )
+            attribute = CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+        )*/
     }
 
 }

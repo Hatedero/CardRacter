@@ -19,7 +19,6 @@ import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.ui.theme.Primary
 
 abstract class CustomCategory (
-    var attributes: List<CustomAttribute> = emptyList(),
     var title: String = "Empty Category"
 ) {
 

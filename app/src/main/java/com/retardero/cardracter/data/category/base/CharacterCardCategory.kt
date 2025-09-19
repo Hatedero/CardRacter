@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.MultiCategory
 import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.data.category.user.LongTextCategory
 import com.retardero.cardracter.data.category.user.TextListCategory
@@ -30,7 +31,7 @@ class CharacterCardCategory  (
 
     characterAge: String,
     characterProverb: String
-) : CustomCategory(attributes, categoryTitle) {
+) : MultiCategory(attributes, categoryTitle) {
 
     var characterAge: String = characterAge
     var characterProverb: String = characterProverb
