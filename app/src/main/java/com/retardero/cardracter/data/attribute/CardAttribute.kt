@@ -25,6 +25,6 @@ class CardAttribute(
 
     @Composable
     override fun draw() {
-        return CardDisplay(card)
+        return CardDisplay(card, {})
     }
 }

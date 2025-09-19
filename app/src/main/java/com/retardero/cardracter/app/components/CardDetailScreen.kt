@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.NavBar
@@ -18,10 +19,10 @@ import com.retardero.cardracter.ui.EditTopBar
 import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Destination(start = true)
-@Preview(showBackground = true)
+@Destination
+//@Preview(showBackground = true)
 @Composable
-fun CardDetailScreen (card : Card = CharacterCard.testData()) {
+fun CardDetailScreen (destination: DestinationsNavigator, card : Card = CharacterCard.empty()) {
     Scaffold (
         bottomBar = { NavBar() },
         topBar = { EditTopBar() },
@@ -35,6 +36,7 @@ fun CardDetailScreen (card : Card = CharacterCard.testData()) {
             item {
                 card.Draw()
             }
+
         }
     }
 }
