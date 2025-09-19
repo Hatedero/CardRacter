@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.category.CardListCategory
 import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.ImageCategory
 import com.retardero.cardracter.data.category.LongTextCategory
 import com.retardero.cardracter.data.category.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
@@ -81,6 +82,8 @@ class CharacterCard(
 
                 Spacer(modifier = Modifier.height(32.dp))
 
+
+
                 categories?.forEach { it ->
                     it.draw()
                     Spacer(modifier = Modifier.height(8.dp))
@@ -103,7 +106,8 @@ class CharacterCard(
             categories = listOf(
                 TextListCategory.testData(),
                 LongTextCategory.testData(),
-                CardListCategory.testData()
+                CardListCategory.testData(),
+                ImageCategory.testData3()
             ),
             age = "42 years old",
             story = ""
