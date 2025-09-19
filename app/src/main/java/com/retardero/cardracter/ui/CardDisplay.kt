@@ -31,22 +31,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import java.nio.file.WatchEvent
 
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun CardDisplay(card : Card = CharacterCard.empty()) {
+fun CardDisplay(card : Card = CharacterCard.empty(), navigate: () -> Unit) {
     var backgroundColor by remember { mutableStateOf(Color.LightGray) }
 
     Column (
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
             .background(backgroundColor)
-            .clickable {
-            }
+            .clickable(
+                onClick = navigate
+            )
             .fillMaxHeight()
             .aspectRatio(0.6f)
 

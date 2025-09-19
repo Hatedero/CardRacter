@@ -100,7 +100,7 @@ class CharacterCard(
 
         fun testData(): CharacterCard = CharacterCard(
             title = "Artorias - The Abyss Walker",
-            description = "A knight consumed by the abyss, fated to save the world",
+            description = "A knight consumed by the abyss, fated to save the world.",
             illustration =  R.drawable.artorias,
             categories = listOf(
                 TextListCategory.testData(),
