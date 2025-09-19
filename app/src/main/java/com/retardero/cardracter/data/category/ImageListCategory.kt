@@ -17,7 +17,7 @@ import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.attribute.ImageAttribute
 import com.retardero.cardracter.ui.theme.Primary
 
-class ImageCategory(
+class ImageListCategory(
     attributes: List<CustomAttribute> = emptyList(),
     title: String = "No image provided",
 ) : CustomCategory(attributes, title)  {
@@ -42,19 +42,19 @@ class ImageCategory(
     }
 
     companion object {
-        fun testData(): CustomCategory = ImageCategory(
+        fun testData(): CustomCategory = ImageListCategory(
             title = "The good days",
             attributes = listOf(
                 ImageAttribute("The good days",R.drawable.default_pp)
             )
         )
-        fun testData2(): CustomCategory = ImageCategory(
+        fun testData2(): CustomCategory = ImageListCategory(
             title = "My Dix coslpay",
             attributes = listOf(
                 ImageAttribute.testData()
             )
         )
-        fun testData3(): CustomCategory = ImageCategory(
+        fun testData3(): CustomCategory = ImageListCategory(
             title = "The good days",
             attributes = listOf(
                 ImageAttribute.testData(),

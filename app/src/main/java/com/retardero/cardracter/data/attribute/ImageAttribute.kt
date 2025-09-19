@@ -25,22 +25,16 @@ class ImageAttribute(
 
     @Composable
     override fun draw(){
-        return Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Image(
+        return  Image(
                 painter = painterResource(value!!),
                 contentDescription = "icon",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
                     .clip(RoundedCornerShape(10.dp))
                     .fillMaxHeight()
-            )
-        }
+                    .fillMaxWidth()
+                    .padding(8.dp)
+        )
     }
 
     companion object{
@@ -53,5 +47,4 @@ class ImageAttribute(
             value = R.drawable.smough
         )
     }
-
 }

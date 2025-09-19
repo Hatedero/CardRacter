@@ -21,13 +21,12 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.data.category.CardListCategory
 import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.ImageCategory
+import com.retardero.cardracter.data.category.ImageListCategory
 import com.retardero.cardracter.data.category.LongTextCategory
 import com.retardero.cardracter.data.category.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
@@ -107,7 +106,7 @@ class CharacterCard(
                 TextListCategory.testData(),
                 LongTextCategory.testData(),
                 CardListCategory.testData(),
-                ImageCategory.testData3()
+                ImageListCategory.testData3()
             ),
             age = "42 years old",
             story = ""
