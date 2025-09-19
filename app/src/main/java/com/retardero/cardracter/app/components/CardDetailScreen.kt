@@ -14,7 +14,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.NavBar
-import com.retardero.cardracter.ui.TopBar
+import com.retardero.cardracter.ui.EditTopBar
 import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -24,7 +24,7 @@ import com.retardero.cardracter.ui.theme.Background
 fun CardDetailScreen (card : Card = CharacterCard.testData()) {
     Scaffold (
         bottomBar = { NavBar() },
-        topBar = { TopBar() },
+        topBar = { EditTopBar() },
         modifier = Modifier.padding(16.dp)
             .background(Background)
     ) {

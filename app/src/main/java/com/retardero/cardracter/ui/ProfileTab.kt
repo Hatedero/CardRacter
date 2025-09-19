@@ -2,6 +2,7 @@ package com.retardero.cardracter.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -27,6 +28,7 @@ import com.retardero.cardracter.ui.theme.Secondary
 fun ProfileTab() {
     Box (
         modifier = Modifier.clip(RoundedCornerShape(100))
+            .clickable {  }
             .background(Secondary)
     ) {
         Image(

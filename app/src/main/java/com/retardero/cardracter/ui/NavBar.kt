@@ -1,6 +1,7 @@
 package com.retardero.cardracter.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -39,17 +40,12 @@ import com.retardero.cardracter.ui.theme.Secondary
 
 @Preview(showBackground = true)
 @Composable
-fun NavBar(index : List<ImageVector>? = listOf<ImageVector>(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
-    Row (
-        modifier = Modifier.fillMaxWidth()
-            .fillMaxHeight(0.08f)
-        ,
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+fun NavBar(index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
         Row(
             modifier = Modifier.clip(RoundedCornerShape(15.dp))
                 .fillMaxWidth()
+                .fillMaxHeight(0.08f)
+
                 .background(Color.LightGray)
                 .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -59,6 +55,7 @@ fun NavBar(index : List<ImageVector>? = listOf<ImageVector>(Icons.Default.Home, 
                 Box(
                     modifier = Modifier
                         .clip(RoundedCornerShape(100))
+                        .clickable {  }
                         .background(PrimaryContainer)
                         .padding(7.dp)
                 ) {
@@ -70,8 +67,7 @@ fun NavBar(index : List<ImageVector>? = listOf<ImageVector>(Icons.Default.Home, 
                             .aspectRatio(1f)
                     )
                 }
-
             }
-        }
+
     }
 }
