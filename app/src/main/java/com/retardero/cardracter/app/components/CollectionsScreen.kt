@@ -57,13 +57,10 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
     ) {
             LazyColumn (
             ) {
-                for(i in 1..5) {
                     item {
                          CollectionDisplay(CollectionCard.testData(), {
                             navigator.navigate(CardDetailScreenDestination())
                         })
-                        Spacer(modifier = Modifier.height(8.dp))
-                    }
                 }
             }
         }
