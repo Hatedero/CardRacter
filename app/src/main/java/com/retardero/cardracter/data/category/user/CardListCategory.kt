@@ -67,6 +67,11 @@ class CardListCategory(
             title = "Foes",
             attributes = listOf(
                 CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
             )
         )
     }
