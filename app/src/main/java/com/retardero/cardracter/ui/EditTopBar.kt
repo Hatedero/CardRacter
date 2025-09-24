@@ -18,7 +18,10 @@ import androidx.compose.ui.unit.dp
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
-fun EditTopBar() {
+fun EditTopBar(
+    onClose: () -> Unit,
+    onMore: () -> Unit
+) {
     Row (
         modifier = Modifier.fillMaxWidth()
             .fillMaxHeight(0.04f),
@@ -31,7 +34,9 @@ fun EditTopBar() {
             modifier = Modifier.fillMaxHeight()
                 .aspectRatio(1f)
                 .clip(RoundedCornerShape(10.dp))
-                .clickable {  }
+                .clickable(
+                    onClick = onClose
+                )
         )
 
         Icon(
@@ -41,7 +46,9 @@ fun EditTopBar() {
             modifier = Modifier.fillMaxHeight()
                 .aspectRatio(1f)
                 .clip(RoundedCornerShape(10.dp))
-                .clickable {  }
+                .clickable(
+                    onClick = onMore
+                )
         )
     }
 }

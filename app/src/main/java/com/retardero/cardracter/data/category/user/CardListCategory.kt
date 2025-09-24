@@ -60,7 +60,10 @@ class CardListCategory(
     }
 
     companion object {
-        fun testData(): CustomCategory = CardListCategory(
+        fun empty(): CardListCategory = CardListCategory(
+        )
+
+        fun testData(): CardListCategory = CardListCategory(
             title = "Foes",
             attributes = listOf(
                 CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),

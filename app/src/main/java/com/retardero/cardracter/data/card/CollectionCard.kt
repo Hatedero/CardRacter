@@ -32,9 +32,9 @@ import com.retardero.cardracter.ui.theme.Primary
 
 class CollectionCard(
     title: String,
-    cardAttributes: CardAttribute,
+    cardAttributes: CardCategory,
     cards: CardListCategory,
-) : SingleCategoryCard(cardAttributes) {
+) : Card(cardAttributes) {
 
     var cards: CardListCategory = cards
 
@@ -86,13 +86,14 @@ class CollectionCard(
     companion object {
         fun empty(): CollectionCard = CollectionCard(
             cardAttributes = CardCategory.empty(),
-            characterAttributes = CharacterCardCategory.empty()
+            title = "",
+            cards = CardListCategory.empty()
         )
 
         fun testData(): CollectionCard = CollectionCard(
             cardAttributes = CardCategory.testData(),
-            characterAttributes = CharacterCardCategory.testData()
+            title = "Favorites",
+            cards = CardListCategory.testData()
         )
     }
-
 }

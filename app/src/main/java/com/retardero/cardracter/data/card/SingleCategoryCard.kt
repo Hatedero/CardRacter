@@ -35,7 +35,7 @@ import com.retardero.cardracter.data.category.user.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 abstract class SingleCategoryCard(
-    cardAttributes: CardAttribute,
+    cardAttributes: CardCategory,
     category: CustomCategory? = null
 ) : Card(cardAttributes) {
 
