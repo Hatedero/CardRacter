@@ -33,14 +33,18 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.destinations.CollectionsScreenDestination
+import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryContainer
 import com.retardero.cardracter.ui.theme.Secondary
 
-@Preview(showBackground = true)
+@Destination
 @Composable
-fun NavBar(index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
+fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
         Row(
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
                 .fillMaxWidth()
@@ -50,7 +54,7 @@ fun NavBar(index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default
                 .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
-        ) {
+        ) {/*
             index?.forEach { icon ->
                 Box(
                     modifier = Modifier
@@ -67,7 +71,54 @@ fun NavBar(index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default
                             .aspectRatio(1f)
                     )
                 }
+            }*/
+
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(100))
+                    .clickable { navigator.navigate(IndexScreenDestination) }
+                    .background(PrimaryContainer)
+                    .padding(7.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = "icon",
+                    tint = Primary,
+                    modifier = Modifier.fillMaxHeight()
+                        .aspectRatio(1f)
+                )
             }
 
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(100))
+                    .clickable { navigator.navigate(IndexScreenDestination)  }
+                    .background(PrimaryContainer)
+                    .padding(7.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Search,
+                    contentDescription = "icon",
+                    tint = Primary,
+                    modifier = Modifier.fillMaxHeight()
+                        .aspectRatio(1f)
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(100))
+                    .clickable { navigator.navigate(CollectionsScreenDestination)  }
+                    .background(PrimaryContainer)
+                    .padding(7.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Favorite,
+                    contentDescription = "icon",
+                    tint = Primary,
+                    modifier = Modifier.fillMaxHeight()
+                        .aspectRatio(1f)
+                )
+            }
     }
 }

@@ -5,7 +5,10 @@ import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.CircleShape
@@ -25,7 +28,9 @@ import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.R
-import com.retardero.cardracter.app.components.destinations.CardDetailScreenDestination
+import com.retardero.cardracter.data.card.CollectionCard
+import com.retardero.cardracter.destinations.CardDetailScreenDestination
+import com.retardero.cardracter.ui.CollectionDisplay
 import com.retardero.cardracter.ui.SeachTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -39,7 +44,7 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(8.dp))
             ) {
-            NavBar()} },
+            NavBar(navigator)} },
         topBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
@@ -50,16 +55,14 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
         modifier = Modifier.padding(8.dp)
             .background(Background)
     ) {
-            LazyVerticalStaggeredGrid(
-                columns = StaggeredGridCells.Fixed(2),
-                verticalItemSpacing = 8.dp,
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            LazyColumn (
             ) {
                 for(i in 1..5) {
                     item {
-                         /*CollectionDisplay(CollectionCard.testData(), {
+                         CollectionDisplay(CollectionCard.testData(), {
                             navigator.navigate(CardDetailScreenDestination())
-                        })*/
+                        })
+                        Spacer(modifier = Modifier.height(8.dp))
                     }
                 }
             }

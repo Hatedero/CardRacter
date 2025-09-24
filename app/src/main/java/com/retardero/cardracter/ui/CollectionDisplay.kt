@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -35,54 +36,29 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
+import com.retardero.cardracter.data.card.CollectionCard
 //import com.retardero.cardracter.data.card.CollectionCard
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.Secondary
 import java.nio.file.WatchEvent
-/*
+
 //@Preview(showBackground = true)
 @Composable
-fun CollectionDisplay(collection : CollectionCard = CollectionCard.empty(), navigate: () -> Unit) {
+fun CollectionDisplay(collection : CollectionCard = CollectionCard.testData(), navigate: () -> Unit) {
     var backgroundColor by remember { mutableStateOf(Color.LightGray) }
 
-    Column (
+    Column(
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
-            .background(backgroundColor)
+            .background(Secondary)
             .clickable(
                 onClick = navigate
             )
-            .fillMaxHeight()
-            .aspectRatio(0.6f)
-
+            .fillMaxWidth()
+            .height(100.dp)
+            .padding(2.dp)
     ) {
-        Row (
-            modifier = Modifier.fillMaxWidth()
-                .fillMaxHeight(0.6f)
-        ) {
-            Image(
-                painter = painterResource(card.attributes.cardIllustration),
-                contentDescription = "icon",
-                contentScale = ContentScale.Crop,
-            )
-        }
-        Column (
-            modifier = Modifier.padding(8.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            var fontSize by remember {
-                mutableStateOf(20.sp)
-            }
-
-            Text(card.attributes.cardTitle, maxLines = 2,
-                fontSize = fontSize,
-                onTextLayout = {
-                    if (it.multiParagraph.didExceedMaxLines) {
-                        fontSize = fontSize * .9F
-                    }
-                },
-                fontWeight = FontWeight.Bold)
-            Text(card.attributes.cardDescription, color = Primary, fontSize = 10.sp)
-        }
+        Text(collection.attributes.cardTitle)
+        collection.Draw()
     }
-}*/
+}

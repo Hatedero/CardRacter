@@ -46,7 +46,6 @@ class CollectionCard(
                     .fillMaxWidth()
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.Center
             ) {
                 Image(
                     painter = painterResource(attributes.cardIllustration),
@@ -91,7 +90,9 @@ class CollectionCard(
         )
 
         fun testData(): CollectionCard = CollectionCard(
-            cardAttributes = CardCategory.testData(),
+            cardAttributes = CardCategory(
+                cardTitle = "Favorites"
+            ),
             title = "Favorites",
             cards = CardListCategory.testData()
         )

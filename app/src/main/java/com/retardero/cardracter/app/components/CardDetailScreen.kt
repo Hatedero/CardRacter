@@ -20,13 +20,12 @@ import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
-//@Preview(showBackground = true)
 @Composable
-fun CardDetailScreen (destination: DestinationsNavigator, card : Card = CharacterCard.testData()) {
+fun CardDetailScreen (navigator: DestinationsNavigator, card : Card = CharacterCard.testData()) {
     Scaffold (
-        bottomBar = { NavBar() },
+        bottomBar = { NavBar(navigator) },
         topBar = { EditTopBar(
-            { destination.navigateUp() },
+            { navigator.navigateUp() },
             { }
         ) },
         modifier = Modifier

@@ -25,7 +25,7 @@ import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.R
-import com.retardero.cardracter.app.components.destinations.CardDetailScreenDestination
+import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.ui.SeachTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -39,7 +39,7 @@ fun IndexScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(8.dp))
             ) {
-            NavBar()} },
+            NavBar(navigator)} },
         topBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
