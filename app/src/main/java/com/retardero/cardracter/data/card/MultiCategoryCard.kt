@@ -60,14 +60,13 @@ abstract class MultiCategoryCard(
                 )
                 .fillMaxHeight()
                 .aspectRatio(0.6f)
-
         ) {
             Row (
                 modifier = Modifier.fillMaxWidth()
                     .fillMaxHeight(0.6f)
             ) {
                 Image(
-                    painter = painterResource(card.attributes.cardIllustration),
+                    painter = painterResource(attributes.cardIllustration),
                     contentDescription = "icon",
                     contentScale = ContentScale.Crop,
                 )
@@ -81,7 +80,7 @@ abstract class MultiCategoryCard(
                     mutableStateOf(20.sp)
                 }
 
-                Text(card.attributes.cardTitle, maxLines = 2,
+                Text(attributes.cardTitle, maxLines = 2,
                     fontSize = fontSize,
                     onTextLayout = {
                         if (it.multiParagraph.didExceedMaxLines) {
@@ -89,7 +88,7 @@ abstract class MultiCategoryCard(
                         }
                     },
                     fontWeight = FontWeight.Bold)
-                Text(card.attributes.cardDescription, color = Primary, fontSize = 10.sp)
+                Text(attributes.cardDescription, color = Primary, fontSize = 10.sp)
             }
         }
     }
