@@ -23,7 +23,6 @@ import androidx.navigation.NavController
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.data.card.CharacterCard
-import com.retardero.cardracter.ui.CardDisplay
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background

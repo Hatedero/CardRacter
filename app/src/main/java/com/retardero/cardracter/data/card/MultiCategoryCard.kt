@@ -50,6 +50,50 @@ abstract class MultiCategoryCard(
 
     @Composable
     override fun DrawFullScale() {
+        return Column() {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Image(
+                    painter = painterResource(attributes.cardIllustration),
+                    contentDescription = "icon",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(10.dp))
+                        .fillMaxHeight()
+                )
+            }
+            Column(
+                Modifier.fillMaxSize(),
+            ) {
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(attributes.cardTitle, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(attributes.cardDescription, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+
+                attributes.cardCategories?.forEach { it ->
+                    it.draw()
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
+            }
+        }
+    }
+
+    @Composable
+    override fun DrawSimplified() {
         var backgroundColor by remember { mutableStateOf(Color.LightGray) }
 
         Column (
@@ -60,6 +104,7 @@ abstract class MultiCategoryCard(
                 )
                 .fillMaxHeight()
                 .aspectRatio(0.6f)
+
         ) {
             Row (
                 modifier = Modifier.fillMaxWidth()

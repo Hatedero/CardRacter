@@ -26,7 +26,6 @@ import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
-import com.retardero.cardracter.ui.CardDisplay
 
 class CardListCategory(
     attributes: List<CardAttribute> = emptyList(),

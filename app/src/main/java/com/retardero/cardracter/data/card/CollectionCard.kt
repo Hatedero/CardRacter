@@ -46,6 +46,10 @@ class CollectionCard(
         }
     }
 
+    @Composable
+    override fun DrawSimplified() {
+    }
+
 
     companion object {
         fun empty(): CollectionCard = CollectionCard(
