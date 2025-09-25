@@ -42,7 +42,7 @@ class CharacterCard(
     var characterAttributes: CharacterCardCategory = characterAttributes
 
     @Composable
-    override fun Draw() {
+    override fun DrawFullScale() {
         return Column() {
             Row(
                 modifier = Modifier

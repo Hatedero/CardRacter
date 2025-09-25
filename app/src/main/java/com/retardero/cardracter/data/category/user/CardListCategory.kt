@@ -26,9 +26,10 @@ import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.MultiAttributesCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
+import com.retardero.cardracter.ui.CardDisplay
 
 class CardListCategory(
-    attributes: List<CustomAttribute> = emptyList(),
+    attributes: List<CardAttribute> = emptyList(),
     title: String = "Empty Category"
 ) : MultiAttributesCategory(attributes, title) {
 
@@ -51,10 +52,10 @@ class CardListCategory(
                     .padding(16.dp)
                     .height(200.dp)
             ) {
-                attributes.forEach { it ->
+                /*attributes.forEach { it ->
                     Spacer(modifier = Modifier.width(4.dp))
-                    it.draw()
-                }
+                    CardDisplay(it.card, {})
+                }*/
             }
         }
     }

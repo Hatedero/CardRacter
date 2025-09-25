@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -38,7 +37,7 @@ fun CardDetailScreen (navigator: DestinationsNavigator, card : Card = CharacterC
                 .padding(it)
         ) {
             item {
-                card.Draw()
+                card.DrawFullScale()
             }
 
         }
