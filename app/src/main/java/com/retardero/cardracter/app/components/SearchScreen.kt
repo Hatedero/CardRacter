@@ -42,23 +42,23 @@ fun SearchScreen(navigator: DestinationsNavigator) {
     Scaffold (
         bottomBar = {
             Row (
-                modifier = Modifier.padding(0.dp)
+                modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(8.dp))
             ) {
                 NavBar(navigator)} },
         topBar = {
             Row (
                 modifier = Modifier.padding(0.dp)
-                    .shadow(8.dp, CircleShape)
+                    .shadow(8.dp, RoundedCornerShape(10.dp))
             ) {
                 SeachTopBar()
             }},
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(8.dp)
 
     ) {
         Column (
             modifier = Modifier
-                .padding(top = 64.dp, bottom = 64.dp)
+                .padding(top = 64.dp, bottom = 64.dp, )
                 .fillMaxSize()
         ) {
             SearchHistory()
