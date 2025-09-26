@@ -36,7 +36,7 @@ fun IndexScreen(navigator: DestinationsNavigator) {
         bottomBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
-                    .shadow(8.dp, RoundedCornerShape(8.dp))
+                    .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
             NavBar(navigator)} },
         topBar = {

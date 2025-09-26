@@ -41,7 +41,7 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
         bottomBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
-                    .shadow(8.dp, RoundedCornerShape(8.dp))
+                    .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
             NavBar(navigator)} },
         topBar = {
@@ -60,6 +60,14 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
                          CollectionDisplay(CollectionCard.testData(), {
                             navigator.navigate(CardDetailScreenDestination())
                         })
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+
+                item {
+                    CollectionDisplay(CollectionCard.testData(), {
+                        navigator.navigate(CardDetailScreenDestination())
+                    })
+                    Spacer(modifier = Modifier.height(8.dp))
                 }
             }
         }
