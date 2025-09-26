@@ -37,6 +37,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.destinations.CollectionsScreenDestination
 import com.retardero.cardracter.destinations.IndexScreenDestination
+import com.retardero.cardracter.destinations.SearchScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryContainer
@@ -92,7 +93,7 @@ fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
-                    .clickable { navigator.navigate(IndexScreenDestination)  }
+                    .clickable { navigator.navigate(SearchScreenDestination)  }
                     .background(PrimaryContainer)
                     .padding(7.dp)
             ) {
