@@ -8,11 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.CharacterCard
-import com.retardero.cardracter.ui.CardDisplay
 
 class CardAttribute(
     title: String?,
-    card: Card = CharacterCard.empty()
+    card: Card = CharacterCard.testData()
 ) : CustomAttribute(title) {
     var card: Card = card
 
@@ -25,6 +24,6 @@ class CardAttribute(
 
     @Composable
     override fun draw() {
-        return CardDisplay(card, {})
+        return card.DrawSimplified()
     }
 }

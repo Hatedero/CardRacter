@@ -20,7 +20,7 @@ import com.retardero.cardracter.ui.theme.Primary
 class ImageListCategory(
     attributes: List<CustomAttribute> = emptyList(),
     title: String = "No image provided",
-) : CustomCategory(attributes, title)  {
+) : CustomCategory(title)  {
 
     @Composable
     override fun draw() {
@@ -34,10 +34,10 @@ class ImageListCategory(
             .padding(8.dp) )
             {
                 Text(title)
-                attributes.forEach { it ->
+                /*attributes.forEach { it ->
                     Spacer(modifier = Modifier.height(4.dp))
                     it.draw()
-                }
+                }*/
             }
     }
 

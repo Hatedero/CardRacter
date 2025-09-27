@@ -14,11 +14,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.ramcosta.composedestinations.navargs.NavTypeSerializer
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.ui.theme.Primary
 
 abstract class CustomCategory (
-    var attributes: List<CustomAttribute> = emptyList(),
     var title: String = "Empty Category"
 ) {
 

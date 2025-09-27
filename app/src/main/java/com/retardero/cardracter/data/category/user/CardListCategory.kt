@@ -1,4 +1,4 @@
-package com.retardero.cardracter.data.category
+package com.retardero.cardracter.data.category.user
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -22,12 +22,15 @@ import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
 import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.R
+import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
+import com.retardero.cardracter.data.category.base.CardCategory
+import com.retardero.cardracter.data.category.base.CharacterCardCategory
 
 class CardListCategory(
-    attributes: List<CustomAttribute> = emptyList(),
+    attributes: List<CardAttribute> = emptyList(),
     title: String = "Empty Category"
-) : CustomCategory(attributes, title) {
+) : MultiAttributesCategory(attributes, title) {
 
     @Composable
     override fun draw() {
@@ -48,21 +51,27 @@ class CardListCategory(
                     .padding(16.dp)
                     .height(200.dp)
             ) {
-                attributes.forEach { it ->
+                /*attributes.forEach { it ->
                     Spacer(modifier = Modifier.width(4.dp))
-                    it.draw()
-                }
+                    CardDisplay(it.card, {})
+                }*/
             }
         }
     }
 
     companion object {
-        fun testData(): CustomCategory = CardListCategory(
+        fun empty(): CardListCategory = CardListCategory(
+        )
+
+        fun testData(): CardListCategory = CardListCategory(
             title = "Foes",
             attributes = listOf(
-                CardAttribute("Orion", CharacterCard("Orion - The DragonSlayer", "", R.drawable.ornstein)),
-                CardAttribute("Smough", CharacterCard("Smough - The Executioner", "", R.drawable.smough)),
-                CardAttribute("Gwyn", CharacterCard("Gwyn - Lord Of Cinder", "", R.drawable.gwyn)),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
             )
         )
     }

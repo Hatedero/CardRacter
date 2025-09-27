@@ -34,23 +34,10 @@ import com.retardero.cardracter.data.category.user.LongTextCategory
 import com.retardero.cardracter.data.category.user.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
-class CharacterCard(
+abstract class SingleCategoryCard(
     cardAttributes: CardCategory,
-    characterAttributes: CharacterCardCategory
-) : MultiCategoryCard(cardAttributes) {
+    category: CustomCategory? = null
+) : Card(cardAttributes) {
 
-    var characterAttributes: CharacterCardCategory = characterAttributes
-
-    companion object {
-        fun empty(): CharacterCard = CharacterCard(
-            cardAttributes = CardCategory.empty(),
-            characterAttributes = CharacterCardCategory.empty()
-        )
-
-        fun testData(): CharacterCard = CharacterCard(
-            cardAttributes = CardCategory.testData(),
-            characterAttributes = CharacterCardCategory.testData()
-        )
-    }
-
+    var category: CustomCategory? = category
 }

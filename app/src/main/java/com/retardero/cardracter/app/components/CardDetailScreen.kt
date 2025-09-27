@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -20,21 +19,25 @@ import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
-//@Preview(showBackground = true)
 @Composable
-fun CardDetailScreen (destination: DestinationsNavigator, card : Card = CharacterCard.empty()) {
+fun CardDetailScreen (navigator: DestinationsNavigator, card : Card = CharacterCard.testData()) {
     Scaffold (
-        bottomBar = { NavBar() },
-        topBar = { EditTopBar() },
-        modifier = Modifier.padding(16.dp)
+        bottomBar = { NavBar(navigator) },
+        topBar = { EditTopBar(
+            { navigator.navigateUp() },
+            { }
+        ) },
+        modifier = Modifier
+            .padding(16.dp)
             .background(Background)
     ) {
         LazyColumn (
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
                 .padding(it)
         ) {
             item {
-                card.Draw()
+                card.DrawFullScale()
             }
 
         }

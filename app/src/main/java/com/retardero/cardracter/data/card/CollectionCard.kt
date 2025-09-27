@@ -23,34 +23,45 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ramcosta.composedestinations.navargs.NavTypeSerializer
-import com.retardero.cardracter.R
 import com.retardero.cardracter.data.attribute.CardAttribute
-import com.retardero.cardracter.data.category.user.CardListCategory
-import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.SingleAttributeCategory
 import com.retardero.cardracter.data.category.base.CardCategory
 import com.retardero.cardracter.data.category.base.CharacterCardCategory
-import com.retardero.cardracter.data.category.user.LongTextCategory
-import com.retardero.cardracter.data.category.user.TextListCategory
+import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
-class CharacterCard(
+class CollectionCard(
     cardAttributes: CardCategory,
-    characterAttributes: CharacterCardCategory
-) : MultiCategoryCard(cardAttributes) {
+    cards: CardListCategory,
+) : Card(cardAttributes) {
 
-    var characterAttributes: CharacterCardCategory = characterAttributes
+    var cards: CardListCategory = cards
 
-    companion object {
-        fun empty(): CharacterCard = CharacterCard(
-            cardAttributes = CardCategory.empty(),
-            characterAttributes = CharacterCardCategory.empty()
-        )
-
-        fun testData(): CharacterCard = CharacterCard(
-            cardAttributes = CardCategory.testData(),
-            characterAttributes = CharacterCardCategory.testData()
-        )
+    @Composable
+    override fun DrawFullScale() {
+        return Column() {
+            cards.attributes.forEach { it->
+                it.draw()
+            }
+        }
     }
 
+    @Composable
+    override fun DrawSimplified() {
+    }
+
+
+    companion object {
+        fun empty(): CollectionCard = CollectionCard(
+            cardAttributes = CardCategory.empty(),
+            cards = CardListCategory.empty()
+        )
+
+        fun testData(): CollectionCard = CollectionCard(
+            cardAttributes = CardCategory(
+                cardTitle = "Favorites"
+            ),
+            cards = CardListCategory.testData()
+        )
+    }
 }

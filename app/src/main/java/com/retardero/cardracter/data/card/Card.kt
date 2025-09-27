@@ -1,16 +1,15 @@
 package com.retardero.cardracter.data.card
 
 import androidx.compose.runtime.Composable
-import com.retardero.cardracter.R
-import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.base.CardCategory
 
 abstract class Card (
-    var title: String?,
-    var description: String?,
-    var illustration: Int? = R.drawable.default_pp,
-    var categories: List<CustomCategory>? = emptyList()
+    var attributes: CardCategory
 ) {
 
     @Composable
-    abstract fun Draw() : Unit
+    abstract fun DrawFullScale() : Unit
+
+    @Composable
+    abstract fun DrawSimplified() : Unit
 }

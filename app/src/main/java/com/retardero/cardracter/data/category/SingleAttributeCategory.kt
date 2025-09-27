@@ -2,11 +2,15 @@ package com.retardero.cardracter.data.category
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,16 +18,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.attribute.TextAttribute
-import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
 
-class TextListCategory(
-    attributes: List<CustomAttribute> = emptyList(),
+abstract class SingleAttributeCategory(
+    attribute: CustomAttribute,
     title: String = "Empty Category"
-) : CustomCategory(attributes, title) {
+) : CustomCategory(title) {
+
+    var attribute: CustomAttribute = attribute
 
     @Composable
     override fun draw() {
@@ -38,23 +41,23 @@ class TextListCategory(
                 .padding(8.dp)
         ) {
             Text(text = title, fontWeight = FontWeight.Bold, fontSize = 25.sp)
-            attributes.forEach { it ->
-                Spacer(modifier = Modifier.height(4.dp))
-                it.draw()
+            Spacer(modifier = Modifier.width(16.dp))
+            Row(
+                modifier = Modifier.horizontalScroll(rememberScrollState())
+                    .padding(16.dp)
+                    .height(200.dp)
+            ) {
+                    Spacer(modifier = Modifier.width(4.dp))
+                    attribute.draw()
             }
         }
     }
 
     companion object {
-        fun testData(): CustomCategory = TextListCategory(
-            title = "Family",
-            attributes = listOf(
-                TextAttribute("Mother", "Alice Dean"),
-                TextAttribute("Father", "Tom Ward"),
-                TextAttribute("Brother", "Ornstein Pyrii"),
-                TextAttribute("Spouse", "Linthia Stagerman")
-                )
-        )
+        /*fun testData(): CustomCategory = SingleCategory(
+            title = "Foes",
+            attribute = CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+        )*/
     }
 
 }
