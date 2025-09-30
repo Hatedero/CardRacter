@@ -1,6 +1,7 @@
 package com.retardero.cardracter.app.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,10 +14,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
@@ -25,9 +30,10 @@ import com.retardero.cardracter.ui.AccountButton
 import com.retardero.cardracter.ui.TextDisplay
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.AccountPicture
+import com.retardero.cardracter.ui.theme.Primary
 
 
-@Destination(start = true)
+@Destination
 @Preview(showBackground = true)
 @Composable
 fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
@@ -72,5 +78,27 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
+    }
+}
+
+@Composable
+fun saveButton(){
+    Button(
+        onClick = { },
+        modifier = Modifier
+            .fillMaxWidth(0.7F)
+            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)
+        ,
+        colors = ButtonColors(
+            containerColor = Primary ,
+            contentColor = Color(red=0, green=0, blue=0),
+            disabledContainerColor = Background,
+            disabledContentColor = Primary
+        )
+    ) {
+        Text(
+            text="Save",
+            modifier = Modifier.background(Primary),
+        )
     }
 }

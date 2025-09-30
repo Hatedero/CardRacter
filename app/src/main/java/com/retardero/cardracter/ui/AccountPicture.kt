@@ -26,5 +26,4 @@ fun AccountPicture(illustration : Int?=null){
         contentDescription = "icon",
         contentScale = ContentScale.Crop,
         )
-
 }

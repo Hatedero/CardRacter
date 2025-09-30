@@ -27,7 +27,7 @@ import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.AccountPicture
 
 
-@Destination(start = true)
+@Destination
 @Preview(showBackground = true)
 @Composable
 fun AccountScreen(navigator: DestinationsNavigator? = null) {
