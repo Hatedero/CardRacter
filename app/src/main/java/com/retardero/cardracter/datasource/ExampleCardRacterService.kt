@@ -4,7 +4,7 @@ import com.retardero.cardracter.datasource.model.ExampleCharacterCardList
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface CardRacterService {
+interface ExampleCardRacterService {
     @GET("/cards")
     suspend fun getExampleDataList(): Response<ExampleCharacterCardList>
 
