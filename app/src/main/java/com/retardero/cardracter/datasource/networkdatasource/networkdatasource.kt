@@ -2,7 +2,7 @@ package com.retardero.cardracter.datasource.networkdatasource
 
 import com.retardero.cardracter.datasource.ExampleCardRacterService
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+//import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.getValue
@@ -10,11 +10,11 @@ import kotlin.getValue
 object networkdatasource {
     private const val BASE_URL = "https:://api.magicthegathering.io/v1/"
 
-    val intercepter = HttpLoggingInterceptor().apply {
+    /*val intercepter = HttpLoggingInterceptor().apply {
         this.level = HttpLoggingInterceptor.Level.BODY
-    }
+    }*/
     val client = OkHttpClient.Builder().apply {
-        this.addInterceptor(intercepter)
+        //this.addInterceptor(intercepter)
     }.build()
     
     val apiService: ExampleCardRacterService by lazy{

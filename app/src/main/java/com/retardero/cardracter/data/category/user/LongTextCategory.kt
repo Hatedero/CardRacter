@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
+import com.retardero.cardracter.data.attribute.TextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.SingleAttributeCategory
 import com.retardero.cardracter.ui.theme.Primary
@@ -28,8 +29,7 @@ class LongTextCategory(
     companion object {
         fun testData(): CustomCategory = LongTextCategory(
             title = "Story",
-            attribute =
-                LongTextAttribute.testData(),
+            attribute = TextAttribute.testData()
         )
     }
 
