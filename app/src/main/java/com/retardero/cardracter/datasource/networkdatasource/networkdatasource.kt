@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.getValue
 
 object networkdatasource {
-    private const val BASE_URL = "https:://NMF.com"
+    private const val BASE_URL = "https:://api.magicthegathering.io/v1/"
 
     val apiService: CardRacterService by lazy{
         Retrofit.Builder()
@@ -15,6 +15,4 @@ object networkdatasource {
             .build()
             .create(CardRacterService::class.java)
     }
-
-
 }
