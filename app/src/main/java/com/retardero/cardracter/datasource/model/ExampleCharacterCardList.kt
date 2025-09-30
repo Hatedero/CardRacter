@@ -1,5 +1,5 @@
 package com.retardero.cardracter.datasource.model
 
-data class CharacterCardList (
+data class ExampleCharacterCardList (
     val cards: List<CharacterCard>
 )
