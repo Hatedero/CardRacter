@@ -27,7 +27,7 @@ import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 
 @Composable
-fun TextDisplay(label : String, display : String) {
+fun TextDisplay(label : String, display : String = "") {
     Column (
         modifier = Modifier.fillMaxWidth()
             .clip(RoundedCornerShape(10.dp)),

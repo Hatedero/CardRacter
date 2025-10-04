@@ -1,6 +1,7 @@
 package com.retardero.cardracter.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,17 +14,27 @@ import androidx.compose.ui.unit.dp
 import com.retardero.cardracter.R
 
 @Composable
-fun AccountPicture(illustration : Int?=null){
-    var profilePicture :Int? = illustration
-    if(profilePicture==null){
-        profilePicture=R.drawable.default_pp
-    }
-    Image(
-        modifier = Modifier
-        .clip(RoundedCornerShape(10000.dp))
-        .fillMaxHeight(0.3f).aspectRatio(1f),
-        painter = painterResource(profilePicture),
-        contentDescription = "icon",
-        contentScale = ContentScale.Crop,
+fun AccountPicture(illustration : Int=R.drawable.default_pp, tranparency : Float = 1f){
+    Box() {
+        Image(
+            modifier = Modifier
+                .clip(RoundedCornerShape(10000.dp))
+                .fillMaxHeight(0.3f).aspectRatio(1f),
+            alpha = tranparency,
+            painter = painterResource(illustration),
+            contentDescription = "profile picture",
+            contentScale = ContentScale.Crop,
         )
+        if(tranparency<1f){
+            Image(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(10000.dp))
+                    .fillMaxHeight(0.3f).aspectRatio(1f),
+                alpha = tranparency,
+                painter = painterResource(illustration),
+                contentDescription = "profile picture",
+                contentScale = ContentScale.Crop,
+            )
+        }
+    }
 }
