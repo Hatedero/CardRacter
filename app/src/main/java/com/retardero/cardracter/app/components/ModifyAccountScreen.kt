@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.ui.AccountButton
-import com.retardero.cardracter.ui.TextDisplay
+import com.retardero.cardracter.ui.TextField
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.AccountPicture
 import com.retardero.cardracter.ui.theme.Primary
@@ -44,7 +44,7 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        AccountPicture()
+        AccountPicture(tranparency = 0.5f)
         Spacer(modifier = Modifier.height(10.dp))
         Column (
             modifier = Modifier.fillMaxWidth()
@@ -52,28 +52,29 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            AccountButton("MODIFY PROFILE")
             Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Username","YourUsername")
+            TextField("Username","YourUsername")
             Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Email","your@email.com")
+            TextField("Email","your@email.com")
             Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Password","••••••")
+            TextField("Password","••••••")
             Spacer(modifier = Modifier.height(10.dp))
-            Row (modifier = Modifier.fillMaxWidth()) {
-                Box(modifier = Modifier.fillMaxWidth(0.5F)){
-                    TextDisplay("Date of Birth","25/12/2002")
-                }
-                Spacer(modifier = Modifier.width(20.dp))
-                Box(modifier = Modifier.fillMaxWidth()) {
-                    TextDisplay("Join on the", "14/08/2023")
-                }
-            }
-            Spacer(modifier = Modifier.height(20.dp))
+            TextField("Date of Birth","25/12/2002")
             Column(modifier = Modifier.fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
+                Row (modifier = Modifier.fillMaxWidth()) {
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Box(modifier = Modifier.fillMaxWidth(0.7F)){
+                        SaveButton()
+                    }
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        UndoButton()
+                    }
+                    Spacer(modifier = Modifier.width(8.dp))
+                }
+                Spacer(modifier = Modifier.height(40.dp))
                 AccountButton("LOG OUT")
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -82,11 +83,11 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
 }
 
 @Composable
-fun saveButton(){
+fun SaveButton(){
     Button(
         onClick = { },
         modifier = Modifier
-            .fillMaxWidth(0.7F)
+            .fillMaxWidth(0.9F)
             .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)
         ,
         colors = ButtonColors(
@@ -99,6 +100,29 @@ fun saveButton(){
         Text(
             text="Save",
             modifier = Modifier.background(Primary),
+        )
+    }
+}
+
+@Composable
+fun UndoButton(){
+    val redColor =  Color(red=255, green=0, blue=0);
+    Button(
+        onClick = { },
+        modifier = Modifier
+            .fillMaxWidth(0.9F)
+            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = redColor)
+        ,
+        colors = ButtonColors(
+            containerColor = redColor ,
+            contentColor = Color(red=0, green=0, blue=0),
+            disabledContainerColor = Background,
+            disabledContentColor = redColor
+        )
+    ) {
+        Text(
+            text="Undo",
+            modifier = Modifier.background(redColor),
         )
     }
 }
