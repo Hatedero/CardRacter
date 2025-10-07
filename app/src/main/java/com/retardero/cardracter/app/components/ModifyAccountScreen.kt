@@ -31,7 +31,8 @@ import com.retardero.cardracter.ui.TextField
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.AccountPicture
 import com.retardero.cardracter.ui.theme.Primary
-
+import com.retardero.cardracter.ui.theme.Secondary
+import androidx.compose.ui.text.style.TextDecoration
 
 @Destination
 @Preview(showBackground = true)
@@ -75,12 +76,32 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator? = null) {
                     Spacer(modifier = Modifier.width(8.dp))
                 }
                 Spacer(modifier = Modifier.height(40.dp))
-                AccountButton("LOG OUT")
+                deleteAccount()
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
 }
+
+@Composable
+fun deleteAccount(){
+    Button(
+        onClick = { },
+        colors = ButtonColors(
+            containerColor = Color.White ,
+            contentColor =  Color.White,
+            disabledContainerColor =  Color.White,
+            disabledContentColor =  Color.White
+        )
+        ){
+        Text(
+            text = "delete account",
+            color = Color(255,0,0),
+            textDecoration = TextDecoration.Underline
+        )
+    }
+}
+
 
 @Composable
 fun SaveButton(){
@@ -106,7 +127,7 @@ fun SaveButton(){
 
 @Composable
 fun UndoButton(){
-    val redColor =  Color(red=255, green=0, blue=0);
+    val redColor =  Color(red=186, green=26, blue=26);
     Button(
         onClick = { },
         modifier = Modifier
@@ -114,7 +135,7 @@ fun UndoButton(){
             .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = redColor)
         ,
         colors = ButtonColors(
-            containerColor = redColor ,
+            containerColor = Secondary ,
             contentColor = Color(red=0, green=0, blue=0),
             disabledContainerColor = Background,
             disabledContentColor = redColor
@@ -122,7 +143,6 @@ fun UndoButton(){
     ) {
         Text(
             text="Undo",
-            modifier = Modifier.background(redColor),
         )
     }
 }
