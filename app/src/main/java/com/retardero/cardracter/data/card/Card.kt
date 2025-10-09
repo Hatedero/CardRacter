@@ -48,7 +48,7 @@ sealed class Card (
         @Composable
         fun DrawFullScale() {
             return Column() {
-                cards.attributes.forEach { it->
+                cards.cards.forEach { it->
                     it.draw()
                 }
             }

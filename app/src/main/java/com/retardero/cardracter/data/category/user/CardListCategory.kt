@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
+import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.data.category.CustomCategory
@@ -30,11 +31,12 @@ import com.retardero.cardracter.data.category.base.CharacterCardCategory
 class CardListCategory(
     attributes: List<CardAttribute> = emptyList(),
     title: String = "Empty Category"
-) : MultiAttributesCategory(attributes, title) {
+) : CustomCategory(title) {
+
+    var cards: List<CardAttribute> = attributes
 
     @Composable
     override fun draw() {
-
         return Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -66,12 +68,11 @@ class CardListCategory(
         fun testData(): CardListCategory = CardListCategory(
             title = "Foes",
             attributes = listOf(
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
-                CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty())),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty())
             )
         )
     }
