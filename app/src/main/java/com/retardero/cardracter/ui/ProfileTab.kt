@@ -20,15 +20,18 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.R
+import com.retardero.cardracter.destinations.AccountScreenDestination
+import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.Secondary
 
 @Composable
-fun ProfileTab() {
+fun ProfileTab(navigator : DestinationsNavigator) {
     Box (
         modifier = Modifier.clip(RoundedCornerShape(100))
-            .clickable {  }
+            .clickable { navigator.navigate(AccountScreenDestination) }
             .background(Secondary)
     ) {
         Image(

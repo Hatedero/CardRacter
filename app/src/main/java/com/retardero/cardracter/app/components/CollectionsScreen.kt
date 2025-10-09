@@ -1,36 +1,39 @@
 package com.retardero.cardracter.app.components
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
-import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.AbsoluteAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.data.card.CharacterCard
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.R
 import com.retardero.cardracter.data.card.CollectionCard
 import com.retardero.cardracter.destinations.CardDetailScreenDestination
+import com.retardero.cardracter.destinations.NewCardScreenDestination
 import com.retardero.cardracter.ui.CollectionDisplay
-import com.retardero.cardracter.ui.SeachTopBar
+import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.Secondary
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
@@ -39,32 +42,42 @@ import com.retardero.cardracter.ui.SeachTopBar
 fun CollectionsScreen(navigator: DestinationsNavigator) {
     Scaffold (
         bottomBar = {
-            Row (
-                modifier = Modifier.padding(8.dp)
-                    .shadow(8.dp, RoundedCornerShape(20.dp))
+            Column (
+                modifier = Modifier
+                    .padding(8.dp),
+                horizontalAlignment = AbsoluteAlignment.Right
             ) {
-            NavBar(navigator)} },
+                AddButton(navigator)
+                Box(modifier = Modifier
+                    .shadow(8.dp, RoundedCornerShape(20.dp)))
+                {
+                    NavBar(navigator)
+                }
+            }
+        },
         topBar = {
             Row (
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier
+                    .padding(8.dp)
                     .shadow(8.dp, CircleShape)
             ) {
-                ProfileTab()
+                ProfileTab(navigator)
             }},
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier
+            .padding(8.dp)
             .background(Background)
     ) {
             LazyColumn (
             ) {
                     item {
-                         CollectionDisplay(CollectionCard.testData(), {
+                         CollectionDisplay(CollectionCard.testData(), navigate = {
                             navigator.navigate(CardDetailScreenDestination())
                         })
                         Spacer(modifier = Modifier.height(8.dp))
                     }
 
                 item {
-                    CollectionDisplay(CollectionCard.testData(), {
+                    CollectionDisplay(CollectionCard.testData(), navigate ={
                         navigator.navigate(CardDetailScreenDestination())
                     })
                     Spacer(modifier = Modifier.height(8.dp))
@@ -73,3 +86,26 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
         }
 }
 
+@Composable
+fun AddButton(navigator: DestinationsNavigator){
+    Button(
+        onClick = { navigator.navigate(NewCardScreenDestination) },
+        modifier = Modifier
+            .padding(8.dp)
+            .border(shape = RoundedCornerShape(100.dp), width = 4.dp, color = Color.Black),
+        colors = ButtonColors(
+            containerColor = Primary ,
+            contentColor = Secondary,
+            disabledContainerColor = Background,
+            disabledContentColor = Primary
+        )
+    ) {
+        Text(
+            text = "+",
+            fontSize = 30.sp,
+            modifier = Modifier
+                .padding(8.dp)
+                .background(Secondary, shape = RoundedCornerShape(10.dp))
+            )
+    }
+}

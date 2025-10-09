@@ -28,7 +28,7 @@ import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.ui.SeachTopBar
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Destination
+@Destination(start=true)
 @Composable
 fun IndexScreen(navigator: DestinationsNavigator) {
     Scaffold (
@@ -43,7 +43,7 @@ fun IndexScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, CircleShape)
             ) {
-                ProfileTab()
+                ProfileTab(navigator)
             }},
         modifier = Modifier.padding(8.dp)
             .background(Background)
