@@ -41,7 +41,7 @@ import com.retardero.cardracter.data.category.user.LongTextCategory
 import com.retardero.cardracter.data.category.user.TextListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
-abstract class MultiCategoryCard(
+sealed class MultiCategoryCard(
     cardAttributes: CardCategory,
     categories: List<CustomCategory>? = emptyList()
 ) : Card(cardAttributes) {

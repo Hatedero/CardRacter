@@ -4,16 +4,16 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
-class IntAttribute(
+class LinkAttribute(
     title: String?,
-    value: Int?
+    value: CustomAttribute?
 ) : CustomAttribute(title) {
-    var value: Int? = value
+    var value: CustomAttribute? = value
 
     companion object {
-        fun testData(): IntAttribute = IntAttribute(
-            "Strength",
-            10
+        fun testData(): LinkAttribute = LinkAttribute(
+            "Mother",
+            TextAttribute("test", "test")
         )
     }
 

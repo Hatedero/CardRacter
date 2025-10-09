@@ -30,12 +30,12 @@ import com.retardero.cardracter.data.category.base.CharacterCardCategory
 import com.retardero.cardracter.data.category.user.CardListCategory
 import com.retardero.cardracter.ui.theme.Primary
 
-class CollectionCard(
-    cardAttributes: CardCategory,
-    cards: CardListCategory,
+data class CollectionCard(
+    val cardAttributes: CardCategory,
+    val cards: CardListCategory,
 ) : Card(cardAttributes) {
 
-    var cards: CardListCategory = cards
+    //var cards: CardListCategory = cards
 
     @Composable
     override fun DrawFullScale() {
