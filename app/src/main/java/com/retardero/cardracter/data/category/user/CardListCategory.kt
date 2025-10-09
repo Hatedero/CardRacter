@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.card.CharacterCard
+import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.MultiAttributesCategory

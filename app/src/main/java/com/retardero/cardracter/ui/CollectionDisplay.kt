@@ -14,7 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.retardero.cardracter.data.card.CollectionCard
+import com.retardero.cardracter.data.card.Card
+import com.retardero.cardracter.data.card.Card.CollectionCard
 //import com.retardero.cardracter.data.card.CollectionCard
 import com.retardero.cardracter.ui.theme.Secondary
 

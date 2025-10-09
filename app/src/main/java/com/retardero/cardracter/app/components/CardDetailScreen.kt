@@ -11,16 +11,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.data.card.Card
-import com.retardero.cardracter.data.card.CharacterCard
+import com.retardero.cardracter.data.card.Card.MultiCategoryCard
+import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.EditTopBar
 import com.retardero.cardracter.ui.theme.Background
+import com.retardero.cardracter.ui.fullScaleMCDVisual
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
 @Composable
-fun CardDetailScreen (navigator: DestinationsNavigator, card : Card = CharacterCard.testData()) {
+fun CardDetailScreen (navigator: DestinationsNavigator, card : MultiCategoryCard =CharacterCard.testData()) {
     Scaffold (
         bottomBar = { NavBar(navigator) },
         topBar = { EditTopBar(
@@ -37,7 +38,7 @@ fun CardDetailScreen (navigator: DestinationsNavigator, card : Card = CharacterC
                 .padding(it)
         ) {
             item {
-                card.DrawFullScale()
+                fullScaleMCDVisual(card)
             }
 
         }

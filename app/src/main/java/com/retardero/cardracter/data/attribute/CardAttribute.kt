@@ -7,13 +7,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.retardero.cardracter.data.card.Card
-import com.retardero.cardracter.data.card.CharacterCard
+import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
+import com.retardero.cardracter.ui.SimplifiedMCDVisual
 
 class CardAttribute(
     title: String?,
-    card: Card = CharacterCard.testData()
+    card: Card.MultiCategoryCard = CharacterCard.testData()
 ) : CustomAttribute(title) {
-    var card: Card = card
+    var card: Card.MultiCategoryCard = card
 
     companion object {
         fun testData(): CardAttribute = CardAttribute(
@@ -24,6 +25,6 @@ class CardAttribute(
 
     @Composable
     override fun draw() {
-        return card.DrawSimplified()
+        return SimplifiedMCDVisual(card)
     }
 }

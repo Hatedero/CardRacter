@@ -25,10 +25,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.data.card.Card
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.data.card.CollectionCard
+import com.retardero.cardracter.data.card.Card.CollectionCard
 import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.destinations.NewCardScreenDestination
 import com.retardero.cardracter.ui.CollectionDisplay
