@@ -1,4 +1,4 @@
-package com.retardero.cardracter.app
+package com.retardero.cardracter.collections.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background

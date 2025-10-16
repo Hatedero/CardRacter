@@ -1,5 +1,5 @@
-package com.retardero.cardracter.app.components
-/*
+package com.retardero.cardracter.account.presentation
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,10 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.ui.AccountButton
-import com.retardero.cardracter.ui.TextDisplay
+import com.retardero.cardracter.app.components.AccountButton
+import com.retardero.cardracter.app.components.TextDisplay
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.AccountPicture
+import com.retardero.cardracter.app.components.AccountPicture
 
 
 @Destination
@@ -46,7 +46,7 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            AccountButton("MODIFY PROFILE")
+            AccountButton("MODIFY PROFILE", {})
             Spacer(modifier = Modifier.height(10.dp))
             TextDisplay("Username","YourUsername")
             Spacer(modifier = Modifier.height(10.dp))
@@ -68,9 +68,9 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
-                AccountButton("LOG OUT")
+                AccountButton("LOG OUT", {})
             }
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
-}*/
+}

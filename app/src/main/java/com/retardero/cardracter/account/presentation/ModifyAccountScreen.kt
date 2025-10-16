@@ -1,4 +1,4 @@
-package com.retardero.cardracter.app
+package com.retardero.cardracter.account.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
