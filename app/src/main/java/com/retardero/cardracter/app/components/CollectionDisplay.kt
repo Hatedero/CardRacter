@@ -1,5 +1,6 @@
 package com.retardero.cardracter.app.components
 
+//import com.retardero.cardracter.data.card.CollectionCard
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -14,14 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.retardero.cardracter.data.card.Card
-import com.retardero.cardracter.data.card.Card.CollectionCard
-//import com.retardero.cardracter.data.card.CollectionCard
+import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.ui.theme.Secondary
 
-//@Preview(showBackground = true)
 @Composable
-fun CollectionDisplay(collection : CollectionCard = CollectionCard.testData(), navigate: () -> Unit) {
+fun CollectionDisplay(collection : Card.CollectionCard = Card.CollectionCard.empty(), navigate: () -> Unit) {
 
     Column(
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
@@ -33,11 +31,11 @@ fun CollectionDisplay(collection : CollectionCard = CollectionCard.testData(), n
             .height(100.dp)
             .padding(2.dp)
     ) {
-        Text(collection.attributes.cardTitle, fontWeight = FontWeight.Bold)
+        Text(collection.cardTitle, fontWeight = FontWeight.Bold)
         Row (
             modifier = Modifier.padding(2.dp)
         ) {
-            collection.DrawFullScale()
+            //collection draw
         }
     }
 }

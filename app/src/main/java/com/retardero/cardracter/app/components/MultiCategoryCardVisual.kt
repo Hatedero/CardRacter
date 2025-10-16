@@ -1,4 +1,4 @@
-package com.retardero.cardracter.ui
+package com.retardero.cardracter.app.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,7 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.retardero.cardracter.data.card.Card
+import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
@@ -52,7 +52,7 @@ fun SimplifiedMCDVisual(card: Card.MultiCategoryCard) {
                 .fillMaxHeight(0.6f)
         ) {
             Image(
-                painter = painterResource(card.attributes.cardIllustration),
+                painter = painterResource(card.cardImage),
                 contentDescription = "icon",
                 contentScale = ContentScale.Crop,
             )
@@ -66,7 +66,7 @@ fun SimplifiedMCDVisual(card: Card.MultiCategoryCard) {
                 mutableStateOf(20.sp)
             }
 
-            Text(card.attributes.cardTitle, maxLines = 2,
+            Text(card.cardTitle, maxLines = 2,
                 fontSize = fontSize,
                 onTextLayout = {
                     if (it.multiParagraph.didExceedMaxLines) {
@@ -74,7 +74,7 @@ fun SimplifiedMCDVisual(card: Card.MultiCategoryCard) {
                     }
                 },
                 fontWeight = FontWeight.Bold)
-            Text(card.attributes.cardDescription, color = Primary, fontSize = 10.sp)
+            //Text(card.cardDescription, color = Primary, fontSize = 10.sp)
         }
     }
 }
@@ -91,7 +91,7 @@ fun FullScaleMCDVisual(card: Card.MultiCategoryCard) {
             horizontalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(card.attributes.cardIllustration),
+                painter = painterResource(card.cardImage),
                 contentDescription = "icon",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier
@@ -109,15 +109,15 @@ fun FullScaleMCDVisual(card: Card.MultiCategoryCard) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(card.attributes.cardTitle, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
+                Text(card.cardTitle, fontWeight = FontWeight.Bold, fontSize = 40.sp, textAlign = TextAlign.Center, color = Primary)
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(card.attributes.cardDescription, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
+                //Text(card.cardDescription, fontSize = 15.sp, textAlign = TextAlign.Justify, color = Color.DarkGray)
             }
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            card.attributes.cardCategories?.forEach { it ->
-                it.draw()
+            card.cardAttributes.forEach { it ->
+                // draw it
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }

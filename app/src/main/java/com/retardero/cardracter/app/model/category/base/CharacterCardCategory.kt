@@ -1,5 +1,6 @@
 package com.retardero.cardracter.app.model.category.base
 
+/*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -14,8 +15,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.app.model.category.MultiAttributesCategory
+import com.retardero.cardracter.app.model.CustomAttribute
+import com.retardero.cardracter.data.category.user.MultiAttributesCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class CharacterCardCategory  (
@@ -26,7 +27,7 @@ class CharacterCardCategory  (
 
     characterAge: String,
     characterProverb: String
-) : com.retardero.cardracter.app.model.category.MultiAttributesCategory(attributes, categoryTitle) {
+) : MultiAttributesCategory(attributes, categoryTitle) {
 
     var characterAge: String = characterAge
     var characterProverb: String = characterProverb
@@ -65,4 +66,4 @@ class CharacterCardCategory  (
         }
     }
 
-}
+}*/

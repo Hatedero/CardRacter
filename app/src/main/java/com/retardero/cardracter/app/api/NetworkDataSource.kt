@@ -1,10 +1,9 @@
 package com.retardero.cardracter.app.api
 
-import okhttp3.OkHttpClient
 //import okhttp3.logging.HttpLoggingInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.getValue
 
 object NetworkDataSource {
     private const val BASE_URL = "https:://api.magicthegathering.io/v1/"

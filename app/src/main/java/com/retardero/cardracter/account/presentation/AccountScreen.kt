@@ -1,5 +1,5 @@
 package com.retardero.cardracter.app.components
-
+/*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -73,4 +73,4 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
             Spacer(modifier = Modifier.height(16.dp))
         }
     }
-}
+}*/

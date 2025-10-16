@@ -1,5 +1,6 @@
 package com.retardero.cardracter.app.model.attribute
 
+/*
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,4 +26,4 @@ class LinkAttribute(
             Text("$title : $value")
         }
     }
-}
+}*/

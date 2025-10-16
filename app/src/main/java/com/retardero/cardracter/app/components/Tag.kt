@@ -1,9 +1,7 @@
 package com.retardero.cardracter.app.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,7 +13,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @Preview(showBackground = true)
 @Composable

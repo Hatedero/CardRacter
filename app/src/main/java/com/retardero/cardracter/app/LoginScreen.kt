@@ -22,15 +22,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SignupScreenDestination
-import com.retardero.cardracter.ui.TextField
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.theme.CardRacterTheme
 import com.retardero.cardracter.ui.theme.Primary
 
 @Destination

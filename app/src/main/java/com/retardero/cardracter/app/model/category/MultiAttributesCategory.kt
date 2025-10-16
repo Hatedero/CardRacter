@@ -1,5 +1,5 @@
 package com.retardero.cardracter.data.category.user
-
+/*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.horizontalScroll
@@ -18,17 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.data.attribute.CardAttribute
-import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.card.Card
-import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.data.category.MultiAttributesCategory
-import com.retardero.cardracter.data.category.base.CardCategory
-import com.retardero.cardracter.data.category.base.CharacterCardCategory
 
-class CardListCategory(
+open class MultiAttributesCategory(
     attributes: List<CardAttribute> = emptyList(),
     title: String = "Empty Category"
 ) : CustomCategory(title) {
@@ -61,20 +56,20 @@ class CardListCategory(
         }
     }
 
-    companion object {
+    /*companion object {
         fun empty(): CardListCategory = CardListCategory(
         )
 
         fun testData(): CardListCategory = CardListCategory(
             title = "Foes",
             attributes = listOf(
-                CardAttribute("", CharacterCard.empty()),
-                CardAttribute("", CharacterCard.empty()),
-                CardAttribute("", CharacterCard.empty()),
-                CardAttribute("", CharacterCard.empty()),
-                CardAttribute("", CharacterCard.empty())
+                CardAttribute("", Card.MultiCategoryCard.CharacterCard.empty()),
+                CardAttribute("", Card.MultiCategoryCard.CharacterCard.empty()),
+                CardAttribute("", Card.MultiCategoryCard.CharacterCard.empty()),
+                CardAttribute("", Card.MultiCategoryCard.CharacterCard.empty()),
+                CardAttribute("", Card.MultiCategoryCard.CharacterCard.empty())
             )
         )
-    }
+    }*/
 
-}
+}*/

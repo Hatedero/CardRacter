@@ -1,5 +1,5 @@
 package com.retardero.cardracter.app.model.category.base
-
+/*
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
@@ -15,23 +15,21 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
-import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.data.category.CustomCategory
-import com.retardero.cardracter.app.model.category.MultiAttributesCategory
-import com.retardero.cardracter.app.model.category.user.CardListCategory
+import com.retardero.cardracter.app.model.CustomAttribute
+import com.retardero.cardracter.app.model.CustomCategory
+import com.retardero.cardracter.app.model.category.user.TextListCategory
 import com.retardero.cardracter.data.category.user.LongTextCategory
-import com.retardero.cardracter.data.category.user.TextListCategory
+import com.retardero.cardracter.data.category.user.MultiAttributesCategory
 import com.retardero.cardracter.ui.theme.Primary
 
 class CardCategory  (
     CategoryTitle: String = "Card informations",
-    attributes: List<CustomAttribute> = emptyList(),
 
     cardTitle: String = "Title",
     cardDescription: String = "Description",
     cardIllustration: Int = R.drawable.default_pp,
     cardCategories: List<CustomCategory> = emptyList()
-) : com.retardero.cardracter.app.model.category.MultiAttributesCategory(attributes, CategoryTitle) {
+) : MultiAttributesCategory() {
 
     var cardTitle: String = cardTitle
     var cardDescription: String = cardDescription
@@ -49,14 +47,16 @@ class CardCategory  (
             cardTitle = "Artorias Pyrii",
             cardDescription = "A knight promised to save the world.",
             cardIllustration = R.drawable.artorias,
-            cardCategories = listOf(
+            cardCategories = emptyList()
+            /*listOf(
                 TextListCategory.testData(),
                 LongTextCategory.testData(),
-                com.retardero.cardracter.app.model.category.user.CardListCategory.testData()
+                com.retardero.cardracter.app.model.category.user.CardListCategory.testData()*/
             )
-        )
+        //)
     }
 
+    /*
     @Composable
     override fun draw() {
         return Column(
@@ -74,6 +74,6 @@ class CardCategory  (
                 it.draw()
             }
         }
-    }
+    }*/
 
-}
+}*/

@@ -1,9 +1,7 @@
-package com.retardero.cardracter.ui
+package com.retardero.cardracter.app.components
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable

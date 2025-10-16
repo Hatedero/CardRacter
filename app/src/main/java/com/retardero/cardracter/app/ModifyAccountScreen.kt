@@ -1,4 +1,4 @@
-package com.retardero.cardracter.app.components
+package com.retardero.cardracter.app
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,17 +23,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.ui.TextField
+import com.retardero.cardracter.app.components.AccountPicture
+import com.retardero.cardracter.app.components.TextField
+import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.AccountPicture
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.Secondary
-import androidx.compose.ui.text.style.TextDecoration
-import com.retardero.cardracter.destinations.LoginScreenDestination
-import com.retardero.cardracter.destinations.SignupScreenDestination
 
 @Destination
 @Composable

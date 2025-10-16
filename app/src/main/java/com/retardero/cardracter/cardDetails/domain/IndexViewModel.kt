@@ -2,7 +2,7 @@ package com.retardero.cardracter.homepage.domain
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.retardero.cardracter.app.model.card.Card
+import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.model.card.CharacterCard
 import com.retardero.cardracter.app.repositories.CardRacterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
