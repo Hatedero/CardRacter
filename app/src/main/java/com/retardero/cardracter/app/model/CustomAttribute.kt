@@ -6,25 +6,25 @@ sealed class CustomAttribute (
 ) {
     data class NumberAttribute(
         val attributeId: Int,
-        val cardTitle: String,
+        val attributeTitle: String,
         val value: Float
-    ) : CustomAttribute(attributeId, cardTitle) {
+    ) : CustomAttribute(attributeId, attributeTitle) {
 
     }
 
     data class TextAttribute(
         val attributeId: Int,
-        val cardTitle: String,
+        val attributeTitle: String,
         val value: String
-    ) : CustomAttribute(attributeId, cardTitle) {
+    ) : CustomAttribute(attributeId, attributeTitle) {
 
     }
 
     data class CardAttribute(
         val attributeId: Int,
-        val cardTitle: String,
+        val attributeTitle: String,
         val value: Int
-    ) : CustomAttribute(attributeId, cardTitle) {
+    ) : CustomAttribute(attributeId, attributeTitle) {
 
     }
 }
