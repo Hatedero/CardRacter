@@ -3,7 +3,6 @@ package com.retardero.cardracter.homepage.domain
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retardero.cardracter.app.model.Card
-import com.retardero.cardracter.app.model.card.CharacterCard
 import com.retardero.cardracter.app.repositories.CardRacterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,7 +11,7 @@ import kotlinx.coroutines.launch
 
 class CollectionViewModel: ViewModel() {
 
-    private val characterCardState:MutableStateFlow<Card> = MutableStateFlow<Card>(CharacterCard.empty())
+    private val characterCardState:MutableStateFlow<Card> = MutableStateFlow<Card>(Card.MultiCategoryCard.empty())
     val characterCard: StateFlow<Card> = characterCardState.asStateFlow()
 
     fun fetchCards() {
@@ -20,11 +19,11 @@ class CollectionViewModel: ViewModel() {
             val card = CardRacterRepository.getCards()
 
 
-            characterCardState.value = card ?: CharacterCard.empty()
+            characterCardState.value = card ?: Card.MultiCategoryCard.empty()
         }
     }
 
     private fun sortCard(card: Card): Card {
-        return CharacterCard.empty()
+        return Card.MultiCategoryCard.empty()
     }
 }

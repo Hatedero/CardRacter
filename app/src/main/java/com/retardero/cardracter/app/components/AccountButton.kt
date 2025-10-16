@@ -18,9 +18,9 @@ import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
-fun AccountButton(lable: String,navigator: DestinationsNavigator, direction: DirectionDestination = IndexScreenDestination){
+fun AccountButton(lable: String, onClick: () -> Unit){
     Button(
-        onClick = { navigator.navigate(direction) },
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth(0.7F)
             .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)

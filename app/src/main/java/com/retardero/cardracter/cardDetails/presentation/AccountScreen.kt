@@ -46,7 +46,7 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            AccountButton("MODIFY PROFILE")
+            AccountButton("MODIFY PROFILE", {})
             Spacer(modifier = Modifier.height(10.dp))
             TextDisplay("Username","YourUsername")
             Spacer(modifier = Modifier.height(10.dp))
@@ -68,7 +68,7 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
-                AccountButton("LOG OUT")
+                AccountButton("LOG OUT", {})
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

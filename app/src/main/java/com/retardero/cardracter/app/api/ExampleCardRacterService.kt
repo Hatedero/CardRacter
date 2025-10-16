@@ -8,5 +8,5 @@ interface ExampleCardRacterService {
     suspend fun getExampleDataList(): Response<ExampleCharacterCardList>*/
 
     @GET("/cards/{id}")
-    suspend fun getExampleData(): Response<Card.MultiCategoryCard.CharacterCard>
+    suspend fun getExampleData(): Response<Card.MultiCategoryCard>
 }

@@ -16,8 +16,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
-import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 
@@ -49,7 +47,7 @@ fun IndexScreen(navigator: DestinationsNavigator) {
             ) {
                 for(i in 1..50) {
                     item {
-                         CharacterCard.testData().DrawSimplified()
+                         // draw all cards
                     }
                 }
             }
