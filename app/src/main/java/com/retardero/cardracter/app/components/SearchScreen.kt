@@ -32,6 +32,7 @@ import com.retardero.cardracter.ui.SeachTopBar
 import com.retardero.cardracter.ui.SearchHistory
 import com.retardero.cardracter.ui.Tag
 import com.retardero.cardracter.ui.TagHistory
+import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 
@@ -43,17 +44,19 @@ fun SearchScreen(navigator: DestinationsNavigator) {
         bottomBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
-                    .shadow(8.dp, RoundedCornerShape(8.dp))
+                    .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
                 NavBar(navigator)} },
         topBar = {
             Row (
                 modifier = Modifier.padding(0.dp)
-                    .shadow(8.dp, RoundedCornerShape(10.dp))
+                    .background(Background) .shadow(8.dp, RoundedCornerShape(10.dp))
+
             ) {
                 SeachTopBar()
             }},
         modifier = Modifier.padding(8.dp)
+            .background(Background)
 
     ) {
         Column (

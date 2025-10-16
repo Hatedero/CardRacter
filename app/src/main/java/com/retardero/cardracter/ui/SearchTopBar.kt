@@ -37,7 +37,7 @@ import com.retardero.cardracter.ui.theme.Primary
 fun SeachTopBar() {
     Row (
         modifier = Modifier.fillMaxWidth()
-            .fillMaxHeight(0.06f)
+            .fillMaxHeight(0.08f)
             .clip(RoundedCornerShape(10.dp))
             .background(Color.LightGray),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -56,7 +56,7 @@ fun SeachTopBar() {
                 contentDescription = "icon",
                 tint = Primary,
                 modifier = Modifier
-                    .fillMaxHeight()
+                    .fillMaxHeight(0.6f)
                     .aspectRatio(1f)
                     .clip(RoundedCornerShape(10.dp))
                     .clickable { }
@@ -84,7 +84,7 @@ fun SeachTopBar() {
                 contentDescription = "icon",
                 tint = Primary,
                 modifier = Modifier
-                    .fillMaxHeight()
+                    .fillMaxHeight(0.6f)
                     .aspectRatio(1f)
                     .clip(RoundedCornerShape(10.dp))
                     .clickable { }

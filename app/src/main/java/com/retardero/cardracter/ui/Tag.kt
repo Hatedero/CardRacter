@@ -21,21 +21,17 @@ import com.retardero.cardracter.ui.theme.PrimaryBackground
 @Composable
 fun Tag(){
     Row(modifier = Modifier
-        .border(
-            border = BorderStroke(1.dp, PrimaryBackground),
-            shape = RoundedCornerShape(10.dp)
-        )
         .background(
             color= Primary,
             shape =RoundedCornerShape(10.dp)
         )
-        .padding(vertical = 4.dp)
+        .padding(vertical = 6.dp)
     ) {
         Image(
-            modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
             contentDescription="search Logo", painter= painterResource(R.drawable.trending_icon))
         Text("Jefrey Jackob",
             modifier = Modifier
-                .padding(horizontal = 8.dp, vertical = 4.dp))
+                .padding(horizontal = 8.dp, vertical = 2.dp))
     }
 }

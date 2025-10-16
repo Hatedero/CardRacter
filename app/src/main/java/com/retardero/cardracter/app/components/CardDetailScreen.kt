@@ -16,7 +16,7 @@ import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.NavBar
 import com.retardero.cardracter.ui.EditTopBar
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.fullScaleMCDVisual
+import com.retardero.cardracter.ui.FullScaleMCDVisual
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
@@ -38,7 +38,7 @@ fun CardDetailScreen (navigator: DestinationsNavigator, card : MultiCategoryCard
                 .padding(it)
         ) {
             item {
-                fullScaleMCDVisual(card)
+                FullScaleMCDVisual(card)
             }
 
         }

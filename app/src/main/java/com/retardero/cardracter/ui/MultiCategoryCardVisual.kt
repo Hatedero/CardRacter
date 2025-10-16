@@ -81,7 +81,7 @@ fun SimplifiedMCDVisual(card: Card.MultiCategoryCard) {
 
 
 @Composable
-fun fullScaleMCDVisual(card: Card.MultiCategoryCard) {
+fun FullScaleMCDVisual(card: Card.MultiCategoryCard) {
     return Column() {
         Row(
             modifier = Modifier

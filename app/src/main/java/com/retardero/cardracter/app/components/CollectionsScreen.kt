@@ -7,13 +7,21 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,6 +42,7 @@ import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.destinations.NewCardScreenDestination
 import com.retardero.cardracter.ui.CollectionDisplay
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.PrimaryContainer
 import com.retardero.cardracter.ui.theme.Secondary
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -42,20 +51,13 @@ import com.retardero.cardracter.ui.theme.Secondary
 @Composable
 fun CollectionsScreen(navigator: DestinationsNavigator) {
     Scaffold (
+        floatingActionButton = { AddButton(navigator) },
         bottomBar = {
-            Column (
-                modifier = Modifier
-                    .padding(8.dp),
-                horizontalAlignment = AbsoluteAlignment.Right
+            Row (
+                modifier = Modifier.padding(8.dp)
+                    .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
-                AddButton(navigator)
-                Box(modifier = Modifier
-                    .shadow(8.dp, RoundedCornerShape(20.dp)))
-                {
-                    NavBar(navigator)
-                }
-            }
-        },
+                NavBar(navigator)} },
         topBar = {
             Row (
                 modifier = Modifier
@@ -89,24 +91,16 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
 
 @Composable
 fun AddButton(navigator: DestinationsNavigator){
-    Button(
+    FloatingActionButton(
         onClick = { navigator.navigate(NewCardScreenDestination) },
         modifier = Modifier
-            .padding(8.dp)
-            .border(shape = RoundedCornerShape(100.dp), width = 4.dp, color = Color.Black),
-        colors = ButtonColors(
-            containerColor = Primary ,
-            contentColor = Secondary,
-            disabledContainerColor = Background,
-            disabledContentColor = Primary
-        )
-    ) {
-        Text(
-            text = "+",
-            fontSize = 30.sp,
-            modifier = Modifier
-                .padding(8.dp)
-                .background(Secondary, shape = RoundedCornerShape(10.dp))
-            )
-    }
+            .padding(8.dp),
+        containerColor = Color.LightGray,
+        content = {
+            Icon(
+            imageVector = Icons.Default.Add,
+            contentDescription = "icon",
+            tint = Primary)
+        }
+    )
 }
