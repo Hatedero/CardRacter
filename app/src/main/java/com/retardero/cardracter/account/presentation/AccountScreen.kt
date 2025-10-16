@@ -1,4 +1,4 @@
-package com.retardero.cardracter.account.presentation
+package com.retardero.cardracter.app.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -21,10 +21,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.app.components.AccountButton
-import com.retardero.cardracter.app.components.TextDisplay
+import com.retardero.cardracter.ui.AccountButton
+import com.retardero.cardracter.ui.TextDisplay
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.app.components.AccountPicture
+import com.retardero.cardracter.ui.AccountPicture
 
 
 @Destination

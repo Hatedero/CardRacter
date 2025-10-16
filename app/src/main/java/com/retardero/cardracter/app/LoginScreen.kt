@@ -1,6 +1,7 @@
-package com.retardero.cardracter.app
+package com.retardero.cardracter.app.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,15 +26,16 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.app.components.TextField
+import com.retardero.cardracter.destinations.IndexScreenDestination
+import com.retardero.cardracter.destinations.SignupScreenDestination
+import com.retardero.cardracter.ui.TextField
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.CardRacterTheme
 import com.retardero.cardracter.ui.theme.Primary
 
 @Destination
 @Composable
-fun LoginScreen(navigator: DestinationsNavigator?) {
-
+fun LoginScreen(navigator: DestinationsNavigator) {
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Background)
@@ -85,18 +87,18 @@ fun LoginScreen(navigator: DestinationsNavigator?) {
             }
             Spacer(modifier = Modifier.height(60.dp))
             Button(
-                onClick = { }
+                onClick = { navigator.navigate(IndexScreenDestination) }
             ) { Text("LOGIN") }
             Spacer(modifier = Modifier.height(20.dp))
-            Text("Don't have an account ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
+            Text(
+                "Don't have an account ?",
+                color = Color.Blue,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable{navigator.navigate(SignupScreenDestination)},
+                textDecoration = TextDecoration.Underline
+            )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CardRacterTheme {
-        LoginScreen(null)
     }
 }

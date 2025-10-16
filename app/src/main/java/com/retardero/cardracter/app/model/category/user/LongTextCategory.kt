@@ -1,4 +1,4 @@
-package com.retardero.cardracter.app.model.category.user
+package com.retardero.cardracter.data.category.user
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.data.attribute.CustomAttribute
-import com.retardero.cardracter.app.model.attribute.TextAttribute
+import com.retardero.cardracter.data.attribute.TextAttribute
 import com.retardero.cardracter.data.category.CustomCategory
 import com.retardero.cardracter.data.category.SingleAttributeCategory
 import com.retardero.cardracter.ui.theme.Primary
@@ -29,7 +29,8 @@ class LongTextCategory(
     companion object {
         fun testData(): CustomCategory = LongTextCategory(
             title = "Story",
-            attribute = com.retardero.cardracter.app.model.attribute.TextAttribute.testData()
+            attribute =
+                TextAttribute.testData(),
         )
     }
 

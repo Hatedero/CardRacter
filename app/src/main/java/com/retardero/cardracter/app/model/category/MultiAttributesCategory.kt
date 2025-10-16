@@ -1,4 +1,4 @@
-package com.retardero.cardracter.app.model.category
+package com.retardero.cardracter.data.category.user
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.border
@@ -18,19 +18,25 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.retardero.cardracter.data.attribute.CardAttribute
 import com.retardero.cardracter.data.attribute.CustomAttribute
+import com.retardero.cardracter.data.card.Card
+import com.retardero.cardracter.data.card.Card.MultiCategoryCard.CharacterCard
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.data.category.CustomCategory
+import com.retardero.cardracter.data.category.MultiAttributesCategory
+import com.retardero.cardracter.data.category.base.CardCategory
+import com.retardero.cardracter.data.category.base.CharacterCardCategory
 
-abstract class MultiAttributesCategory(
-    attributes: List<CustomAttribute>,
+class CardListCategory(
+    attributes: List<CardAttribute> = emptyList(),
     title: String = "Empty Category"
-) : com.retardero.cardracter.app.model.category.CustomCategory(title) {
+) : CustomCategory(title) {
 
-    var attributes: List<CustomAttribute> = attributes
+    var cards: List<CardAttribute> = attributes
 
     @Composable
     override fun draw() {
-
         return Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -47,19 +53,28 @@ abstract class MultiAttributesCategory(
                     .padding(16.dp)
                     .height(200.dp)
             ) {
-                attributes.forEach { attribute ->
+                /*attributes.forEach { it ->
                     Spacer(modifier = Modifier.width(4.dp))
-                    attribute.draw()
-                }
+                    CardDisplay(it.card, {})
+                }*/
             }
         }
     }
 
     companion object {
-        /*fun testData(): CustomCategory = MultiCategory(
+        fun empty(): CardListCategory = CardListCategory(
+        )
+
+        fun testData(): CardListCategory = CardListCategory(
             title = "Foes",
-            attributes = listOf(CardAttribute("", CharacterCard(CardCategory.empty(), CharacterCardCategory.empty()))),
-        )*/
+            attributes = listOf(
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty()),
+                CardAttribute("", CharacterCard.empty())
+            )
+        )
     }
 
 }

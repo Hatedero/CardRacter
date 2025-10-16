@@ -17,8 +17,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TextField(label : String) {
-    var field by remember { mutableStateOf("") }
+fun TextField(label : String, fieldValue : String = "") {
+    var field by remember { mutableStateOf(fieldValue) }
 
     Column (
         modifier = Modifier.fillMaxWidth()
