@@ -19,7 +19,7 @@ class AccountViewModel: ViewModel() {
             val card = CardRacterRepository.getCards()
 
 
-            characterCardState.value = card ?: Card.MultiCategoryCard.empty()
+            //characterCardState.value = card ?: Card.MultiCategoryCard.empty()
         }
     }
 

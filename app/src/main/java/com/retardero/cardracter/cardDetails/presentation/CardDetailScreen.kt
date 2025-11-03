@@ -39,7 +39,7 @@ fun CardDetailScreen(
                 .padding(it)
         ) {
             item {
-                FullScaleMCDVisual(card)
+                FullScaleCardVisual(card)
             }
 
         }

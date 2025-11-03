@@ -14,7 +14,7 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.EditTopBar
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.components.FloatingActionMenuEditCard
-import com.retardero.cardracter.app.components.FullScaleMCDVisual
+import com.retardero.cardracter.app.components.FullScaleCardVisual
 import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -43,7 +43,7 @@ fun NewCardScreen(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            item { FullScaleMCDVisual(card) }
+            item { FullScaleCardVisual(card) }
         }
     }
 }

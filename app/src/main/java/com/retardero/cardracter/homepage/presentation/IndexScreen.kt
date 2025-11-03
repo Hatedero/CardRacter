@@ -14,15 +14,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
+import kotlinx.coroutines.flow.forEach
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination(start=true)
 @Composable
-fun IndexScreen(navigator: DestinationsNavigator) {
+fun IndexScreen(navigator: DestinationsNavigator, viewModel: IndexViewModel = viewModel()) {
     Scaffold (
         bottomBar = {
             Row (
@@ -45,9 +49,9 @@ fun IndexScreen(navigator: DestinationsNavigator) {
                 verticalItemSpacing = 8.dp,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                for(i in 1..50) {
+                viewModel.cards.value.forEach { card ->
                     item {
-                         // draw all cards
+                        SimplifiedCardVisual(card)
                     }
                 }
             }
