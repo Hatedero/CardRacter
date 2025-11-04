@@ -35,6 +35,13 @@ sealed class Card(
                 -1,
                 emptyList()
             )
+
+            fun testData(): MultiCategoryCard = MultiCategoryCard(
+                0,
+                "Artorias The abyss walker",
+                0,
+                listOf(CustomCategory.MultiAttributesCategory(0, "Story", listOf(CustomAttribute.TextAttribute(0, "attributeTitle", "He was a knight once told to save the world"))))
+            )
         }
     }
 }

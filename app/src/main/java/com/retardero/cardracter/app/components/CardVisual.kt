@@ -30,6 +30,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.retardero.cardracter.R
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.ui.theme.Primary
 
@@ -55,7 +56,7 @@ fun SimplifiedCardVisual(card: Card) {
                         .fillMaxHeight(0.6f)
                 ) {
                     Image(
-                        painter = painterResource(card.cardImage),
+                        painter = painterResource(R.drawable.artorias),
                         contentDescription = "icon",
                         contentScale = ContentScale.Crop,
                     )
@@ -77,7 +78,6 @@ fun SimplifiedCardVisual(card: Card) {
                             }
                         },
                         fontWeight = FontWeight.Bold)
-                    //Text(card.cardDescription, color = Primary, fontSize = 10.sp)
                 }
             }
         }
@@ -103,7 +103,7 @@ fun FullScaleCardVisual(card: Card) {
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Image(
-                        painter = painterResource(card.cardImage),
+                        painter = painterResource(R.drawable.artorias),
                         contentDescription = "icon",
                         contentScale = ContentScale.Fit,
                         modifier = Modifier
@@ -134,8 +134,24 @@ fun FullScaleCardVisual(card: Card) {
 
                     Spacer(modifier = Modifier.height(32.dp))
 
-                    card.cardAttributes.forEach { it ->
-                        // draw it
+                    card.cardAttributes.forEach { category ->
+                        Column (
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Text(
+                                category.title,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 20.sp,
+                                textAlign = TextAlign.Center,
+                                color = Primary
+                            )
+                            category.
+
+                        }
                         Spacer(modifier = Modifier.height(8.dp))
                     }
                 }

@@ -15,6 +15,7 @@ import com.retardero.cardracter.app.components.EditTopBar
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.components.FloatingActionMenuEditCard
 import com.retardero.cardracter.app.components.FullScaleCardVisual
+import com.retardero.cardracter.app.components.SimplifiedCardVisual
 import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -22,7 +23,7 @@ import com.retardero.cardracter.ui.theme.Background
 @Composable
 fun NewCardScreen(
     navigator: DestinationsNavigator,
-    card: Card.MultiCategoryCard = Card.MultiCategoryCard.empty()
+    card: Card.MultiCategoryCard = Card.MultiCategoryCard.testData()
 ) {
     Scaffold(
         floatingActionButton = {
