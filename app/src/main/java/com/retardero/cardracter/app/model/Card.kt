@@ -40,7 +40,8 @@ sealed class Card(
                 0,
                 "Artorias The abyss walker",
                 0,
-                listOf(CustomCategory.MultiAttributesCategory(0, "Story", listOf(CustomAttribute.TextAttribute(0, "attributeTitle", "He was a knight once told to save the world"))))
+                listOf(CustomCategory.MultiAttributesCategory(0, "Story", listOf(CustomAttribute.TextAttribute(0, "attributeTitle", "He was a knight once told to save the world"), CustomAttribute.NumberAttribute(0, "attributeTitle", 1920f))),
+                    CustomCategory.SingleAttributeCategory(0, "What makes him human", CustomAttribute.TextAttribute(0, "attributeTitle", "His most precious memory")))
             )
         }
     }
