@@ -1,5 +1,6 @@
 package com.retardero.cardracter.app.components
 
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ fun CardTitleTextField(value: String, onValueChange: (String) -> Unit) {
         ),
         colors = TextFieldDefaults.colors(unfocusedContainerColor = Background),
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
+            .fillMaxWidth()
     )
 }
 
@@ -34,12 +36,14 @@ fun CardSubTitleTextField(value: String, onValueChange: (String) -> Unit) {
         value = value,
         onValueChange = onValueChange,
         textStyle = TextStyle(fontWeight = FontWeight.Bold,
-            fontSize = 25.sp,
+            fontSize = 28.sp,
             textAlign = TextAlign.Left,
             color = Primary
         ),
         colors = TextFieldDefaults.colors(unfocusedContainerColor = Background),
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
+            .fillMaxWidth()
+
     )
 }
 
@@ -48,12 +52,13 @@ fun CardTextField(value: String, onValueChange: (String) -> Unit) {
     androidx.compose.material3.TextField(
         value = value,
         onValueChange = onValueChange,
-        textStyle = TextStyle(fontWeight = FontWeight.Bold,
-            fontSize = 40.sp,
-            textAlign = TextAlign.Center,
-            color = Primary
+        textStyle = TextStyle(
+            fontSize = 20.sp,
+            textAlign = TextAlign.Left,
         ),
         colors = TextFieldDefaults.colors(unfocusedContainerColor = Background),
         modifier = Modifier.clip(RoundedCornerShape(10.dp))
+            .fillMaxWidth()
+
     )
 }

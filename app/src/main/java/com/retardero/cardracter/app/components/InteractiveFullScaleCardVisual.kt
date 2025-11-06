@@ -93,7 +93,10 @@ fun InteractiveFullScaleCardVisual(baseCard: Card) {
                                 textAlign = TextAlign.Left,
                                 color = Primary
                             )*/
-                            CardSubTitleTextField(category.title, { card = card.copy(cardAttributes = card.cardAttributes.minus(category) + (card.cardAttributes.get(i).copy(title = it)))})
+                            var modifiedCategories = mutableListOf<CustomCategory>()
+                            modifiedCategories.addAll(card.cardAttributes)
+
+                            CardSubTitleTextField(category.title, { change -> card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(title = change)}) })
                             when (category) {
                                 is CustomCategory.MultiAttributesCategory ->
                                     category.attributes.forEach { attribute ->
