@@ -5,6 +5,7 @@ sealed class CustomCategory (
     val title: String,
 ) {
     abstract fun returnValues(): List<CustomAttribute>
+    abstract fun copy(id: Int? = null, title: String? = null, attributes : List<CustomAttribute>? = null): CustomCategory
 
     data class MultiAttributesCategory (
         val categoryId: Int,
@@ -15,6 +16,13 @@ sealed class CustomCategory (
             return attributes
         }
 
+        override fun copy(
+            id: Int?,
+            title: String?,
+            attributes: List<CustomAttribute>?
+        ): CustomCategory {
+            return MultiAttributesCategory(id ?: categoryId, title ?: categoryTitle, attributes ?: this.attributes)
+        }
     }
 
     data class CardsCategory (
@@ -25,6 +33,14 @@ sealed class CustomCategory (
         override fun returnValues(): List<CustomAttribute> {
             return cards
         }
+
+        override fun copy(
+            id: Int?,
+            title: String?,
+            attributes: List<CustomAttribute>?
+        ): CustomCategory {
+            return CardsCategory(id ?: categoryId, title ?: categoryTitle, (attributes ?: cards) as List<CustomAttribute.CardAttribute>)
+        }
     }
 
     data class SingleAttributeCategory (
@@ -34,6 +50,14 @@ sealed class CustomCategory (
     ) : CustomCategory(categoryId, categoryTitle) {
         override fun returnValues(): List<CustomAttribute> {
             return listOf(attribute)
+        }
+
+        override fun copy(
+            id: Int?,
+            title: String?,
+            attributes: List<CustomAttribute>?
+        ): CustomCategory {
+            return SingleAttributeCategory(id ?: categoryId, title ?: categoryTitle, attributes?.first() ?: attribute)
         }
     }
 }

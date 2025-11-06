@@ -15,6 +15,7 @@ import com.retardero.cardracter.app.components.EditTopBar
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.components.FloatingActionMenuEditCard
 import com.retardero.cardracter.app.components.FullScaleCardVisual
+import com.retardero.cardracter.app.components.InteractiveFullScaleCardVisual
 import com.retardero.cardracter.app.components.SimplifiedCardVisual
 import com.retardero.cardracter.ui.theme.Background
 
@@ -44,7 +45,7 @@ fun NewCardScreen(
                 .fillMaxSize()
                 .padding(it)
         ) {
-            item { FullScaleCardVisual(card) }
+            item { InteractiveFullScaleCardVisual(card) }
         }
     }
 }
