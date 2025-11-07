@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.app.model.CustomAttribute
 import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
@@ -93,26 +94,36 @@ fun InteractiveFullScaleCardVisual(baseCard: Card) {
                                 textAlign = TextAlign.Left,
                                 color = Primary
                             )*/
-                            var modifiedCategories = mutableListOf<CustomCategory>()
-                            modifiedCategories.addAll(card.cardAttributes)
 
                             CardSubTitleTextField(category.title, { change -> card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(title = change)}) })
                             when (category) {
-                                is CustomCategory.MultiAttributesCategory ->
+                                is CustomCategory.MultiAttributesCategory -> {
                                     category.attributes.forEach { attribute ->
                                         Text(
                                             attribute.returnValue(),
                                             fontSize = 20.sp,
                                             textAlign = TextAlign.Left,
                                         )
+                                        CardTextField(attribute.returnValue(),
+                                            {
+                                                    change ->
+                                                //card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(attributes = listOf(category.attribute.copy(value = change)))})
+                                            })
                                     }
+                                }
 
-                                is CustomCategory.SingleAttributeCategory ->
-                                    Text(
+                                is CustomCategory.SingleAttributeCategory -> {
+                                    /*Text(
                                         category.attribute.returnValue(),
                                         fontSize = 20.sp,
                                         textAlign = TextAlign.Left,
-                                    )
+                                    )*/
+                                    CardTextField(category.attribute.returnValue(),
+                                        {
+                                            change ->
+                                            card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(attributes = listOf(category.attribute.copy(value = change)))})
+                                        })
+                                }
 
                                 is CustomCategory.CardsCategory -> {}
                             }

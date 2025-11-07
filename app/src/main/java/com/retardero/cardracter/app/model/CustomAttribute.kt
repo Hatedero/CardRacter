@@ -5,6 +5,7 @@ sealed class CustomAttribute (
     val title: String
 ) {
     abstract fun returnValue(): String
+    abstract fun <T> copy(id: Int? = null, title: String? = null, value: T? = null): CustomAttribute
 
     data class NumberAttribute(
         val attributeId: Int,
@@ -13,6 +14,10 @@ sealed class CustomAttribute (
     ) : CustomAttribute(attributeId, attributeTitle) {
         override fun returnValue(): String {
             return value.toString()
+        }
+
+        override fun <T> copy(id: Int?, title: String?, value: T?): CustomAttribute {
+            return NumberAttribute(id ?: attributeId, title ?: attributeTitle, (value ?: this.value) as Float)
         }
     }
 
@@ -24,6 +29,10 @@ sealed class CustomAttribute (
         override fun returnValue(): String {
             return value.toString()
         }
+
+        override fun <T> copy(id: Int?, title: String?, value: T?): CustomAttribute {
+            return TextAttribute(id ?: attributeId, title ?: attributeTitle, (value ?: this.value).toString())
+        }
     }
 
     data class CardAttribute(
@@ -33,6 +42,10 @@ sealed class CustomAttribute (
     ) : CustomAttribute(attributeId, attributeTitle) {
         override fun returnValue(): String {
             return value.toString()
+        }
+
+        override fun <T> copy(id: Int?, title: String?, value: T?): CustomAttribute {
+            return CardAttribute(id ?: attributeId, title ?: attributeTitle, (value ?: this.value) as Int)
         }
     }
 }

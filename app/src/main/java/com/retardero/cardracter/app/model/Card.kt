@@ -1,16 +1,16 @@
 package com.retardero.cardracter.app.model
 
 sealed class Card(
-    var id: Int,
-    var title: String,
-    var image: Int
+    val id: Int,
+    val title: String,
+    val image: Int
 ) {
 
     data class CollectionCard(
-        var cardId: Int,
-        var cardTitle: String,
-        var cardImage: Int,
-        var cardAttributes: List<CustomCategory.CardsCategory>
+        val cardId: Int,
+        val cardTitle: String,
+        val cardImage: Int,
+        val cardAttributes: List<CustomCategory.CardsCategory>
     ) : Card(cardId, cardTitle, cardImage) {
         companion object {
             fun empty(): CollectionCard = CollectionCard(
@@ -23,10 +23,10 @@ sealed class Card(
     }
 
     data class MultiCategoryCard(
-        var cardId: Int,
-        var cardTitle: String,
-        var cardImage: Int,
-        var cardAttributes: List<CustomCategory>
+        val cardId: Int,
+        val cardTitle: String,
+        val cardImage: Int,
+        val cardAttributes: List<CustomCategory>
     ) : Card(cardId, cardTitle, cardImage) {
         companion object {
             fun empty(): MultiCategoryCard = MultiCategoryCard(
