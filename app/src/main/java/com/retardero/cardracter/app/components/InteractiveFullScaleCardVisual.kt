@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -98,16 +99,16 @@ fun InteractiveFullScaleCardVisual(baseCard: Card) {
                             CardSubTitleTextField(category.title, { change -> card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(title = change)}) })
                             when (category) {
                                 is CustomCategory.MultiAttributesCategory -> {
-                                    category.attributes.forEach { attribute ->
-                                        Text(
+                                    category.attributes.forEachIndexed { index, attribute ->
+                                            /*Text(
                                             attribute.returnValue(),
                                             fontSize = 20.sp,
                                             textAlign = TextAlign.Left,
-                                        )
+                                        )*/
                                         CardTextField(attribute.returnValue(),
                                             {
                                                     change ->
-                                                //card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(attributes = listOf(category.attribute.copy(value = change)))})
+                                                card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it[i] = card.cardAttributes.get(i).copy(attributes = category.attributes.toMutableList().also { it[index] = it[index].copy(value = change) })})
                                             })
                                     }
                                 }
@@ -130,6 +131,11 @@ fun InteractiveFullScaleCardVisual(baseCard: Card) {
                         }
                         Spacer(modifier = Modifier.height(8.dp))
                     }
+                    Button(
+                        onClick = { card = card.copy(cardAttributes = card.cardAttributes.toMutableList().also { it.add(
+                            CustomCategory.MultiAttributesCategory.default()) } )},
+                        content = { Text("Add category") }
+                    )
                 }
             }
         }

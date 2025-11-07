@@ -1,5 +1,7 @@
 package com.retardero.cardracter.app.model
 
+import com.retardero.cardracter.app.model.Card.CollectionCard
+
 sealed class CustomCategory (
     val id: Int,
     val title: String,
@@ -22,6 +24,20 @@ sealed class CustomCategory (
             attributes: List<CustomAttribute>?
         ): CustomCategory {
             return MultiAttributesCategory(id ?: categoryId, title ?: categoryTitle, attributes ?: this.attributes)
+        }
+
+        companion object {
+            fun empty(): MultiAttributesCategory = MultiAttributesCategory(
+                -1,
+                "",
+                emptyList()
+            )
+
+            fun default(): MultiAttributesCategory = MultiAttributesCategory(
+                0,
+                "Title",
+                emptyList()
+            )
         }
     }
 
