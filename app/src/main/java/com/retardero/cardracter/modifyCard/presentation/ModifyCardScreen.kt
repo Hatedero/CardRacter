@@ -41,8 +41,10 @@ import com.retardero.cardracter.app.components.EditTopBar
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.components.FloatingActionMenuEditCard
 import com.retardero.cardracter.app.database.dao.cardDAO
+import com.retardero.cardracter.app.model.CustomAttribute
 import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.collections.model.ModifiableCard
+import com.retardero.cardracter.collections.model.ModifiableCustomAttribute
 import com.retardero.cardracter.collections.model.ModifiableCustomCategory
 import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.homepage.domain.ModifyCardViewModel
@@ -95,8 +97,7 @@ fun NewCardScreen(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(10.dp))
                                         .fillMaxHeight()
-                                        .clickable { viewModel.updateTitle()
-                                        println(activeCard.title)}
+                                        .clickable { }
                                 )
                             }
                             Column(
@@ -109,51 +110,17 @@ fun NewCardScreen(
                                     verticalArrangement = Arrangement.Center,
                                     horizontalAlignment = Alignment.CenterHorizontally
                                 ) {
-                                    CardTitleTextField((activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardTitle, { activeCard.title = it })
+                                    CardTitleTextField(
+                                        (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardTitle,
+                                        { viewModel.updateTitle(it) })
                                     Spacer(modifier = Modifier.height(8.dp))
                                 }
 
                                 Spacer(modifier = Modifier.height(32.dp))
 
-                                (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.forEachIndexed { i, category ->
-                                    Column (
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(8.dp),
-                                        verticalArrangement = Arrangement.Center,
-                                        horizontalAlignment = Alignment.CenterHorizontally
-                                    ) {
-
-                                        CardSubTitleTextField(category.title, { (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes[i].title = it})
-                                        when (category) {
-                                            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
-                                                category.attributes.forEachIndexed { index, attribute ->
-                                                    CardTextField(attribute.returnValue(),
-                                                        {
-                                                                change ->
-                                                            category.attributes[index].setValue(change)
-                                                        })
-                                                }
-                                            }
-
-                                            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
-                                                CardTextField(category.attribute.returnValue(),
-                                                    {
-                                                            change ->
-                                                        //activeCard = activeCard.copy(cardAttributes = activeCard.cardAttributes.toMutableList().also { it[i] = activeCard.cardAttributes.get(i).copy(attributes = listOf(category.attribute.copy(value = change)))})
-                                                    })
-                                            }
-
-                                            is ModifiableCustomCategory.ModifiableCardsCategory -> {}
-                                        }
-                                    }
-                                    Spacer(modifier = Modifier.height(8.dp))
+                                (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.forEach { category ->
+                                    CategoryComposable(category, viewModel)
                                 }
-                                /*Button(
-                                    onClick = { activeCard = activeCard.copy(cardAttributes = activeCard.cardAttributes.toMutableList().also { it.add(
-                                        ModifiableCustomCategory.ModifiableMultiAttributesCategory.default()) } )},
-                                    content = { Text("Add category") }
-                                )*/
                             }
                         }
                     }
@@ -163,6 +130,47 @@ fun NewCardScreen(
                     }
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun AttributeComposable(attribute: ModifiableCustomAttribute, viewModel: ModifyCardViewModel) {
+    return when (attribute) {
+        is ModifiableCustomAttribute.ModifiableTextAttribute -> {
+            CardTextField(attribute.value, {})
+        }
+
+        is ModifiableCustomAttribute.ModifiableNumberAttribute -> {
+            CardTextField(attribute.value.toString(), {})
+        }
+
+        is ModifiableCustomAttribute.ModifiableCardAttribute -> {
+            CardTextField(attribute.value.toString(), {})
+        }
+    }
+}
+
+@Composable
+fun CategoryComposable(category: ModifiableCustomCategory, viewModel: ModifyCardViewModel) {
+    return when (category) {
+        is ModifiableCustomCategory.ModifiableCardsCategory -> {
+            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
+            category.cards.forEach { card ->
+                AttributeComposable(card, viewModel)
+            }
+        }
+
+        is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
+            category.attributes.forEach { card ->
+                AttributeComposable(card, viewModel)
+            }
+        }
+
+        is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
+            AttributeComposable(category.attribute, viewModel)
         }
     }
 }

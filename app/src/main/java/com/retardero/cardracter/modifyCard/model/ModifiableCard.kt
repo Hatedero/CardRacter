@@ -9,17 +9,22 @@ sealed class ModifiableCard(
     var title: String,
     var image: Int
 ) {
+    abstract fun <T>returnValue(): T
     abstract fun <T> copy(id: Int? = null, title: String? = null, image: Int? = null, values: T? = null): ModifiableCard
 
     data class ModifiableCollectionCard(
         var cardId: Int,
         var cardTitle: String,
         var cardImage: Int,
-        var cardAttributes: List<ModifiableCustomCategory.ModifiableCardsCategory>
+        var cardAttribute: ModifiableCustomCategory.ModifiableCardsCategory
     ) : ModifiableCard(cardId, cardTitle, cardImage) {
 
+        override fun <T> returnValue(): T {
+            return cardAttribute as T
+        }
+
         override fun <T> copy(id: Int?, title: String?, image: Int?, values: T?): ModifiableCard {
-            return ModifiableCollectionCard(id ?: cardId, title ?: cardTitle, image ?: cardImage, (values ?: cardAttributes) as List<ModifiableCustomCategory.ModifiableCardsCategory>)
+            return ModifiableCollectionCard(id ?: cardId, title ?: cardTitle, image ?: cardImage, (values ?: cardAttribute) as ModifiableCustomCategory.ModifiableCardsCategory)
         }
 
         companion object {
@@ -27,7 +32,7 @@ sealed class ModifiableCard(
                 -1,
                 "",
                 -1,
-                emptyList()
+                ModifiableCustomCategory.ModifiableCardsCategory(-1, "", emptyList())
             )
         }
     }
@@ -38,6 +43,10 @@ sealed class ModifiableCard(
         var cardImage: Int,
         var cardAttributes: List<ModifiableCustomCategory>
     ) : ModifiableCard(cardId, cardTitle, cardImage) {
+
+        override fun <T> returnValue(): T{
+            return cardAttributes as T
+        }
 
         override fun <T> copy(id: Int?, title: String?, image: Int?, values: T?): ModifiableCard {
             return ModifiableMultiCategoryCard(id ?: cardId, title ?: cardTitle, image ?: cardImage, (values ?: cardAttributes) as List<ModifiableCustomCategory>)
@@ -56,8 +65,8 @@ sealed class ModifiableCard(
                 "Artorias The abyss walker",
                 0,
                 listOf(ModifiableCustomCategory.ModifiableMultiAttributesCategory(0, "Story", listOf(
-                    ModifiableCustomAttribute.ModifiableTextAttribute(0, "attributeTitle", "He was a knight once told to save the world"), ModifiableCustomAttribute.ModifiableNumberAttribute(0, "attributeTitle", 1920f))),
-                    ModifiableCustomCategory.ModifiableSingleAttributeCategory(0, "What makes him human", ModifiableCustomAttribute.ModifiableTextAttribute(0, "attributeTitle", "His most precious memory")))
+                    ModifiableCustomAttribute.ModifiableTextAttribute(0, "attributeTitle", "He was a knight once told to save the world"), ModifiableCustomAttribute.ModifiableNumberAttribute(1, "attributeTitle", 1920f))),
+                    ModifiableCustomCategory.ModifiableSingleAttributeCategory(1, "What makes him human", ModifiableCustomAttribute.ModifiableTextAttribute(2, "attributeTitle", "His most precious memory")))
             )
         }
     }
