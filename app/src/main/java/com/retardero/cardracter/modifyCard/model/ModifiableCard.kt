@@ -2,18 +2,18 @@ package com.retardero.cardracter.app.model
 
 import com.retardero.cardracter.app.model.CustomAttribute.NumberAttribute
 
-sealed class Card(
-    val id: Int,
-    val title: String,
-    val image: Int
+sealed class ModifiableCard(
+    var id: Int,
+    var title: String,
+    var image: Int
 ) {
     abstract fun <T> copy(id: Int? = null, title: String? = null, image: Int? = null, values: T? = null): Card
 
     data class CollectionCard(
-        val cardId: Int,
-        val cardTitle: String,
-        val cardImage: Int,
-        val cardAttributes: List<CustomCategory.CardsCategory>
+        var cardId: Int,
+        var cardTitle: String,
+        var cardImage: Int,
+        var cardAttributes: List<CustomCategory.CardsCategory>
     ) : Card(cardId, cardTitle, cardImage) {
 
         override fun <T> copy(id: Int?, title: String?, image: Int?, values: T?): Card {
@@ -31,10 +31,10 @@ sealed class Card(
     }
 
     data class MultiCategoryCard(
-        val cardId: Int,
-        val cardTitle: String,
-        val cardImage: Int,
-        val cardAttributes: List<CustomCategory>
+        var cardId: Int,
+        var cardTitle: String,
+        var cardImage: Int,
+        var cardAttributes: List<CustomCategory>
     ) : Card(cardId, cardTitle, cardImage) {
 
         override fun <T> copy(id: Int?, title: String?, image: Int?, values: T?): Card {
@@ -62,11 +62,11 @@ sealed class Card(
 
 //FOR LATER
 /*data class CharacterCard(
-            val characterAttributes: CharacterCardCategory,
-            val cardBaseAttributes: CardCategory
+            var characterAttributes: CharacterCardCategory,
+            var cardBaseAttributes: CardCategory
         ) : MultiCategoryCard(cardBaseAttributes) {
 
-            //val characterAttributes: CharacterCardCategory = characterAttributes
+            //var characterAttributes: CharacterCardCategory = characterAttributes
 
             companion object {
                 fun empty(): CharacterCard = CharacterCard(

@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CollectionViewModel: ViewModel() {
+class CollectionsViewModel: ViewModel() {
 
     private val characterCardState:MutableStateFlow<Card> = MutableStateFlow<Card>(Card.MultiCategoryCard.empty())
     val characterCard: StateFlow<Card> = characterCardState.asStateFlow()
