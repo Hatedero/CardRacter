@@ -1,18 +1,27 @@
 package com.retardero.cardracter.app.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.retardero.cardracter.app.database.intermediary.IntermediaryCard
+import com.retardero.cardracter.app.model.Card
 
 @Dao
 interface cardDAO {
     /*@Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(magicCard: MagicCard)
+    suspend fun insert(card: Card)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(magicCards: List<MagicCard>)
+    suspend fun insertAll(cards: List<Card>)*/
 
-    @Query("Select * from magic_cards")
-    suspend fun getAll(): List<MagicCard>
+    @Query("Select * from intermediarycard")
+    suspend fun getAll(): List<IntermediaryCard>
 
-    @Delete
-    suspend fun delete(magicCard: MagicCard)*/
+    @Query("Select * from intermediarycard Where cardId = 0")
+    suspend fun get(): IntermediaryCard
+
+    /*@Delete
+    suspend fun delete(card: Card)*/
 }

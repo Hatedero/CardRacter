@@ -69,7 +69,7 @@ fun NewCardScreen(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionMenuEditCard({ navigator.navigateUp() }, { navigator.navigateUp() })
+            FloatingActionMenuEditCard({ viewModel.saveCard(viewModel.activeCard.value);navigator.navigateUp() }, { navigator.navigateUp() })
         },
         topBar = {
             EditTopBar(

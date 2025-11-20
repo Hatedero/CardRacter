@@ -2,10 +2,15 @@ package com.retardero.cardracter.homepage.domain
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.TypeConverter
+import androidx.room.TypeConverters
+import com.retardero.cardracter.app.api.Resource
+import com.retardero.cardracter.app.database.Converters
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.app.repositories.CardRacterRepository
 import com.retardero.cardracter.collections.model.ModifiableCard
+import com.retardero.cardracter.collections.model.ModifiableCards
 import com.retardero.cardracter.collections.model.ModifiableCustomAttribute
 import com.retardero.cardracter.collections.model.ModifiableCustomCategory
 import kotlinx.coroutines.coroutineScope
@@ -24,9 +29,11 @@ class ModifyCardViewModel: ViewModel() {
 
     fun fetchCards() {
         viewModelScope.launch {
-            val card = CardRacterRepository.getCards()
+            val card = CardRacterRepository.getCard(0)
 
-            //characterCardState.value = card ?: Card.MultiCategoryCard.empty()
+            val converter = Converters()
+
+            activeCardState.value = converter.toModifiableCard((card as Resource.Success).data) ?: ModifiableCard.ModifiableMultiCategoryCard.testData()
         }
     }
 
@@ -109,6 +116,16 @@ class ModifyCardViewModel: ViewModel() {
             })
         activeCardState.value = newCard
         println("UPDATE ATTRIBUTE VALUE")
+    }
+
+    fun saveCard(card: ModifiableCard) {
+        viewModelScope.launch {
+            val converter = Converters()
+
+            val cardToBeSaved = converter.fromModifiableCard(card)
+
+            CardRacterRepository.postCard(cardToBeSaved)
+        }
     }
 
     private fun sortCard(card: Card): Card {

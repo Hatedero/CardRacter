@@ -16,7 +16,7 @@ class CollectionsViewModel: ViewModel() {
 
     fun fetchCards() {
         viewModelScope.launch {
-            val card = CardRacterRepository.getCards()
+            val card = CardRacterRepository.getCard(0)
 
 
             //characterCardState.value = card ?: Card.MultiCategoryCard.empty()

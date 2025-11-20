@@ -13,11 +13,11 @@ sealed class Card(
         val cardId: Int,
         val cardTitle: String,
         val cardImage: Int,
-        val cardAttributes: List<CustomCategory.CardsCategory>
+        val cardAttributes: CustomCategory.CardsCategory
     ) : Card(cardId, cardTitle, cardImage) {
 
         override fun <T> copy(id: Int?, title: String?, image: Int?, values: T?): Card {
-            return CollectionCard(id ?: cardId, title ?: cardTitle, image ?: cardImage, (values ?: cardAttributes) as List<CustomCategory.CardsCategory>)
+            return CollectionCard(id ?: cardId, title ?: cardTitle, image ?: cardImage, (values ?: cardAttributes) as CustomCategory.CardsCategory)
         }
 
         companion object {
@@ -25,7 +25,7 @@ sealed class Card(
                 -1,
                 "",
                 -1,
-                emptyList()
+                CustomCategory.CardsCategory(0, "", emptyList())
             )
         }
     }

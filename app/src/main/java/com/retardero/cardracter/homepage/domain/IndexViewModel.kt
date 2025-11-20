@@ -21,11 +21,12 @@ class IndexViewModel: ViewModel() {
 
     fun fetchCards() {
         viewModelScope.launch {
-            val response = CardRacterRepository.getCards()
+            val response = CardRacterRepository.getCard(0)
 
             when(response) {
                 is Resource.Success -> {
-                    cardsState.value = response.data
+                    var test = listOf<Card>(response.data)
+                    cardsState.value =  test
                 }
                 is Resource.Error -> {
                     _error.value = response.error
