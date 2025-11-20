@@ -17,20 +17,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.app.components.AccountButton
 import com.retardero.cardracter.app.components.TextDisplay
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.app.components.AccountPicture
-
+import com.retardero.cardracter.app.components.DefaultAccountButton
+import com.retardero.cardracter.destinations.LoginScreenDestination
+import com.retardero.cardracter.destinations.ModifyAccountScreenDestination
 
 @Destination
-@Preview(showBackground = true)
 @Composable
-fun AccountScreen(navigator: DestinationsNavigator? = null) {
+fun AccountScreen(navigator: DestinationsNavigator) {
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Background)
@@ -46,7 +45,7 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            AccountButton("MODIFY PROFILE", {})
+            DefaultAccountButton({navigator.navigate(ModifyAccountScreenDestination)},"MODIFY PROFILE")
             Spacer(modifier = Modifier.height(10.dp))
             TextDisplay("Username","YourUsername")
             Spacer(modifier = Modifier.height(10.dp))
@@ -68,7 +67,7 @@ fun AccountScreen(navigator: DestinationsNavigator? = null) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
             ) {
-                AccountButton("LOG OUT", {})
+                DefaultAccountButton({navigator.navigate(LoginScreenDestination)},"LOG OUT")
             }
             Spacer(modifier = Modifier.height(16.dp))
         }

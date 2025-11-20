@@ -11,16 +11,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.destinations.DirectionDestination
-import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
-fun AccountButton(lable: String, onClick: () -> Unit){
+fun DefaultAccountButton(action : ()-> Unit, label : String){
     Button(
-        onClick = onClick,
+        onClick = action,
         modifier = Modifier
             .fillMaxWidth(0.7F)
             .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)
@@ -33,7 +30,7 @@ fun AccountButton(lable: String, onClick: () -> Unit){
         )
     ) {
         Text(
-            text=lable,
+            text=label,
             modifier = Modifier.background(Primary),
         )
     }

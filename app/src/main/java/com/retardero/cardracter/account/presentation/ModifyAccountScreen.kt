@@ -29,10 +29,10 @@ import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.AccountPicture
 import com.retardero.cardracter.app.components.TextField
+import com.retardero.cardracter.app.components.UndoButton
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.ui.theme.Secondary
 
 @Destination
 @Composable
@@ -70,7 +70,7 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator) {
                         SaveButton(navigator)
                     }
                     Box(modifier = Modifier.fillMaxWidth()) {
-                        UndoButton()
+                        UndoButton(navigator)
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                 }
@@ -92,7 +92,6 @@ fun DeleteAccount(navigator: DestinationsNavigator){
     )
 }
 
-
 @Composable
 fun SaveButton(navigator: DestinationsNavigator){
     Button(
@@ -111,28 +110,6 @@ fun SaveButton(navigator: DestinationsNavigator){
         Text(
             text="Save",
             modifier = Modifier.background(Primary),
-        )
-    }
-}
-
-@Composable
-fun UndoButton(){
-    val redColor =  Color(red=186, green=26, blue=26);
-    Button(
-        onClick = { },
-        modifier = Modifier
-            .fillMaxWidth(0.9F)
-            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = redColor)
-        ,
-        colors = ButtonColors(
-            containerColor = Secondary ,
-            contentColor = Color(red=0, green=0, blue=0),
-            disabledContainerColor = Background,
-            disabledContentColor = redColor
-        )
-    ) {
-        Text(
-            text="Undo",
         )
     }
 }
