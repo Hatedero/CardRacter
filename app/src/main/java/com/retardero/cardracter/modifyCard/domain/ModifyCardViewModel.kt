@@ -6,6 +6,7 @@ import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.app.repositories.CardRacterRepository
 import com.retardero.cardracter.collections.model.ModifiableCard
+import com.retardero.cardracter.collections.model.ModifiableCustomAttribute
 import com.retardero.cardracter.collections.model.ModifiableCustomCategory
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlin.collections.emptyList
+import kotlin.random.Random
 
 class ModifyCardViewModel: ViewModel() {
 
@@ -28,14 +30,39 @@ class ModifyCardViewModel: ViewModel() {
         }
     }
 
+    fun addNewAttribute(categoryId : Int) {
+        val newCard = activeCard.value.copy(values = activeCard.value.returnValue<List<ModifiableCustomCategory>>().toMutableList().also { activeCard.value.returnValue<List<ModifiableCustomCategory>>().forEachIndexed { index, category ->
+            if (category.id == categoryId)
+                when (category) {
+                    is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                        it[index] = category.copy(attributes = category.attributes.toMutableList().also { newCategory -> newCategory.add(ModifiableCustomAttribute.ModifiableTextAttribute(Random.nextInt(0,10000), "", "")) })
+                    }
+                    is ModifiableCustomCategory.ModifiableCardsCategory -> {
+
+                    }
+                    is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+
+                    }
+                }
+        } } )
+        activeCardState.value = newCard
+        println("ADD CATEGORY")
+    }
+
+    fun addNewCategory() {
+        val newCard = activeCard.value.copy(values = activeCard.value.returnValue<List<ModifiableCustomCategory>>().toMutableList().also { it.add(ModifiableCustomCategory.ModifiableMultiAttributesCategory(Random.nextInt(0,10000),"", emptyList())) } )
+        activeCardState.value = newCard
+        println("ADD CATEGORY")
+    }
+
     fun updateTitle(new : String) {
-        val c = activeCard.value.copy(title = new, values = activeCard.value.returnValue<List<ModifiableCustomCategory>>())
-        activeCardState.value = c
+        val newCard = activeCard.value.copy(title = new, values = activeCard.value.returnValue<List<ModifiableCustomCategory>>())
+        activeCardState.value = newCard
         println("UPDATE TITLE")
     }
 
     fun updateCategoryTitle(new : String, id : Int) {
-        val c = activeCard.value.copy(values =
+        val newCard = activeCard.value.copy(values =
         when (activeCard.value) {
             is ModifiableCard.ModifiableMultiCategoryCard -> {
                 (activeCard.value as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.toMutableList().also { it.forEachIndexed { index, category ->
@@ -48,15 +75,41 @@ class ModifyCardViewModel: ViewModel() {
                 (activeCard.value as ModifiableCard.ModifiableCollectionCard).cardAttribute.copy(title = new)
             }
         })
-        activeCardState.value = c
+        activeCardState.value = newCard
         println("UPDATE CATEGORY")
     }
 
-    /*fun updateTitle(new : String) {
-        val c = activeCard.value.copy(title = new, values = activeCard.value.returnValue<List<ModifiableCustomCategory>>())
-        activeCardState.value = c
-        println("UPDATE TITLE")
-    }*/
+    fun updateAttributeValue(new : String, id : Int) {
+        val newCard = activeCard.value.copy(values =
+            when (activeCard.value) {
+                is ModifiableCard.ModifiableMultiCategoryCard -> {
+                    (activeCard.value as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.toMutableList().also { it.forEachIndexed { index, category ->
+                        when (category) {
+                            is ModifiableCustomCategory.ModifiableCardsCategory -> {
+                            }
+                            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                                category.attributes.forEachIndexed { attributeIndex, attribute ->
+                                    if (attribute.id == id)
+                                        it[index] = category.copy(attributes = category.attributes.toMutableList().also { ModifiedAttributeList ->
+                                            ModifiedAttributeList[attributeIndex] = category.attributes[attributeIndex].copy(value = new)
+                                        })
+                                }
+                            }
+                            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+                                if ( category.attribute.id == id) {
+                                    it[index] = category.copy(attribute = category.attribute.copy(value = new))
+                                }
+                            }
+                        }
+                    } }
+                }
+                is ModifiableCard.ModifiableCollectionCard -> {
+                    (activeCard.value as ModifiableCard.ModifiableCollectionCard).cardAttribute
+                }
+            })
+        activeCardState.value = newCard
+        println("UPDATE ATTRIBUTE VALUE")
+    }
 
     private fun sortCard(card: Card): Card {
         return Card.MultiCategoryCard.empty()

@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,7 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,6 +56,7 @@ import com.retardero.cardracter.collections.model.ModifiableCustomCategory
 import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.homepage.domain.ModifyCardViewModel
 import com.retardero.cardracter.ui.theme.Background
+import com.retardero.cardracter.ui.theme.Primary
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
@@ -121,6 +129,27 @@ fun NewCardScreen(
                                 (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.forEach { category ->
                                     CategoryComposable(category, viewModel)
                                 }
+
+                                Spacer(modifier = Modifier.height((32.dp)))
+
+                                Row (
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    IconButton(
+                                        onClick = { viewModel.addNewCategory() },
+                                        modifier = Modifier.clip(RoundedCornerShape(10.dp))
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Add,
+                                            contentDescription = "icon",
+                                            tint = Primary
+                                        )
+                                    }
+                                }
                             }
                         }
                     }
@@ -138,7 +167,7 @@ fun NewCardScreen(
 fun AttributeComposable(attribute: ModifiableCustomAttribute, viewModel: ModifyCardViewModel) {
     return when (attribute) {
         is ModifiableCustomAttribute.ModifiableTextAttribute -> {
-            CardTextField(attribute.value, {})
+            CardTextField(attribute.value, { viewModel.updateAttributeValue(it, attribute.id)})
         }
 
         is ModifiableCustomAttribute.ModifiableNumberAttribute -> {
@@ -165,6 +194,16 @@ fun CategoryComposable(category: ModifiableCustomCategory, viewModel: ModifyCard
             CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
             category.attributes.forEach { card ->
                 AttributeComposable(card, viewModel)
+            }
+            IconButton(
+                onClick = { viewModel.addNewAttribute(category.id) },
+                modifier = Modifier.clip(RoundedCornerShape(10.dp))
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Add,
+                    contentDescription = "icon",
+                    tint = Primary
+                )
             }
         }
 
