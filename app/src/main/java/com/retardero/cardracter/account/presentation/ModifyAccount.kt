@@ -38,9 +38,10 @@ import java.time.LocalDate
 
 @Destination
 @Composable
-fun ModifyAccountScreen(navigator: DestinationsNavigator) {
+fun ModifyAccount(navigator: DestinationsNavigator) {
     Column (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
             .background(Background)
             .padding(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

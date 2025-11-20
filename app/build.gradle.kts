@@ -50,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.ui.unit)
     val room_version = "2.6.0"
 
     implementation(libs.androidx.core.ktx)
