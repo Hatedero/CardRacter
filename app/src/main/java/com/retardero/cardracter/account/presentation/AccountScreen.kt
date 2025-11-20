@@ -23,9 +23,11 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.TextDisplay
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.app.components.AccountPicture
+import com.retardero.cardracter.app.components.DateDisplay
 import com.retardero.cardracter.app.components.DefaultAccountButton
 import com.retardero.cardracter.destinations.LoginScreenDestination
 import com.retardero.cardracter.destinations.ModifyAccountScreenDestination
+import java.time.LocalDate
 
 @Destination
 @Composable
@@ -55,11 +57,11 @@ fun AccountScreen(navigator: DestinationsNavigator) {
             Spacer(modifier = Modifier.height(10.dp))
             Row (modifier = Modifier.fillMaxWidth()) {
                 Box(modifier = Modifier.fillMaxWidth(0.5F)){
-                    TextDisplay("Date of Birth","25/12/2002")
+                    DateDisplay("Date of Birth", LocalDate.of(2002, 12, 25))
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Box(modifier = Modifier.fillMaxWidth()) {
-                    TextDisplay("Join on the", "14/08/2023")
+                    DateDisplay("Joined on the",   LocalDate.of(2023, 8, 14))
                 }
             }
             Spacer(modifier = Modifier.height(20.dp))

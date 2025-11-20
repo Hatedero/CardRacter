@@ -28,11 +28,13 @@ import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.AccountPicture
+import com.retardero.cardracter.app.components.DateField
 import com.retardero.cardracter.app.components.TextField
 import com.retardero.cardracter.app.components.UndoButton
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import java.time.LocalDate
 
 @Destination
 @Composable
@@ -59,7 +61,9 @@ fun ModifyAccountScreen(navigator: DestinationsNavigator) {
             Spacer(modifier = Modifier.height(10.dp))
             TextField("Password","••••••")
             Spacer(modifier = Modifier.height(10.dp))
-            TextField("Date of Birth","25/12/2002")
+            DateField(
+                "Date of Birth", LocalDate.of(2002, 8, 14),{}
+            )
             Column(modifier = Modifier.fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
