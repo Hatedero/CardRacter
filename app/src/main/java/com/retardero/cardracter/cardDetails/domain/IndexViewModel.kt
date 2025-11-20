@@ -1,5 +1,5 @@
 package com.retardero.cardracter.homepage.domain
-
+/*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retardero.cardracter.app.model.Card
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class AccountViewModel: ViewModel() {
+class IndexViewModel: ViewModel() {
 
     private val characterCardState:MutableStateFlow<Card> = MutableStateFlow<Card>(Card.MultiCategoryCard.empty())
     val characterCard: StateFlow<Card> = characterCardState.asStateFlow()
@@ -27,3 +27,4 @@ class AccountViewModel: ViewModel() {
         return Card.MultiCategoryCard.empty()
     }
 }
+*/

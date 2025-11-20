@@ -19,26 +19,38 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.AccountPicture
 import com.retardero.cardracter.app.components.DateField
 import com.retardero.cardracter.app.components.TextField
 import com.retardero.cardracter.app.components.UndoButton
+import com.retardero.cardracter.app.model.Account
 import com.retardero.cardracter.destinations.SignupScreenDestination
+import com.retardero.cardracter.homepage.domain.AccountViewModel
+import com.retardero.cardracter.homepage.domain.ModifyCardViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import java.time.LocalDate
 
+
 @Destination
 @Composable
-fun ModifyAccount(navigator: DestinationsNavigator) {
+fun ModifyAccount(
+    navigator: DestinationsNavigator,
+    viewModel: AccountViewModel = viewModel()
+) {
+    val activeAccount by viewModel.activeAccount.collectAsState()
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -56,14 +68,16 @@ fun ModifyAccount(navigator: DestinationsNavigator) {
             verticalArrangement = Arrangement.Center
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            TextField("Username","YourUsername")
+            TextField("Username",activeAccount.name, {
+                viewModel.updateName(it)
+            })
             Spacer(modifier = Modifier.height(10.dp))
-            TextField("Email","your@email.com")
+            TextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
             Spacer(modifier = Modifier.height(10.dp))
             TextField("Password","••••••")
             Spacer(modifier = Modifier.height(10.dp))
             DateField(
-                "Date of Birth", LocalDate.of(2002, 8, 14),{}
+                "Date of Birth", activeAccount.dateOfBirth,{viewModel.updateDateOfBirth(it)}
             )
             Column(modifier = Modifier.fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,

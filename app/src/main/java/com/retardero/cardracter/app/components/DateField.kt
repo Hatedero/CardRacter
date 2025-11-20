@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter
 fun DateField(
     label: String,
     date: LocalDate,
-    onDateChange: (LocalDate) -> Unit
+    onDateChange: (LocalDate) -> Unit = {}
 ) {
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
 

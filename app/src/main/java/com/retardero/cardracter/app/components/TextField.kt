@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TextField(label : String, fieldValue : String = "") {
+fun TextField(label : String, fieldValue : String = "", onValueChange: (String) -> Unit = {}) {
     var field by remember { mutableStateOf(fieldValue) }
 
     Column (
@@ -25,6 +25,7 @@ fun TextField(label : String, fieldValue : String = "") {
             .clip(RoundedCornerShape(10.dp)),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
+
     ) {
         Text(label)
 
@@ -32,6 +33,7 @@ fun TextField(label : String, fieldValue : String = "") {
             value = field,
             onValueChange = {
                 field = it
+                onValueChange(it)
             },
             modifier = Modifier.clip(RoundedCornerShape(100))
         )

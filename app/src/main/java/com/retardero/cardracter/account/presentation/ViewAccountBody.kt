@@ -14,10 +14,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.components.TextDisplay
@@ -27,11 +30,17 @@ import com.retardero.cardracter.app.components.DateDisplay
 import com.retardero.cardracter.app.components.DefaultAccountButton
 import com.retardero.cardracter.destinations.LoginScreenDestination
 import com.retardero.cardracter.destinations.ModifyAccountDestination
+import com.retardero.cardracter.homepage.domain.AccountViewModel
 import java.time.LocalDate
 
 @Destination
 @Composable
-fun ViewAccountBody(navigator: DestinationsNavigator) {
+fun ViewAccountBody(
+    navigator: DestinationsNavigator,
+    viewModel: AccountViewModel = viewModel()
+) {
+    val activeAccount by viewModel.activeAccount.collectAsState()
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -56,15 +65,13 @@ fun ViewAccountBody(navigator: DestinationsNavigator) {
         ) {
             DefaultAccountButton({navigator.navigate(ModifyAccountDestination)},"MODIFY PROFILE")
             Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Username","YourUsername")
+            TextDisplay("Username",activeAccount.name)
             Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Email","your@email.com")
-            Spacer(modifier = Modifier.height(10.dp))
-            TextDisplay("Password","••••••")
+            TextDisplay("Email",activeAccount.mail)
             Spacer(modifier = Modifier.height(10.dp))
             Row (modifier = Modifier.fillMaxWidth()) {
                 Box(modifier = Modifier.fillMaxWidth(0.5F)){
-                    DateDisplay("Date of Birth",LocalDate.of(2002, 12, 25))
+                    DateDisplay("Date of Birth",activeAccount.dateOfBirth)
                 }
                 Spacer(modifier = Modifier.width(20.dp))
                 Box(modifier = Modifier.fillMaxWidth()) {
