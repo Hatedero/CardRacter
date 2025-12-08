@@ -76,13 +76,11 @@ class Converters {
     }
 
     @TypeConverter
-    fun toIntermediaryCard(card: Card.MultiCategoryCard): IntermediaryCard {
-        return IntermediaryCard(card.cardId, card.cardTitle, card.cardImage, CardType.MultiCategory)
-    }
-
-    @TypeConverter
-    fun toIntermediaryCard(card: Card.CollectionCard): IntermediaryCard {
-        return IntermediaryCard(card.cardId, card.cardTitle, card.cardImage, CardType.Collection)
+    fun toIntermediaryCard(card: Card): IntermediaryCard {
+        return when (card) {
+            is Card.MultiCategoryCard -> IntermediaryCard(card.cardId, card.cardTitle, card.cardImage, CardType.MultiCategory)
+            is Card.CollectionCard -> IntermediaryCard(card.cardId, card.cardTitle, card.cardImage, CardType.Collection)
+        }
     }
 
     //MODIFIABLE_ATTRIBUTES

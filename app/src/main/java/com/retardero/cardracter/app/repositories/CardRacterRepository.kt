@@ -28,6 +28,7 @@ object CardRacterRepository {
             val converter = Converters()
 
             val response = converter.fromIntermediaryCard( DBDataSource.getInstance().cardDAO().get())
+            println("RETURN CARD -> " + response)
             return Resource.Success(response)
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
@@ -37,8 +38,9 @@ object CardRacterRepository {
 
     suspend fun postCard(card: Card): Boolean {
         try {
-            val response = NetworkDataSource.apiService.saveCard(card)
-            //DBDataSource.getInstance().cardDAO().insert(card)
+            //val response = NetworkDataSource.apiService.saveCard(card)
+            val converter = Converters()
+            DBDataSource.getInstance().cardDAO().insert(converter.toIntermediaryCard(card))
             return true
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")

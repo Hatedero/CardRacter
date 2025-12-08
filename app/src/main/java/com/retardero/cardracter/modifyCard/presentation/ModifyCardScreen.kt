@@ -26,6 +26,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -67,9 +68,18 @@ fun NewCardScreen(
 ) {
     val activeCard by viewModel.activeCard.collectAsState()
 
+    LaunchedEffect(Unit) {
+        viewModel.fetchCards()
+    }
+
+
     Scaffold(
         floatingActionButton = {
-            FloatingActionMenuEditCard({ viewModel.saveCard(viewModel.activeCard.value);navigator.navigateUp() }, { navigator.navigateUp() })
+            FloatingActionMenuEditCard({
+                viewModel.saveCard(viewModel.activeCard.value)
+            }, {
+                navigator.navigateUp()
+            })
         },
         topBar = {
             EditTopBar(

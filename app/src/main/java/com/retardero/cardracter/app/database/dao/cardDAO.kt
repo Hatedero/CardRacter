@@ -10,10 +10,10 @@ import com.retardero.cardracter.app.model.Card
 
 @Dao
 interface cardDAO {
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(card: Card)
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(card: IntermediaryCard)
+
+    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)*/
 
     @Query("Select * from intermediarycard")

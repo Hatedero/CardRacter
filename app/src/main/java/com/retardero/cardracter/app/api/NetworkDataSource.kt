@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object NetworkDataSource {
-    private const val BASE_URL = "https:://api.magicthegathering.io/v1/"
+    private const val BASE_URL = "https://api.magicthegathering.io/v1/"
 
     /*val intercepter = HttpLoggingInterceptor().apply {
         this.level = HttpLoggingInterceptor.Level.BODY

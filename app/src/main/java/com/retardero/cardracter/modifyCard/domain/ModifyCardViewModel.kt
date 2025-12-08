@@ -29,6 +29,7 @@ class ModifyCardViewModel: ViewModel() {
 
     fun fetchCards() {
         viewModelScope.launch {
+            println("FETCH CARDS")
             val card = CardRacterRepository.getCard(0)
 
             val converter = Converters()
@@ -119,6 +120,7 @@ class ModifyCardViewModel: ViewModel() {
     }
 
     fun saveCard(card: ModifiableCard) {
+        println("SEND CARD")
         viewModelScope.launch {
             val converter = Converters()
 
@@ -126,9 +128,5 @@ class ModifyCardViewModel: ViewModel() {
 
             CardRacterRepository.postCard(cardToBeSaved)
         }
-    }
-
-    private fun sortCard(card: Card): Card {
-        return Card.MultiCategoryCard.empty()
     }
 }
