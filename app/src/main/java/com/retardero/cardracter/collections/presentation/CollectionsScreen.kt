@@ -17,7 +17,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -27,6 +26,7 @@ import com.retardero.cardracter.destinations.NewCardScreenDestination
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.veryLightGrey
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
@@ -79,14 +79,14 @@ fun CollectionsScreen(navigator: DestinationsNavigator) {
 fun AddButton(navigator: DestinationsNavigator){
     FloatingActionButton(
         onClick = { navigator.navigate(NewCardScreenDestination) },
-        modifier = Modifier
-            .padding(8.dp),
-        containerColor = Color.LightGray,
+        modifier = Modifier.padding(8.dp),
+        containerColor = veryLightGrey,
         content = {
             Icon(
-            imageVector = Icons.Default.Add,
-            contentDescription = "icon",
-            tint = Primary)
+                imageVector = Icons.Default.Add,
+                contentDescription = "icon",
+                tint = Primary
+            )
         }
     )
 }
