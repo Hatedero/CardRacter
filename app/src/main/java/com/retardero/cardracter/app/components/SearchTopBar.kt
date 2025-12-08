@@ -24,18 +24,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.PrimaryBackground
+import com.retardero.cardracter.ui.theme.veryLightGrey
 
 @Preview(showBackground = true)
 @Composable
 fun SeachTopBar() {
     Row (
         modifier = Modifier.fillMaxWidth()
-            .fillMaxHeight(0.08f)
-            .clip(RoundedCornerShape(10.dp))
-            .background(Color.LightGray),
+            .fillMaxHeight(0.07f)
+            .clip(RoundedCornerShape(16.dp))
+            .background(veryLightGrey),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
@@ -60,13 +70,19 @@ fun SeachTopBar() {
         }
 
         TextField(
-            value = search,
-            onValueChange = {
+            search,
+            {
                 search = it
             },
-            modifier = Modifier.fillMaxHeight()
+            Modifier.fillMaxHeight()
                 .fillMaxWidth(0.8f),
-            colors = TextFieldDefaults.colors(focusedContainerColor = Color.Transparent, unfocusedContainerColor = Color.Transparent, unfocusedTextColor = Color.Black)
+            colors = TextFieldDefaults.colors(focusedContainerColor = Color.Transparent, unfocusedContainerColor = Color.Transparent, unfocusedTextColor = Color.Black),
+            textStyle = TextStyle(
+                fontSize = 18.sp,
+                fontFamily = FontFamily.Monospace,
+                fontWeight = Bold,
+                textDecoration = TextDecoration.Underline,
+            ),
         )
 
         Row (

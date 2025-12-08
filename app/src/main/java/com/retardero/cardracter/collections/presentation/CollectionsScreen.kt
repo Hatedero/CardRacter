@@ -34,24 +34,27 @@ import com.retardero.cardracter.ui.theme.Primary
 @Composable
 fun CollectionsScreen(navigator: DestinationsNavigator) {
     Scaffold (
-        floatingActionButton = { AddButton(navigator) },
+        modifier = Modifier
+            .padding(8.dp)
+            .background(Background),
+        floatingActionButton = {AddButton(navigator)},
         bottomBar = {
-            Row (
+            Row(
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(20.dp))
-            ) {
-                NavBar(navigator)} },
+            ){
+                NavBar(navigator,2)
+            }
+        },
         topBar = {
-            Row (
+            Row(
                 modifier = Modifier
                     .padding(8.dp)
                     .shadow(8.dp, CircleShape)
-            ) {
+            ){
                 ProfileTab(navigator)
-            }},
-        modifier = Modifier
-            .padding(8.dp)
-            .background(Background)
+            }
+        }
     ) {
             LazyColumn (
             ) {

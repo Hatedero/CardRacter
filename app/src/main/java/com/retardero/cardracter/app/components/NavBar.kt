@@ -19,8 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -28,17 +26,18 @@ import com.retardero.cardracter.destinations.CollectionsScreenDestination
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SearchScreenDestination
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.ui.theme.PrimaryContainer
+import com.retardero.cardracter.ui.theme.Secondary
+import com.retardero.cardracter.ui.theme.veryLightGrey
 
 @Destination
 @Composable
-fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf(Icons.Default.Home, Icons.Default.Search, Icons.Default.Favorite)) {
+fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
         Row(
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
                 .fillMaxWidth()
                 .fillMaxHeight(0.08f)
 
-                .background(Color.LightGray)
+                .background(veryLightGrey)
                 .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
@@ -60,18 +59,38 @@ fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf
                     )
                 }
             }*/
+            var backgroundColorHome = Secondary
+            var backgroundColorSearch = Secondary
+            var backgroundColorLibrary = Secondary
+            var foregroundColorHome = Primary
+            var foregroundColorSearch = Primary
+            var foregroundColorLibrary = Primary
+            when(index) {
+                0 -> {
+                    backgroundColorHome = Primary
+                    foregroundColorHome = Secondary
+                }
+                1 -> {
+                    backgroundColorSearch = Primary
+                    foregroundColorSearch = Secondary
+                }
+                2 -> {
+                    backgroundColorLibrary = Primary
+                    foregroundColorLibrary = Secondary
+                }
+            }
 
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
                     .clickable { navigator.navigate(IndexScreenDestination) }
-                    .background(PrimaryContainer)
+                    .background(backgroundColorHome)
                     .padding(7.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Home,
                     contentDescription = "icon",
-                    tint = Primary,
+                    tint = foregroundColorHome,
                     modifier = Modifier.fillMaxHeight()
                         .aspectRatio(1f)
                 )
@@ -81,13 +100,13 @@ fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
                     .clickable { navigator.navigate(SearchScreenDestination)  }
-                    .background(PrimaryContainer)
+                    .background(backgroundColorSearch)
                     .padding(7.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Search,
                     contentDescription = "icon",
-                    tint = Primary,
+                    tint = foregroundColorSearch,
                     modifier = Modifier.fillMaxHeight()
                         .aspectRatio(1f)
                 )
@@ -97,13 +116,13 @@ fun NavBar(navigator: DestinationsNavigator, index : List<ImageVector>? = listOf
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
                     .clickable { navigator.navigate(CollectionsScreenDestination)  }
-                    .background(PrimaryContainer)
+                    .background(backgroundColorLibrary)
                     .padding(7.dp)
             ) {
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "icon",
-                    tint = Primary,
+                    tint = foregroundColorLibrary,
                     modifier = Modifier.fillMaxHeight()
                         .aspectRatio(1f)
                 )

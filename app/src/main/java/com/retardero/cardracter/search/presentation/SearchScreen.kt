@@ -34,13 +34,13 @@ fun SearchScreen(navigator: DestinationsNavigator) {
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
-                NavBar(navigator)}
+                NavBar(navigator,1)
+            }
         },
         topBar = {
             Row (
                 modifier = Modifier.padding(8.dp)
                     .background(Background) .shadow(8.dp, RoundedCornerShape(10.dp))
-
             ) {
                 SeachTopBar()
             }
