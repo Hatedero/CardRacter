@@ -33,6 +33,8 @@ import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.PrimaryBackground
+import com.retardero.cardracter.ui.theme.Secondary
 
 @Destination
 @Composable
@@ -93,18 +95,19 @@ fun LoginScreen(navigator: DestinationsNavigator) {
             }
             Spacer(modifier = Modifier.height(60.dp))
             Button(
-                modifier = Modifier.fillMaxWidth(0.6f).fillMaxHeight(0.3f),
+                modifier = Modifier.fillMaxWidth(0.6f).fillMaxHeight(0.25f),
                 colors = ButtonColors(
-                    containerColor = Primary ,
+                    containerColor = Secondary,
                     contentColor = Color(red=0, green=0, blue=0),
                     disabledContainerColor = Background,
-                    disabledContentColor = Primary
+                    disabledContentColor = Secondary
                 ),
                 onClick = { navigator.navigate(IndexScreenDestination) }
             ) { Text("LOGIN",
                     style = TextStyle(
-                        fontSize = 32.sp
-                    )
+                        fontSize = 28.sp
+                    ),
+                color = Primary
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
