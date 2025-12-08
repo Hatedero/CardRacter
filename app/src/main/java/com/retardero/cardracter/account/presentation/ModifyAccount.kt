@@ -60,20 +60,20 @@ fun ModifyAccount(
         verticalArrangement = Arrangement.Center
     ) {
         AccountPicture(tranparency = 0.5f)
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Column (
             modifier = Modifier.fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TextField("Username",activeAccount.name,{viewModel.updateName(it)})
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TextField("Password","••••••",{})
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Box(
                 modifier = Modifier
                 .fillMaxHeight(0.5F)
@@ -100,10 +100,10 @@ fun ModifyAccount(
                     }
                     Spacer(modifier = Modifier.width(8.dp))
                 }
-                Spacer(modifier = Modifier.height(40.dp))
+                Spacer(modifier = Modifier.height(32.dp))
                 DeleteAccount(navigator)
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
