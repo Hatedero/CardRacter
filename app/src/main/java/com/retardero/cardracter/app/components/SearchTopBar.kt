@@ -81,7 +81,6 @@ fun SeachTopBar() {
                 fontSize = 18.sp,
                 fontFamily = FontFamily.Monospace,
                 fontWeight = Bold,
-                textDecoration = TextDecoration.Underline,
             ),
         )
 
