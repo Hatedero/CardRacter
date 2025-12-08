@@ -27,9 +27,9 @@ class ModifyCardViewModel: ViewModel() {
     private val activeCardState:MutableStateFlow<ModifiableCard> = MutableStateFlow<ModifiableCard>(ModifiableCard.ModifiableMultiCategoryCard.testData())
     val activeCard: StateFlow<ModifiableCard> = activeCardState.asStateFlow()
 
-    fun fetchCards() {
+    fun fetchCard() {
         viewModelScope.launch {
-            println("FETCH CARDS")
+            println("FETCH CARD")
             val card = CardRacterRepository.getCard(0)
 
             val converter = Converters()

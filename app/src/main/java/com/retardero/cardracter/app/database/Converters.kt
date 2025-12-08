@@ -27,18 +27,12 @@ class Converters {
     }
 
     @TypeConverter
-    fun toIntermediaryAttribute(attribute: CustomAttribute.NumberAttribute): IntermediaryAttribute {
-        return IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value.toString(), AttributeType.Number )
-    }
-
-    @TypeConverter
-    fun toIntermediaryAttribute(attribute: CustomAttribute.TextAttribute): IntermediaryAttribute {
-        return IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value, AttributeType.Text )
-    }
-
-    @TypeConverter
-    fun toIntermediaryAttribute(attribute: CustomAttribute.CardAttribute): IntermediaryAttribute {
-        return IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value.toString(), AttributeType.Card )
+    fun toIntermediaryAttribute(attribute: CustomAttribute): IntermediaryAttribute {
+        return when (attribute) {
+            is CustomAttribute.CardAttribute -> IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value.toString(), AttributeType.Card )
+            is CustomAttribute.TextAttribute -> IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value, AttributeType.Text )
+            is CustomAttribute.NumberAttribute -> IntermediaryAttribute(attribute.attributeId,  attribute.attributeTitle, attribute.value.toString(), AttributeType.Number )
+        }
     }
 
     //CATEGORIES
@@ -52,18 +46,26 @@ class Converters {
     }
 
     @TypeConverter
-    fun toIntermediaryCategory(category: CustomCategory.MultiAttributesCategory): IntermediaryCategory {
-        return IntermediaryCategory(category.categoryId, category.categoryTitle, CategoryType.MultiAttributes )
-    }
+    fun toIntermediaryCategory(category: CustomCategory): IntermediaryCategory {
+        return when (category) {
+            is CustomCategory.CardsCategory -> IntermediaryCategory(
+                category.categoryId,
+                category.categoryTitle,
+                CategoryType.Cards
+            )
 
-    @TypeConverter
-    fun toIntermediaryCategory(category: CustomCategory.SingleAttributeCategory): IntermediaryCategory {
-        return IntermediaryCategory(category.categoryId, category.categoryTitle, CategoryType.SingleAttribute )
-    }
+            is CustomCategory.MultiAttributesCategory -> IntermediaryCategory(
+                category.categoryId,
+                category.categoryTitle,
+                CategoryType.MultiAttributes
+            )
 
-    @TypeConverter
-    fun toIntermediaryCategory(category: CustomCategory.CardsCategory): IntermediaryCategory {
-        return IntermediaryCategory(category.categoryId, category.categoryTitle, CategoryType.Cards )
+            is CustomCategory.SingleAttributeCategory -> IntermediaryCategory(
+                category.categoryId,
+                category.categoryTitle,
+                CategoryType.SingleAttribute
+            )
+        }
     }
 
     //CARD
