@@ -20,7 +20,7 @@ interface cardDAO {
     suspend fun getHighestCardId(): Int
 
     @Query("SELECT * FROM intermediarycard WHERE type = 'MultiCategory'")
-    suspend fun getAllCards(): List<IntermediaryCard>
+    suspend fun getAllMultiCategoryCards(): List<IntermediaryCard>
 
     @Query("SELECT * FROM intermediarycard WHERE cardId = :id")
     suspend fun get(id : Int): IntermediaryCard

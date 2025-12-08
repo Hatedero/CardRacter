@@ -7,11 +7,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.Index
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.ui.theme.Background
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -19,8 +26,15 @@ import com.retardero.cardracter.ui.theme.Background
 @Composable
 fun CardDetailScreen(
     navigator: DestinationsNavigator,
-    card: Card.MultiCategoryCard = Card.MultiCategoryCard.empty()
+    viewModel: IndexViewModel = viewModel(),
+    cardId : Int
 ) {
+    val activeCard by viewModel.card.collectAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.fetchCard(cardId)
+    }
+
     Scaffold(
         bottomBar = { NavBar(navigator) },
         topBar = {
@@ -39,7 +53,7 @@ fun CardDetailScreen(
                 .padding(it)
         ) {
             item {
-                FullScaleCardVisual(card)
+                FullScaleCardVisual(activeCard)
             }
 
         }

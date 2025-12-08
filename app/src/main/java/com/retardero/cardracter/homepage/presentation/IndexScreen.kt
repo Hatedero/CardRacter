@@ -21,6 +21,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
@@ -61,7 +62,7 @@ fun IndexScreen(navigator: DestinationsNavigator, viewModel: IndexViewModel = vi
             ) {
                 cards.forEach { card ->
                     item {
-                        SimplifiedCardVisual(card)
+                        SimplifiedCardVisual(card, {navigator.navigate(CardDetailScreenDestination(card.id))})
                     }
                 }
             }

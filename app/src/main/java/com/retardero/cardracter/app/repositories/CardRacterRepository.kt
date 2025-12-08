@@ -41,7 +41,7 @@ object CardRacterRepository {
             //val response = NetworkDataSource.apiService.getCard(id)
             val converter = Converters()
 
-            val initialResponse = DBDataSource.getInstance().cardDAO().getAllCards()
+            val initialResponse = DBDataSource.getInstance().cardDAO().getAllMultiCategoryCards()
             var response = listOf<Card.MultiCategoryCard>()
             initialResponse.forEach { card ->
                 response = response.plus( converter.fromIntermediaryCard(card) as Card.MultiCategoryCard )
@@ -68,13 +68,16 @@ object CardRacterRepository {
         }
     }
 
-    suspend fun getUserCollections(userId : Int): Resource<List<Card.CollectionCard>> {
+    suspend fun getUserCollections(): Resource<List<Card.CollectionCard>> {
         try {
             //val response = NetworkDataSource.apiService.getCard(id)
             val converter = Converters()
 
-            val response = ( DBDataSource.getInstance().cardDAO().getAllUserCollections())
-            var treatedResponse = listOf<Card.CollectionCard>()
+            val initialResponse = DBDataSource.getInstance().cardDAO().getAllUserCollections()
+            var response = listOf<Card.CollectionCard>()
+            initialResponse.forEach { card ->
+                response = response.plus( converter.fromIntermediaryCard(card) as Card.CollectionCard )
+            }
             println("RETURN COLLECTION CARDS -> " + response)
             return Resource.Success(emptyList())
         } catch (e: Exception) {

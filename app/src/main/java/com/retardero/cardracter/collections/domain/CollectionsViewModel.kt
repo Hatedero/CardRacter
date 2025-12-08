@@ -20,7 +20,7 @@ class CollectionsViewModel: ViewModel() {
 
     fun fetchCollections() {
         viewModelScope.launch {
-            val response = CardRacterRepository.getUserCollections(0)
+            val response = CardRacterRepository.getUserCollections()
 
             when(response) {
                 is Resource.Success -> {

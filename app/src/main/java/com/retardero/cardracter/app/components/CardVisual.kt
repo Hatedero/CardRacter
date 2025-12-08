@@ -37,7 +37,7 @@ import com.retardero.cardracter.ui.theme.Primary
 
 
 @Composable
-fun SimplifiedCardVisual(card: Card) {
+fun SimplifiedCardVisual(card: Card, option : () -> Unit) {
     var backgroundColor by remember { mutableStateOf(Color.LightGray) }
 
     return when (card) {
@@ -46,7 +46,7 @@ fun SimplifiedCardVisual(card: Card) {
                 modifier = Modifier.clip(RoundedCornerShape(10.dp))
                     .background(backgroundColor)
                     .clickable(
-                        onClick = {println(card)}
+                        onClick = option
                     )
                     .fillMaxHeight()
                     .aspectRatio(0.6f)
