@@ -41,6 +41,7 @@ import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 import androidx.compose.ui.text.TextStyle
+import com.retardero.cardracter.ui.theme.darkBackground
 
 @Destination
 @Composable
@@ -123,13 +124,13 @@ fun SaveButton(navigator: DestinationsNavigator){
         onClick = { navigator.navigateUp()},
         modifier = Modifier
             .fillMaxWidth(0.9F)
-            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)
+            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = darkBackground)
         ,
         colors = ButtonColors(
-            containerColor = Primary ,
+            containerColor = darkBackground ,
             contentColor = Color(red=0, green=0, blue=0),
             disabledContainerColor = Background,
-            disabledContentColor = Primary
+            disabledContentColor = darkBackground
         )
     ) {
         Text(

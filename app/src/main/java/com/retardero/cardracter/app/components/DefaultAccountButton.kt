@@ -1,6 +1,5 @@
 package com.retardero.cardracter.app.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,8 +13,8 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
+import com.retardero.cardracter.ui.theme.darkBackground
 
 @Composable
 fun DefaultAccountButton(action : ()-> Unit, label : String){
@@ -23,13 +22,13 @@ fun DefaultAccountButton(action : ()-> Unit, label : String){
         onClick = action,
         modifier = Modifier
             .fillMaxWidth(0.7F)
-            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = Primary)
+            .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = darkBackground)
         ,
         colors = ButtonColors(
-            containerColor = Primary ,
+            containerColor = darkBackground ,
             contentColor = Color(red=0, green=0, blue=0),
             disabledContainerColor = Background,
-            disabledContentColor = Primary
+            disabledContentColor = darkBackground
         )
     ) {
         Text(
