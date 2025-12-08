@@ -16,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.ui.theme.Primary
@@ -34,8 +35,8 @@ fun TagHistory() {
             )
             .padding(vertical = 8.dp, horizontal = 12.dp)
     ) {
-        Text("Tags", modifier = Modifier
-            .padding(8.dp), fontSize = 20.sp)
+        Text("TAGS", modifier = Modifier
+            .padding(8.dp), fontSize = 32.sp, fontWeight = Bold)
 
         LazyColumn(
             modifier = Modifier
@@ -45,7 +46,7 @@ fun TagHistory() {
             for (i in 1..15) {
                 item {
                     Tag()
-                    Spacer(modifier = Modifier.height(2.dp))
+                    Spacer(modifier = Modifier.height(4.dp))
                 }
             }
         }
