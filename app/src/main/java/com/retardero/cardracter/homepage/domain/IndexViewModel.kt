@@ -44,6 +44,12 @@ class IndexViewModel: ViewModel() {
         }
     }
 
+    fun fetchCategories() {
+        viewModelScope.launch {
+            CardRacterRepository.getCategoryWithAttributes()
+        }
+    }
+
     fun fetchCard(cardId : Int) {
         viewModelScope.launch {
             println("FETCH CARD")

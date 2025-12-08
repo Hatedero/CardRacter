@@ -6,6 +6,10 @@ import com.retardero.cardracter.app.api.NetworkDataSource
 import com.retardero.cardracter.app.api.Resource
 import com.retardero.cardracter.app.database.Converters
 import com.retardero.cardracter.app.database.DBDataSource
+import com.retardero.cardracter.app.database.intermediary.AttributeType
+import com.retardero.cardracter.app.database.intermediary.CategoryType
+import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
+import com.retardero.cardracter.app.database.intermediary.IntermediaryCategory
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.model.Cards
 
@@ -33,6 +37,24 @@ object CardRacterRepository {
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
             return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getCategoryWithAttributes() {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val categoryWithAttributes = DBDataSource.getInstance().categoryDAO().getAllCategoriesWithAttributes()
+
+            println(categoryWithAttributes)
+            /*categoryWithAttributes.attributes.forEach { attribute ->
+                println("Attribute: ${attribute.attributeTitle} = ${attribute.attributeValue}")
+            }*/
+
+            println("GET CATEGORY WITH ATTRIBUTES")
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
         }
     }
 

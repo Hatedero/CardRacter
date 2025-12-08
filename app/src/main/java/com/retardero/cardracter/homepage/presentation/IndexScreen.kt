@@ -36,6 +36,7 @@ fun IndexScreen(navigator: DestinationsNavigator, viewModel: IndexViewModel = vi
 
     LaunchedEffect(Unit) {
         viewModel.fetchCards()
+        viewModel.fetchCategories()
     }
 
     Scaffold (

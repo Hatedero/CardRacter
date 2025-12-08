@@ -52,21 +52,24 @@ class Converters {
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value.toString(),
-                AttributeType.Card
+                AttributeType.Card,
+                0
             )
 
             is CustomAttribute.TextAttribute -> IntermediaryAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value,
-                AttributeType.Text
+                AttributeType.Text,
+                0
             )
 
             is CustomAttribute.NumberAttribute -> IntermediaryAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value.toString(),
-                AttributeType.Number
+                AttributeType.Number,
+                0
             )
         }
     }
@@ -109,18 +112,21 @@ class Converters {
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.Cards,
+                0
             )
 
             is CustomCategory.MultiAttributesCategory -> IntermediaryCategory(
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.MultiAttributes,
+                0
             )
 
             is CustomCategory.SingleAttributeCategory -> IntermediaryCategory(
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.SingleAttribute,
+                0
             )
         }
     }

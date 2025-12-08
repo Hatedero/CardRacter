@@ -1,18 +1,11 @@
 package com.retardero.cardracter.app.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
 
 @Dao
 interface attributeDAO {
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(magicCard: MagicCard)
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(magicCards: List<MagicCard>)
-
-    @Query("Select * from magic_cards")
-    suspend fun getAll(): List<MagicCard>
-
-    @Delete
-    suspend fun delete(magicCard: MagicCard)*/
+    @Insert
+    suspend fun insertAttribute(attribute: IntermediaryAttribute)
 }

@@ -20,6 +20,7 @@ object DBDataSource {
             Room.databaseBuilder(context,
                 AppDatabase::class.java,
                 "app_database",)
+                .fallbackToDestructiveMigration()
                 .build()
         return instance!!
     }
@@ -32,7 +33,7 @@ object DBDataSource {
     }
 }
 
-@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class], version = 2,
+@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class], version = 3,
     exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
