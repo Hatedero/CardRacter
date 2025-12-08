@@ -27,7 +27,7 @@ object CardRacterRepository {
             //val response = NetworkDataSource.apiService.getCard(id)
             val converter = Converters()
 
-            val response = converter.fromIntermediaryCard( DBDataSource.getInstance().cardDAO().get())
+            val response = converter.fromIntermediaryCard( DBDataSource.getInstance().cardDAO().get(cardId))
             println("RETURN CARD -> " + response)
             return Resource.Success(response)
         } catch (e: Exception) {
@@ -36,14 +36,47 @@ object CardRacterRepository {
         }
     }
 
-    suspend fun getUserCollections(userId : Int): Resource<Card> {
+    suspend fun getAllMultiCategoryCards(): Resource<List<Card.MultiCategoryCard>> {
         try {
             //val response = NetworkDataSource.apiService.getCard(id)
             val converter = Converters()
 
-            val response = converter.fromIntermediaryCard( DBDataSource.getInstance().cardDAO().get())
+            val initialResponse = DBDataSource.getInstance().cardDAO().getAllCards()
+            var response = listOf<Card.MultiCategoryCard>()
+            initialResponse.forEach { card ->
+                response = response.plus( converter.fromIntermediaryCard(card) as Card.MultiCategoryCard )
+            }
             println("RETURN CARD -> " + response)
             return Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
+            return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getHighestCardId(): Resource<Int> {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val response = DBDataSource.getInstance().cardDAO().getHighestCardId()
+            println("RETURN HIGHEST CARD ID -> " + response)
+            return Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
+            return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getUserCollections(userId : Int): Resource<List<Card.CollectionCard>> {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val response = ( DBDataSource.getInstance().cardDAO().getAllUserCollections())
+            var treatedResponse = listOf<Card.CollectionCard>()
+            println("RETURN COLLECTION CARDS -> " + response)
+            return Resource.Success(emptyList())
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
             return Resource.Error(e.message ?: "Unknown error")

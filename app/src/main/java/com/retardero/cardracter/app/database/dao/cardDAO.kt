@@ -16,13 +16,16 @@ interface cardDAO {
     /*@Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(cards: List<Card>)*/
 
-    @Query("Select * from intermediarycard")
-    suspend fun getAll(): List<IntermediaryCard>
+    @Query("SELECT cardId FROM intermediarycard ORDER BY cardId DESC LIMIT 1")
+    suspend fun getHighestCardId(): Int
 
-    @Query("Select * from intermediarycard Where cardId = 0")
-    suspend fun get(): IntermediaryCard
+    @Query("SELECT * FROM intermediarycard WHERE type = 'MultiCategory'")
+    suspend fun getAllCards(): List<IntermediaryCard>
 
-    @Query("Select * from intermediarycard where type = 'collection'")
+    @Query("SELECT * FROM intermediarycard WHERE cardId = :id")
+    suspend fun get(id : Int): IntermediaryCard
+
+    @Query("SELECT * FROM intermediarycard WHERE type = 'Collection'")
     suspend fun getAllUserCollections(): List<IntermediaryCard>
 
     /*@Delete

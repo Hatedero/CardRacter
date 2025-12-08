@@ -64,12 +64,14 @@ import com.retardero.cardracter.ui.theme.Primary
 @Composable
 fun NewCardScreen(
     navigator: DestinationsNavigator,
-    viewModel: ModifyCardViewModel = viewModel()
+    viewModel: ModifyCardViewModel = viewModel(),
+    cardId: Int,
+    cardType: Int,
 ) {
     val activeCard by viewModel.activeCard.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchCard()
+        viewModel.fetchCard(cardId, cardType)
     }
 
     Scaffold(

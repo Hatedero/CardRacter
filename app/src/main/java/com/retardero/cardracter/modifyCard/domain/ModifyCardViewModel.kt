@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.sql.ResultSet
 import kotlin.collections.emptyList
 import kotlin.random.Random
 
@@ -27,10 +28,20 @@ class ModifyCardViewModel: ViewModel() {
     private val activeCardState:MutableStateFlow<ModifiableCard> = MutableStateFlow<ModifiableCard>(ModifiableCard.ModifiableMultiCategoryCard.testData())
     val activeCard: StateFlow<ModifiableCard> = activeCardState.asStateFlow()
 
-    fun fetchCard() {
+    fun fetchCard(cardId : Int, cardType : Int) {
         viewModelScope.launch {
             println("FETCH CARD")
-            val card = CardRacterRepository.getCard(0)
+
+            val card : Resource<Card> = when (cardId) {
+                -1 ->
+                    when (cardType) {
+                        0 -> Resource.Success(Card.MultiCategoryCard.empty())
+                        1 -> Resource.Success(Card.CollectionCard.empty())
+                        else -> Resource.Error("NON SUPPORTED CARD TYPE")
+                    }
+
+                else -> CardRacterRepository.getCard(cardId)
+            }
 
             val converter = Converters()
 
@@ -124,7 +135,15 @@ class ModifyCardViewModel: ViewModel() {
         viewModelScope.launch {
             val converter = Converters()
 
-            val cardToBeSaved = converter.fromModifiableCard(card)
+            var cardToBeSaved = converter.fromModifiableCard(card)
+
+            if (cardToBeSaved.id == -1) {
+                var newId = CardRacterRepository.getHighestCardId()
+                when (newId) {
+                    is Resource.Success -> cardToBeSaved = cardToBeSaved.copy(id = newId.data + 1, values = emptyList<CustomCategory>())
+                    is Resource.Error -> println(newId.error)
+                }
+            }
 
             CardRacterRepository.postCard(cardToBeSaved)
         }

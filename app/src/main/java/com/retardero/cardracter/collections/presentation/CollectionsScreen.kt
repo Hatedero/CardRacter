@@ -11,6 +11,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -88,7 +93,7 @@ fun CollectionsScreen(
 
 @Composable
 fun AddButton(navigator: DestinationsNavigator) {
-    FloatingActionButton(
+    /*FloatingActionButton(
         onClick = { navigator.navigate(NewCardScreenDestination) },
         modifier = Modifier
             .padding(8.dp),
@@ -100,5 +105,10 @@ fun AddButton(navigator: DestinationsNavigator) {
                 tint = Primary
             )
         }
+    )*/
+    FloatingActionMenu(
+        Icons.Default.Add,
+        mapOf(Pair(Icons.Default.Person, {navigator.navigate(NewCardScreenDestination(-1, 0))}),
+            Pair(Icons.Default.List, {navigator.navigate(NewCardScreenDestination(-1, 1))}))
     )
 }
