@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
@@ -44,10 +46,9 @@ fun ViewAccountBody(
     Column (
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
-            .background(Background),
+            .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Bottom
     ) {
         Box(
             modifier = Modifier
@@ -55,36 +56,35 @@ fun ViewAccountBody(
         ) {
             AccountPicture()
         }
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(16.dp))
         Column (
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .clip(RoundedCornerShape(10.dp)),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             DefaultAccountButton({navigator.navigate(ModifyAccountDestination)},"MODIFY PROFILE")
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TextDisplay("Username",activeAccount.name)
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             TextDisplay("Email",activeAccount.mail)
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Row (modifier = Modifier.fillMaxWidth()) {
                 Box(modifier = Modifier.fillMaxWidth(0.5F)){
                     DateDisplay("Date of Birth",activeAccount.dateOfBirth)
                 }
-                Spacer(modifier = Modifier.width(20.dp))
+                Spacer(modifier = Modifier.width(24.dp))
                 Box(modifier = Modifier.fillMaxWidth()) {
-                    DateDisplay("Joined on the",LocalDate.of(2023, 8, 14))
+                    DateDisplay("Joined on the",activeAccount.dateJoined)
                 }
             }
-            Spacer(modifier = Modifier.height(64.dp))
-            Column(modifier = Modifier.fillMaxHeight(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
-            ) {
-                DefaultAccountButton({navigator.navigate(LoginScreenDestination)},"LOG OUT")
-            }
+        }
+        Row(modifier = Modifier.heightIn(128.dp,184.dp).fillMaxSize(),
+            horizontalArrangement  = Arrangement.Center,
+            verticalAlignment = Alignment.Bottom
+        ) {
+            DefaultAccountButton({navigator.navigate(LoginScreenDestination)},"LOG OUT")
         }
     }
 }

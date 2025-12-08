@@ -68,17 +68,24 @@ fun ModifyAccount(
             verticalArrangement = Arrangement.Center
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            TextField("Username",activeAccount.name, {
-                viewModel.updateName(it)
-            })
+            TextField("Username",activeAccount.name,{viewModel.updateName(it)})
             Spacer(modifier = Modifier.height(10.dp))
             TextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
             Spacer(modifier = Modifier.height(10.dp))
-            TextField("Password","••••••")
+            TextField("Password","••••••",{})
             Spacer(modifier = Modifier.height(10.dp))
-            DateField(
-                "Date of Birth", activeAccount.dateOfBirth,{viewModel.updateDateOfBirth(it)}
+            Box(
+                modifier = Modifier
+                .fillMaxHeight(0.5F)
+                .fillMaxWidth(0.9F)
+                .background(Background)
+                .padding(16.dp),
             )
+            {
+                DateField(
+                    "Date of Birth", activeAccount.dateOfBirth, { viewModel.updateDateOfBirth(it) }
+                )
+            }
             Column(modifier = Modifier.fillMaxHeight(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Bottom
