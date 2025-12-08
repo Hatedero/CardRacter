@@ -9,9 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.ui.theme.Background
+import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @Composable
 fun UndoButton(navigator: DestinationsNavigator){
@@ -31,6 +34,10 @@ fun UndoButton(navigator: DestinationsNavigator){
     ) {
         Text(
             text="Undo",
+            color = PrimaryBackground,
+            style = TextStyle(
+                fontSize = 18.sp
+            )
         )
     }
 }

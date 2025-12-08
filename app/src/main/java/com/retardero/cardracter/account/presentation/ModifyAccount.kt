@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
@@ -34,14 +35,12 @@ import com.retardero.cardracter.app.components.AccountPicture
 import com.retardero.cardracter.app.components.DateField
 import com.retardero.cardracter.app.components.TextField
 import com.retardero.cardracter.app.components.UndoButton
-import com.retardero.cardracter.app.model.Account
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.homepage.domain.AccountViewModel
-import com.retardero.cardracter.homepage.domain.ModifyCardViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
-import java.time.LocalDate
-
+import com.retardero.cardracter.ui.theme.PrimaryBackground
+import androidx.compose.ui.text.TextStyle
 
 @Destination
 @Composable
@@ -135,7 +134,10 @@ fun SaveButton(navigator: DestinationsNavigator){
     ) {
         Text(
             text="Save",
-            modifier = Modifier.background(Primary),
+            color = PrimaryBackground,
+            style = TextStyle(
+                fontSize = 18.sp
+            )
         )
     }
 }

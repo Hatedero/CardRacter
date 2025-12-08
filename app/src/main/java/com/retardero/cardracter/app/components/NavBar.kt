@@ -79,7 +79,6 @@ fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
                     foregroundColorLibrary = Secondary
                 }
             }
-
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))

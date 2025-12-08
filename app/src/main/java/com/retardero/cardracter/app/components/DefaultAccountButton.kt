@@ -10,9 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @Composable
 fun DefaultAccountButton(action : ()-> Unit, label : String){
@@ -31,7 +34,10 @@ fun DefaultAccountButton(action : ()-> Unit, label : String){
     ) {
         Text(
             text=label,
-            modifier = Modifier.background(Primary),
+            color = PrimaryBackground,
+            style = TextStyle(
+                fontSize = 18.sp
+            )
         )
     }
 }
