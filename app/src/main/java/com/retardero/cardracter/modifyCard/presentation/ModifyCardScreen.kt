@@ -69,9 +69,8 @@ fun NewCardScreen(
     val activeCard by viewModel.activeCard.collectAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.fetchCards()
+        viewModel.fetchCard()
     }
-
 
     Scaffold(
         floatingActionButton = {

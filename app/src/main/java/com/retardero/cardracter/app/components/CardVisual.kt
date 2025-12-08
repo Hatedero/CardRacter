@@ -46,7 +46,7 @@ fun SimplifiedCardVisual(card: Card) {
                 modifier = Modifier.clip(RoundedCornerShape(10.dp))
                     .background(backgroundColor)
                     .clickable(
-                        onClick = {}
+                        onClick = {println(card)}
                     )
                     .fillMaxHeight()
                     .aspectRatio(0.6f)

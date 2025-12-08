@@ -11,7 +11,7 @@ data class IntermediaryCategory(
     @ColumnInfo
     var categoryTitle: String,
     @ColumnInfo
-    var type: CategoryType
+    var type: CategoryType,
 ) {
 
 }

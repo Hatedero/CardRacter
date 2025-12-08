@@ -25,21 +25,15 @@ class IndexViewModel: ViewModel() {
 
             when(response) {
                 is Resource.Success -> {
+                    println("SUCESS")
                     var test = listOf<Card>(response.data)
                     cardsState.value =  test
                 }
                 is Resource.Error -> {
+                    println("ERROR")
                     _error.value = response.error
                 }
             }
-
-            cardsState.value = listOf() ?: emptyList()
-
-            cardsState.value = sortCard(cardsState.value)
         }
-    }
-
-    private fun sortCard(cards: List<Card>): List<Card> {
-        return emptyList()
     }
 }

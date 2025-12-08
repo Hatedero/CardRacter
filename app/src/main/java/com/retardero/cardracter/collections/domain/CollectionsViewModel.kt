@@ -2,6 +2,7 @@ package com.retardero.cardracter.homepage.domain
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.retardero.cardracter.app.api.Resource
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.repositories.CardRacterRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,19 +12,25 @@ import kotlinx.coroutines.launch
 
 class CollectionsViewModel: ViewModel() {
 
-    private val characterCardState:MutableStateFlow<Card> = MutableStateFlow<Card>(Card.MultiCategoryCard.empty())
-    val characterCard: StateFlow<Card> = characterCardState.asStateFlow()
+    private val collectionsState:MutableStateFlow<List<Card.CollectionCard>> = MutableStateFlow<List<Card.CollectionCard>>(
+        emptyList())
+    val collections: StateFlow<List<Card.CollectionCard>> = collectionsState.asStateFlow()
 
-    fun fetchCards() {
+    fun fetchCollections() {
         viewModelScope.launch {
-            val card = CardRacterRepository.getCard(0)
+            val response = CardRacterRepository.getUserCollections(0)
 
-
-            //characterCardState.value = card ?: Card.MultiCategoryCard.empty()
+            when(response) {
+                is Resource.Success -> {
+                    println("SUCESS")
+                    var test = listOf<Card.CollectionCard>(response.data)
+                    collectionsState.value =  test
+                }
+                is Resource.Error -> {
+                    println("ERROR")
+                    _error.value = response.error
+                }
+            }
         }
-    }
-
-    private fun sortCard(card: Card): Card {
-        return Card.MultiCategoryCard.empty()
     }
 }

@@ -22,6 +22,9 @@ interface cardDAO {
     @Query("Select * from intermediarycard Where cardId = 0")
     suspend fun get(): IntermediaryCard
 
+    @Query("Select * from intermediarycard where type = 'collection'")
+    suspend fun getAllUserCollections(): List<IntermediaryCard>
+
     /*@Delete
     suspend fun delete(card: Card)*/
 }

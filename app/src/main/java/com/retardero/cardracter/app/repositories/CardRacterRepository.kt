@@ -22,7 +22,21 @@ object CardRacterRepository {
         }
     }*/
 
-    suspend fun getCard(id : Int): Resource<Card> {
+    suspend fun getCard(cardId : Int): Resource<Card> {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val response = converter.fromIntermediaryCard( DBDataSource.getInstance().cardDAO().get())
+            println("RETURN CARD -> " + response)
+            return Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
+            return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getUserCollections(userId : Int): Resource<Card> {
         try {
             //val response = NetworkDataSource.apiService.getCard(id)
             val converter = Converters()
