@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.retardero.cardracter.app.database.dao.attributeDAO
 import com.retardero.cardracter.app.database.dao.cardDAO
 import com.retardero.cardracter.app.database.dao.categoryDAO
+import com.retardero.cardracter.app.database.dao.userDAO
 import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCard
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCategory
@@ -39,4 +40,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun cardDAO(): cardDAO
     abstract fun categoryDAO(): categoryDAO
     abstract fun attributeDAO(): attributeDAO
+
+    abstract fun userDAO(): userDAO
 }
