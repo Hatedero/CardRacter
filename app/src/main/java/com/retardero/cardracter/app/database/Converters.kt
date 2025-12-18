@@ -21,6 +21,10 @@ import com.retardero.cardracter.collections.model.ModifiableCustomCategory
 
 class Converters {
 
+    /*WARNING : Après ré explication des types converters, on remarque une mauvaise utilisation ici :
+    on utilise les type converters comme mapper ailleurs dans  l'application, bien que les types converters soient théoriquement des mappers liés à room.
+    */
+
     //ATTRIBUTES
     @TypeConverter
     fun fromIntermediaryAttribute(attribute: IntermediaryAttribute): CustomAttribute {
