@@ -4,7 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -34,19 +34,17 @@ fun SearchHistory(){
             )
             .padding(vertical = 8.dp, horizontal = 8.dp)
     ) {
-        Text("History", modifier = Modifier
-            .padding(8.dp), fontSize = 20.sp)
+        Text("HISTORY", modifier = Modifier
+            .padding(8.dp), fontSize = 32.sp, fontWeight = Bold)
 
         LazyColumn(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .height(285.dp)
+                .height(256.dp)
         ) {
             for (i in 1..20) {
                 item {
                     HistoryElement()
-                    Spacer(modifier = Modifier.height(2.dp))
-
                 }
             }
         }

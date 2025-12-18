@@ -44,7 +44,9 @@ fun IndexScreen(navigator: DestinationsNavigator, viewModel: IndexViewModel = vi
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
-            NavBar(navigator)} },
+                NavBar(navigator,0)
+            }
+        },
         topBar = {
             Row (
                 modifier = Modifier.padding(8.dp)

@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.coreLibraryDesugaring
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -31,6 +33,8 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+
+        isCoreLibraryDesugaringEnabled = true
     }
     kotlinOptions {
         jvmTarget = "11"
@@ -46,6 +50,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.compose.ui.unit)
     val room_version = "2.6.0"
 
     implementation(libs.androidx.core.ktx)
@@ -71,11 +76,11 @@ dependencies {
     // gson converter
     implementation(libs.converter.gson)
     //implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation("androidx.room:room-runtime:${room_version}")
     ksp("androidx.room:room-compiler:${room_version}")
     implementation("androidx.room:room-ktx:${room_version}")
-
     /*implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)*/
