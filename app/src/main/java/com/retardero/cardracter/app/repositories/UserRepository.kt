@@ -10,16 +10,10 @@ import com.retardero.cardracter.app.model.Users
 object UserRepository {
     suspend fun getUser(): Resource<User> {
         try {
-            /*
-            val response = DBDataSource.getInstance().userDAO().get()
+            val response = NetworkDataSource.userApiService.getExampleUserData()
             return Resource.Success(response)
-            */
-        } catch (e: Exception) {
-            try{
-                val response = NetworkDataSource.userApiService.getExampleUserData()
-            }catch{
 
-            }
+        } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
             return Resource.Error(e.message ?: "Unknown error")
         }
