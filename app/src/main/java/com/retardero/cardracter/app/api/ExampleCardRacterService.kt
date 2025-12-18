@@ -19,3 +19,5 @@ interface ExampleCardRacterService {
     @GET("/user")
     suspend fun getExampleUserData(): User
 }
+
+

@@ -22,6 +22,14 @@ object NetworkDataSource {
             .build()
             .create(ExampleCardRacterService::class.java)
     }
+
+    val userApiService: ExampleUserService by lazy{
+        Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ExampleUserService::class.java)
+    }
 }
 
 sealed class Resource<out T> {
