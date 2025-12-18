@@ -38,7 +38,6 @@ import com.retardero.cardracter.app.components.UndoButton
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.homepage.domain.AccountViewModel
 import com.retardero.cardracter.ui.theme.Background
-import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 import androidx.compose.ui.text.TextStyle
 import com.retardero.cardracter.ui.theme.darkBackground
@@ -49,7 +48,7 @@ fun ModifyAccount(
     navigator: DestinationsNavigator,
     viewModel: AccountViewModel = viewModel()
 ) {
-    val activeAccount by viewModel.activeAccount.collectAsState()
+    val activeAccount by viewModel.activeUser.collectAsState()
 
     Column (
         modifier = Modifier

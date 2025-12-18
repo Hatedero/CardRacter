@@ -1,7 +1,7 @@
 package com.retardero.cardracter.app.api
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.app.model.Cards
-import com.retardero.cardracter.app.model.Account
+import com.retardero.cardracter.app.model.User
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -17,5 +17,5 @@ interface ExampleCardRacterService {
     suspend fun saveCard(@Path("card") card: Card): Card
 
     @GET("/user")
-    suspend fun getExampleUserData(): Account
+    suspend fun getExampleUserData(): User
 }

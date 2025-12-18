@@ -36,7 +36,7 @@ fun ViewAccountBody(
     navigator: DestinationsNavigator,
     viewModel: AccountViewModel = viewModel()
 ) {
-    val activeAccount by viewModel.activeAccount.collectAsState()
+    val activeAccount by viewModel.activeUser.collectAsState()
 
     Column (
         modifier = Modifier

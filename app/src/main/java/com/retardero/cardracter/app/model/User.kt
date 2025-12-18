@@ -1,9 +1,11 @@
 package com.retardero.cardracter.app.model
 
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDate
 
-data class Account(
+@Entity
+data class User(
         @PrimaryKey
         val id: Int,
         val name: String,
@@ -13,7 +15,7 @@ data class Account(
         val image: Int
 ) {
         companion object {
-                fun empty(): Account = Account(
+                fun empty(): User = User(
                         -1,
                         "default user",
                         "default@user.fr",
