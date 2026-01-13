@@ -18,12 +18,16 @@ class AccountViewModel: ViewModel() {
     private val userState:MutableStateFlow<User> = MutableStateFlow(User.empty())
     val activeUser: StateFlow<User> = userState.asStateFlow()
 
+    fun hasDefaultCard(): Boolean{
+        return userState.value.id == -1
+    }
+
     fun fetchAccount(userId : Int) {
         viewModelScope.launch {
             val acco = UserRepository.getUser(userId)
             when(acco){
                 is Resource.Success -> {
-                    println("Loaded user")
+                    println("Loaded user "+acco.data.toString())
                     userState.value = acco.data
                 }
                 is Resource.Error -> {
@@ -50,6 +54,20 @@ class AccountViewModel: ViewModel() {
     fun updateDateOfBirth(new : LocalDate){
         val a = activeUser.value.copy(dateOfBirth = new)
         userState.value = a
-        println("UPDATE DATE OF BIRTH")
+        println("UPDATE DATE OF BIRTH "+new.toString())
+    }
+
+    fun saveChanges(){
+        viewModelScope.launch {
+            val acco = UserRepository.updateUser(activeUser.value)
+            when(acco){
+                is Resource.Success -> {
+                    println("updated user ")
+                }
+                is Resource.Error -> {
+                    println("Failed to load users")
+                }
+            }
+        }
     }
 }

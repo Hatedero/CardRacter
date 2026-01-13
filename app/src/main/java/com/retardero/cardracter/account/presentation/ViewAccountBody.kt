@@ -36,7 +36,9 @@ fun ViewAccountBody(
     navigator: DestinationsNavigator,
     viewModel: AccountViewModel = viewModel()
 ) {
-    viewModel.fetchAccount(0)
+    if(viewModel.hasDefaultCard()) {
+        viewModel.fetchAccount(1)
+    }
     val activeAccount by viewModel.activeUser.collectAsState()
 
     Column (
