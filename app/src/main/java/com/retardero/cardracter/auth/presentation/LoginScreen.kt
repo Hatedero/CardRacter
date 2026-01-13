@@ -18,6 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,10 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SignupScreenDestination
+import com.retardero.cardracter.homepage.domain.LoginSignUpViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
@@ -38,7 +42,12 @@ import com.retardero.cardracter.ui.theme.Secondary
 
 @Destination
 @Composable
-fun LoginScreen(navigator: DestinationsNavigator) {
+fun LoginScreen(
+    navigator: DestinationsNavigator,
+    viewModel: LoginSignUpViewModel = viewModel()
+) {
+    val activeAccount by viewModel.activeUser.collectAsState()
+
     Column (
         modifier = Modifier.fillMaxSize()
             .background(Background)
