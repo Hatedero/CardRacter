@@ -23,13 +23,15 @@ class AccountViewModel: ViewModel() {
             val acco = UserRepository.getUser(userId)
             when(acco){
                 is Resource.Success -> {
+                    println("Loaded user")
                     userState.value = acco.data
                 }
                 is Resource.Error -> {
                     _error.value = acco.error
+                    println("Failed to load user")
+                    userState.value = User.empty()
                 }
             }
-            //userState.value = acco ?: user.empty()
         }
     }
 
@@ -48,6 +50,6 @@ class AccountViewModel: ViewModel() {
     fun updateDateOfBirth(new : LocalDate){
         val a = activeUser.value.copy(dateOfBirth = new)
         userState.value = a
-        println("UPDATE EMAIL")
+        println("UPDATE DATE OF BIRTH")
     }
 }
