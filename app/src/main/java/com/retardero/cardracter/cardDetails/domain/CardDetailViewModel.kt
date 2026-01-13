@@ -30,37 +30,15 @@ class CardDetailViewModel: ViewModel() {
             when(response) {
                 is Resource.Success -> {
                     println("SUCESS")
-                    if (response.data is Card.MultiCategoryCard) //ATTENTION ! CAST SÛR, MAIS NECESSAIRE ?
-                        characterCardState.value =  response.data
-                    else println("ERROR")
-                }
-                is Resource.Error -> {
-                    println("ERROR")
-                    _error.value = response.error
-                }
-            }
-        }
-    }
-
-    fun fetchCategories(cardId : Int) {
-        var categories = emptyList<CustomCategory>()
-        viewModelScope.launch {
-            println("FETCH CATEGORIES FOR " + cardId)
-
-            val response : Resource<List<CustomCategory>> = CardRacterRepository.getCategoriesFromCardId(cardId)
-
-            when(response) {
-                is Resource.Success -> {
-                    println("SUCESS")
-                    var card = characterCardState.value
-                    when (card) {
-                        is Card.MultiCategoryCard -> {
-                            card = card.copy(cardAttributes = response.data)
-                        }
-
-                        is Card.CollectionCard -> {
-                            card = card.copy(cardAttributes = response.data.first() as CustomCategory.CardsCategory)
-                        }
+                        var tempCard = response.data
+                        when (tempCard) {
+                            is Card.MultiCategoryCard -> {
+                                characterCardState.value = tempCard
+                                fetchCategoriesWithAttributes(cardId)
+                            }
+                            is Card.CollectionCard -> {
+                                println("WRONG KIND OF CARD")
+                            }
                     }
                 }
                 is Resource.Error -> {
@@ -71,25 +49,32 @@ class CardDetailViewModel: ViewModel() {
         }
     }
 
-    fun fetchAttributes(categoryId : Int) : List<CustomAttribute> {
+    suspend fun fetchCategoriesWithAttributes(cardId : Int) {
+        var categories = emptyList<CustomCategory>()
         viewModelScope.launch {
-            println("FETCH ATTRIBUTES FOR " + categoryId)
+            println("FETCH CATEGORIES FOR " + cardId)
 
-            /*val response : Resource<List<CustomAttribute>> = CardRacterRepository.get(cardId)
+            val response : Resource<List<CustomCategory>> = CardRacterRepository.getCategoriesWithAttributesFromCardId(cardId)
 
             when(response) {
                 is Resource.Success -> {
                     println("SUCESS")
-                    if (response.data is Card.MultiCategoryCard)
-                        characterCardState.value =  response.data
-                    else println("ERROR")
+                    var card = characterCardState.value
+                    when (card) {
+                        is Card.MultiCategoryCard -> {
+                            characterCardState.value = card.copy(cardAttributes = response.data)
+                        }
+
+                        is Card.CollectionCard -> {
+                            characterCardState.value = card.copy(cardAttributes = response.data.first() as CustomCategory.CardsCategory)
+                        }
+                    }
                 }
                 is Resource.Error -> {
                     println("ERROR")
                     _error.value = response.error
                 }
-            }*/
+            }
         }
-        return emptyList()
     }
 }
