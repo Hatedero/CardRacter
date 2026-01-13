@@ -18,9 +18,9 @@ class AccountViewModel: ViewModel() {
     private val userState:MutableStateFlow<User> = MutableStateFlow(User.empty())
     val activeUser: StateFlow<User> = userState.asStateFlow()
 
-    fun fetchAccount() {
+    fun fetchAccount(userId : Int) {
         viewModelScope.launch {
-            val acco = UserRepository.getUser()
+            val acco = UserRepository.getUser(userId)
             when(acco){
                 is Resource.Success -> {
                     userState.value = acco.data
