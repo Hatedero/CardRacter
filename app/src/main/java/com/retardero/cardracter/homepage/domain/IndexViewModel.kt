@@ -23,10 +23,6 @@ class IndexViewModel: ViewModel() {
     private val _error: MutableStateFlow<String?> = MutableStateFlow(null)
     val error: StateFlow<String?> = _error.asStateFlow()
 
-    private val cardState:MutableStateFlow<Card.MultiCategoryCard> = MutableStateFlow(
-        Card.MultiCategoryCard.empty())
-    val card: StateFlow<Card.MultiCategoryCard> = cardState.asStateFlow()
-
     fun fetchCards() {
         viewModelScope.launch {
             val response = CardRacterRepository.getAllMultiCategoryCards()
@@ -35,33 +31,6 @@ class IndexViewModel: ViewModel() {
                 is Resource.Success -> {
                     println("SUCESS")
                     cardsState.value =  response.data
-                }
-                is Resource.Error -> {
-                    println("ERROR")
-                    _error.value = response.error
-                }
-            }
-        }
-    }
-
-    fun fetchCategories() {
-        viewModelScope.launch {
-            CardRacterRepository.getCategoryWithAttributes()
-        }
-    }
-
-    fun fetchCard(cardId : Int) {
-        viewModelScope.launch {
-            println("FETCH CARD")
-
-            val response : Resource<Card> = CardRacterRepository.getCard(cardId)
-
-            when(response) {
-                is Resource.Success -> {
-                    println("SUCESS")
-                    if (response.data is Card.MultiCategoryCard) //ATTENTION ! CAST SÛR, MAIS NECESSAIRE ?
-                        cardState.value =  response.data
-                    else println("ERROR")
                 }
                 is Resource.Error -> {
                     println("ERROR")

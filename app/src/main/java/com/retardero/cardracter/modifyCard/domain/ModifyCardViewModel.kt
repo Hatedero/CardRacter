@@ -134,16 +134,24 @@ class ModifyCardViewModel: ViewModel() {
         println("SEND CARD")
         viewModelScope.launch {
             val converter = Converters()
+            var tempCard = card
 
-            var cardToBeSaved = converter.fromModifiableCard(card)
-
-            if (cardToBeSaved.id == -1) {
+            if (tempCard.id == -1) {
                 var newId = CardRacterRepository.getHighestCardId()
                 when (newId) {
-                    is Resource.Success -> cardToBeSaved = cardToBeSaved.copy(id = newId.data + 1, values = emptyList<CustomCategory>())
+                    is Resource.Success -> {
+                        tempCard.id = newId.data + 1
+                        //Modify id of current card or reload current card from database
+                    }
                     is Resource.Error -> println(newId.error)
                 }
             }
+
+            println("CARD -> " + tempCard)
+
+            var cardToBeSaved = converter.fromModifiableCard(tempCard)
+
+            println("CONVERTER CARD -> " + cardToBeSaved)
 
             CardRacterRepository.postCard(cardToBeSaved)
         }

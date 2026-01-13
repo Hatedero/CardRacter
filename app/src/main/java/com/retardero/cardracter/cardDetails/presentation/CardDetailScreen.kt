@@ -18,6 +18,7 @@ import androidx.room.Index
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.retardero.cardracter.app.model.Card
+import com.retardero.cardracter.homepage.domain.CardDetailViewModel
 import com.retardero.cardracter.homepage.domain.IndexViewModel
 import com.retardero.cardracter.ui.theme.Background
 
@@ -26,10 +27,10 @@ import com.retardero.cardracter.ui.theme.Background
 @Composable
 fun CardDetailScreen(
     navigator: DestinationsNavigator,
-    viewModel: IndexViewModel = viewModel(),
+    viewModel: CardDetailViewModel = viewModel(),
     cardId : Int
 ) {
-    val activeCard by viewModel.card.collectAsState()
+    val activeCard by viewModel.characterCard.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.fetchCard(cardId)

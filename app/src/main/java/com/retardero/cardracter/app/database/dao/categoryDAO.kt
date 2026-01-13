@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
+import com.retardero.cardracter.app.database.intermediary.IntermediaryCard
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCategory
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCategoryWithAttributes
 
@@ -22,4 +23,7 @@ interface categoryDAO {
 
     @Insert
     suspend fun insertCategory(category: IntermediaryCategory)
+
+    @Query("SELECT * FROM intermediarycategory WHERE cardId = :cardId")
+    suspend fun getAllCategoriesFromCard(cardId: Int): List<IntermediaryCategory>
 }
