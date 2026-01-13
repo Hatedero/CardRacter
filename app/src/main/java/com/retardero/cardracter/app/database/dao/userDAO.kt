@@ -14,7 +14,10 @@ interface userDAO {
     suspend fun insert(user: User) : Long
 
     @Update
-    suspend fun updateUser(user:User)
+    suspend fun updateUser(user:User): Int
+
+    @Query("SELECT id FROM users ORDER BY id DESC LIMIT 1")
+    suspend fun getHighestUserId(): Int
 
     @Query("SELECT * FROM users")
     suspend fun getAllUsers(): List<User>
