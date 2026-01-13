@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.BuildConfig.FLAVOR_ID
 import com.retardero.cardracter.app.model.Card
 import com.retardero.cardracter.destinations.CardDetailScreenDestination
 import com.retardero.cardracter.homepage.domain.IndexViewModel
@@ -44,7 +46,9 @@ fun IndexScreen(navigator: DestinationsNavigator, viewModel: IndexViewModel = vi
                 modifier = Modifier.padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
-            NavBar(navigator)} },
+                NavBar(navigator,0)
+            }
+        },
         topBar = {
             Row (
                 modifier = Modifier.padding(8.dp)

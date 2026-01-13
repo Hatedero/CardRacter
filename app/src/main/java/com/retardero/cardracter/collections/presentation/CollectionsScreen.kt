@@ -38,6 +38,7 @@ import com.retardero.cardracter.homepage.domain.ModifyCardViewModel
 import com.retardero.cardracter.ui.ProfileTab
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
+import com.retardero.cardracter.ui.theme.veryLightGrey
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
@@ -55,6 +56,9 @@ fun CollectionsScreen(
     }
 
     Scaffold(
+        modifier = Modifier
+            .padding(8.dp)
+            .background(Background),
         floatingActionButton = { AddButton(navigator) },
         bottomBar = {
             Row(
@@ -62,7 +66,7 @@ fun CollectionsScreen(
                     .padding(8.dp)
                     .shadow(8.dp, RoundedCornerShape(20.dp))
             ) {
-                NavBar(navigator)
+                NavBar(navigator,2)
             }
         },
         topBar = {
@@ -70,13 +74,10 @@ fun CollectionsScreen(
                 modifier = Modifier
                     .padding(8.dp)
                     .shadow(8.dp, CircleShape)
-            ) {
+            ){
                 ProfileTab(navigator)
             }
-        },
-        modifier = Modifier
-            .padding(8.dp)
-            .background(Background)
+        }
     ) {
         LazyColumn(
         ) {
@@ -95,9 +96,8 @@ fun CollectionsScreen(
 fun AddButton(navigator: DestinationsNavigator) {
     /*FloatingActionButton(
         onClick = { navigator.navigate(NewCardScreenDestination) },
-        modifier = Modifier
-            .padding(8.dp),
-        containerColor = Color.LightGray,
+        modifier = Modifier.padding(8.dp),
+        containerColor = veryLightGrey,
         content = {
             Icon(
                 imageVector = Icons.Default.Add,
