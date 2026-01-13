@@ -4,10 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.LocalDate
 
-@Entity
+@Entity(tableName = "users")
 data class User(
-        @PrimaryKey
-        val id: Int,
+        @PrimaryKey(autoGenerate = true)
+        val id: Int = 0,
         val name: String,
         val mail: String,
         val dateOfBirth: LocalDate,

@@ -12,6 +12,7 @@ import com.retardero.cardracter.app.database.dao.userDAO
 import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCard
 import com.retardero.cardracter.app.database.intermediary.IntermediaryCategory
+import com.retardero.cardracter.app.model.User
 
 object DBDataSource {
     private var instance: AppDatabase? = null
@@ -33,7 +34,7 @@ object DBDataSource {
     }
 }
 
-@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class], version = 2,
+@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class, User::class], version = 2,
     exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

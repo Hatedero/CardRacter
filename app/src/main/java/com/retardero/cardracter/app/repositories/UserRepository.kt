@@ -19,7 +19,7 @@ object UserRepository {
         }
     }
 
-    suspend fun getUsers(): Resource<Users>{
+    suspend fun getUsers(): Resource<List<User>>{
         try {
             val response = DBDataSource.getInstance().userDAO().getAllUsers()
             return Resource.Success(response)
@@ -29,7 +29,7 @@ object UserRepository {
         }
     }
 
-    suspend fun saveUser(user: User): Resource<Boolean>{
+    suspend fun saveUser(user: User): Resource<Long>{
         try {
             /*
             val response = NetworkDataSource.userApiService.saveUser(user)

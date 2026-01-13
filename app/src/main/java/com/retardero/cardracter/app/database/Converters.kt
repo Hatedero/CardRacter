@@ -18,6 +18,7 @@ import com.retardero.cardracter.app.model.CustomCategory
 import com.retardero.cardracter.collections.model.ModifiableCard
 import com.retardero.cardracter.collections.model.ModifiableCustomAttribute
 import com.retardero.cardracter.collections.model.ModifiableCustomCategory
+import java.time.LocalDate
 
 class Converters {
 
@@ -296,5 +297,16 @@ class Converters {
                 toModifiableCategory(card.cardAttributes) as ModifiableCustomCategory.ModifiableCardsCategory
             )
         }
+    }
+
+    //USERS
+    @TypeConverter
+    fun fromTimestamp(value: String?): LocalDate? {
+        return value?.let { LocalDate.parse(it) }
+    }
+
+    @TypeConverter
+    fun dateToTimestamp(date: LocalDate?): String? {
+        return date?.toString()
     }
 }

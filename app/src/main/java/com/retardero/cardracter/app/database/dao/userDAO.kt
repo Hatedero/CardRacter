@@ -9,20 +9,18 @@ import androidx.room.Update
 import com.retardero.cardracter.app.model.User
 import com.retardero.cardracter.app.model.Users
 
+@Dao
 interface userDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(user: User) : Boolean
-
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(cards: List<Card>)*/
+    suspend fun insert(user: User) : Long
 
     @Update
     suspend fun updateUser(user:User)
 
-    @Query("SELECT * FROM user")
-    suspend fun getAllUsers(): Users
+    @Query("SELECT * FROM users")
+    suspend fun getAllUsers(): List<User>
 
-    @Query("SELECT * FROM user WHERE id = :id")
+    @Query("SELECT * FROM users WHERE id = :id")
     suspend fun get(id : Int): User
 
     @Delete
