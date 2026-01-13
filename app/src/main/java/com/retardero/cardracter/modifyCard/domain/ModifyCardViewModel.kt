@@ -136,12 +136,10 @@ class ModifyCardViewModel: ViewModel() {
     }
 
     fun saveCard() {
-        println("SEND CARD")
         viewModelScope.launch {
             val converter = Converters()
             var tempCard = activeCard.value
-
-            println("CARD ID 2 -> " + tempCard.id)
+            println("SEND CARD " + tempCard)
 
             when (tempCard) {
                 is ModifiableCard.ModifiableMultiCategoryCard -> {
@@ -196,7 +194,7 @@ class ModifyCardViewModel: ViewModel() {
                             is Resource.Success -> {
                                 tempCard.cardId = newId.data + 1
                                 tempCard.id = tempCard.cardId
-                                //Modify id of current card or reload current card from database
+                                activeCardState.value = tempCard
                             }
                             is Resource.Error -> println(newId.error)
                         }
