@@ -12,8 +12,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.homepage.domain.AccountViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 
@@ -21,6 +23,7 @@ import com.retardero.cardracter.ui.theme.Primary
 @Composable
 fun AccountScreen(
     navigator: DestinationsNavigator,
+    viewModel: AccountViewModel = viewModel()
 ) {
     Scaffold(
         topBar = {
@@ -45,7 +48,7 @@ fun AccountScreen(
                 .padding(paddingValues = it)
         ) {
             item {
-                ViewAccountBody(navigator)
+                ViewAccountBody(navigator,viewModel)
             }
         }
     }

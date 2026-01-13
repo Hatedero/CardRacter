@@ -34,7 +34,7 @@ import com.retardero.cardracter.homepage.domain.AccountViewModel
 @Composable
 fun ViewAccountBody(
     navigator: DestinationsNavigator,
-    viewModel: AccountViewModel = viewModel()
+    viewModel: AccountViewModel
 ) {
     if(viewModel.hasDefaultCard()) {
         viewModel.fetchAccount(1)
@@ -62,9 +62,10 @@ fun ViewAccountBody(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            println("name "+activeAccount.name)
             DefaultAccountButton({navigator.navigate(ModifyAccountDestination)},"MODIFY PROFILE")
             Spacer(modifier = Modifier.height(16.dp))
-            TextDisplay("Username",activeAccount.name)
+            TextDisplay("Username", activeAccount.name)
             Spacer(modifier = Modifier.height(16.dp))
             TextDisplay("Email",activeAccount.mail)
             Spacer(modifier = Modifier.height(16.dp))
