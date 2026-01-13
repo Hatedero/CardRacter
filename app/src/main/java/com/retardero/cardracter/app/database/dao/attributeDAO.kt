@@ -13,4 +13,7 @@ interface attributeDAO {
 
     @Query("SELECT * FROM intermediaryattribute WHERE categoryId = :categoryId")
     suspend fun getAllAttributesFromCategory(categoryId: Int): List<IntermediaryAttribute>
+
+    @Query("SELECT attributeId FROM intermediaryattribute ORDER BY attributeId DESC LIMIT 1")
+    suspend fun getHighestAttributeId(): Int
 }

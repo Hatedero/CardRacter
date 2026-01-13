@@ -26,4 +26,7 @@ interface categoryDAO {
 
     @Query("SELECT * FROM intermediarycategory WHERE cardId = :cardId")
     suspend fun getAllCategoriesFromCard(cardId: Int): List<IntermediaryCategory>
+
+    @Query("SELECT cardId FROM intermediarycategory ORDER BY categoryId DESC LIMIT 1")
+    suspend fun getHighestCategoryId(): Int
 }

@@ -88,7 +88,6 @@ object CardRacterRepository {
             initialResponse.forEach { card ->
                 response = response.plus( converter.fromIntermediaryCard(card) as Card.MultiCategoryCard )
             }
-            println("RETURN CARD -> " + response)
             return Resource.Success(response)
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
@@ -102,7 +101,32 @@ object CardRacterRepository {
             val converter = Converters()
 
             val response = DBDataSource.getInstance().cardDAO().getHighestCardId()
-            println("RETURN HIGHEST CARD ID -> " + response)
+            return Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
+            return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getHighestCategoryId(): Resource<Int> {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val response = DBDataSource.getInstance().categoryDAO().getHighestCategoryId()
+            return Resource.Success(response)
+        } catch (e: Exception) {
+            Log.e("CardracterRepository", e.message ?: "Unknown error")
+            return Resource.Error(e.message ?: "Unknown error")
+        }
+    }
+
+    suspend fun getHighestAttributeId(): Resource<Int> {
+        try {
+            //val response = NetworkDataSource.apiService.getCard(id)
+            val converter = Converters()
+
+            val response = DBDataSource.getInstance().attributeDAO().getHighestAttributeId()
             return Resource.Success(response)
         } catch (e: Exception) {
             Log.e("CardracterRepository", e.message ?: "Unknown error")
@@ -132,36 +156,26 @@ object CardRacterRepository {
         try {
             //val response = NetworkDataSource.apiService.saveCard(card)
             val converter = Converters()
-            println("TRY CARD SAVED")
             DBDataSource.getInstance().cardDAO().insert(converter.toIntermediaryCard(card))
-            println("CARD SAVED")
             when (card) {
                 is Card.MultiCategoryCard -> {
                     card.cardAttributes.forEach { category ->
-                        println("TRY CATEGORY SAVED")
                         DBDataSource.getInstance().categoryDAO().insertCategory(converter.toIntermediaryCategory(category).copy(cardId = card.cardId))
-                        println("CATEGORY SAVED")
 
                         when (category) {
                             is CustomCategory.MultiAttributesCategory -> {
                                 category.attributes.forEach { attribute ->
-                                    println("TRY ATTRIBUTE SAVED")
                                     DBDataSource.getInstance().attributeDAO().insertAttribute(converter.toIntermediaryAttribute(attribute).copy(categoryId = category.categoryId))
-                                    println("ATTRIBUTE SAVED")
                                 }
                             }
 
                             is CustomCategory.SingleAttributeCategory -> {
-                                println("TRY ATTRIBUTE SAVED")
                                 DBDataSource.getInstance().attributeDAO().insertAttribute(converter.toIntermediaryAttribute(category.attribute).copy(categoryId = category.categoryId))
-                                println("ATTRIBUTE SAVED")
                             }
 
                             is CustomCategory.CardsCategory -> {
                                 category.cards.forEach { attribute ->
-                                    println("TRY ATTRIBUTE SAVED")
                                     DBDataSource.getInstance().attributeDAO().insertAttribute(converter.toIntermediaryAttribute(attribute).copy(categoryId = category.categoryId))
-                                    println("ATTRIBUTE SAVED")
                                 }
                             }
                         }
@@ -169,13 +183,9 @@ object CardRacterRepository {
                 }
 
                 is Card.CollectionCard -> {
-                    println("TRY CATEGORY SAVED")
                     DBDataSource.getInstance().categoryDAO().insertCategory(converter.toIntermediaryCategory(card.cardAttributes).copy(categoryId = card.cardId))
-                    println("CATEGORY SAVED")
                     card.cardAttributes.cards.forEach { attribute ->
-                        println("TRY ATTRIBUTE SAVED")
                         DBDataSource.getInstance().attributeDAO().insertAttribute(converter.toIntermediaryAttribute(attribute).copy(categoryId = card.cardAttributes.categoryId))
-                        println("ATTRIBUTE SAVED")
                     }
                 }
             }
