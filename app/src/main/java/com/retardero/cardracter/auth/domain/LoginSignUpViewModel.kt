@@ -60,18 +60,18 @@ class LoginSignUpViewModel: ViewModel() {
         Log.d("user ",user.mail)
         Log.d("user ",user.dateOfBirth.toString())
 
+
         if (isValid) {
             _isFormValid.value = true
             viewModelScope.launch {
-                val newUser = user.copy(dateJoined = LocalDate.now())
-                val result = UserRepository.saveUser(newUser)
-                if (result is Resource.Success) {
-                    val testUsers = UserRepository.getUsers()
-                    if (testUsers is Resource.Success) {
-                        Log.d("user",testUsers.data.get(0).id.toString())
-                    }
-                    onSuccess() // Navigate only after successful save
+                val userId = UserRepository.getHighestUserId()
 
+                if (userId is Resource.Success) {
+                    var newUser = user.copy(dateJoined = LocalDate.now(), id = userId.data + 1)
+                    val result = UserRepository.saveUser(newUser)
+                    if (result is Resource.Success) {
+                        onSuccess() // Navigate only after successful save
+                    }
                 }
             }
         } else {
