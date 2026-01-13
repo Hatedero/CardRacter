@@ -19,8 +19,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,6 +42,9 @@ import com.retardero.cardracter.homepage.domain.AccountViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 import androidx.compose.ui.text.TextStyle
+import com.retardero.cardracter.NavGraphs
+import com.retardero.cardracter.app.components.AccountTextField
+import com.retardero.cardracter.destinations.AccountScreenDestination
 import com.retardero.cardracter.ui.theme.darkBackground
 
 @Destination
@@ -48,8 +53,11 @@ fun ModifyAccount(
     navigator: DestinationsNavigator,
     viewModel: AccountViewModel = viewModel()
 ) {
-    if(viewModel.hasDefaultCard()) {
-        viewModel.fetchAccount(1)
+
+    LaunchedEffect(Unit){
+        if(viewModel.hasDefaultCard()) {
+            viewModel.fetchAccount(1)
+        }
     }
     val activeAccount by viewModel.activeUser.collectAsState()
 
@@ -69,13 +77,16 @@ fun ModifyAccount(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
+            println("name "+activeAccount.name)
             Spacer(modifier = Modifier.height(16.dp))
-            TextField("Username",activeAccount.name,{viewModel.updateName(it)})
+            AccountTextField("Username",activeAccount.name,{viewModel.updateName(it)})
             Spacer(modifier = Modifier.height(16.dp))
-            TextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
+            AccountTextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
             Spacer(modifier = Modifier.height(16.dp))
-            TextField("Password","••••••",{})
+            /*
+            AccountTextField("Change account","",{viewModel.fetchAccount(it.length)})
             Spacer(modifier = Modifier.height(16.dp))
+            */
             Box(
                 modifier = Modifier
                 .fillMaxHeight(0.5F)
@@ -95,7 +106,7 @@ fun ModifyAccount(
                 Row (modifier = Modifier.fillMaxWidth()) {
                     Spacer(modifier = Modifier.width(8.dp))
                     Box(modifier = Modifier.fillMaxWidth(0.7F)){
-                        SaveButton(navigator)
+                        SaveButton(navigator,viewModel)
                     }
                     Box(modifier = Modifier.fillMaxWidth()) {
                         UndoButton(navigator)
@@ -111,7 +122,11 @@ fun ModifyAccount(
 }
 
 @Composable
-fun DeleteAccount(navigator: DestinationsNavigator){
+fun DeleteAccount(navigator: DestinationsNavigator)
+/*
+Shouldn't delete accounts yet
+ */
+{
     Text(
         modifier = Modifier.clickable{navigator.navigate(SignupScreenDestination)},
         text = "delete account",
@@ -121,9 +136,12 @@ fun DeleteAccount(navigator: DestinationsNavigator){
 }
 
 @Composable
-fun SaveButton(navigator: DestinationsNavigator){
+fun SaveButton(navigator: DestinationsNavigator,viewModel: AccountViewModel){
     Button(
-        onClick = { navigator.navigateUp()},
+        onClick = {
+            navigator.navigate(AccountScreenDestination())
+            viewModel.saveChanges()
+        },
         modifier = Modifier
             .fillMaxWidth(0.9F)
             .border(shape = RoundedCornerShape(20.dp),width=4.dp, color = darkBackground)

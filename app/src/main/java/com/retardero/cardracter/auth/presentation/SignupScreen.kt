@@ -20,7 +20,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import com.retardero.cardracter.app.components.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -36,15 +36,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
-import com.retardero.cardracter.app.model.User
 import com.retardero.cardracter.destinations.LoginScreenDestination
 import com.retardero.cardracter.homepage.domain.LoginSignUpViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 import com.retardero.cardracter.ui.theme.Secondary
-import kotlinx.coroutines.flow.StateFlow
-import java.time.LocalDate
+
 
 @Destination
 @Composable
@@ -72,9 +70,9 @@ fun SignupScreen(
                 .clip(RoundedCornerShape(10.dp))
         ) {
             Spacer(modifier = Modifier.height(10.dp))
-            TextField(label ="Username", onValueChange ={viewModel.updateName(it)})
+            TextField("Username", "",{viewModel.updateName(it)})
             Spacer(modifier = Modifier.height(10.dp))
-            TextField(label = "Email", onValueChange = {viewModel.updateEmail(it)})
+            TextField("Email", "",  {viewModel.updateEmail(it)})
             Spacer(modifier = Modifier.height(10.dp))
             TextField("Password")
             Spacer(modifier = Modifier.height(10.dp))
