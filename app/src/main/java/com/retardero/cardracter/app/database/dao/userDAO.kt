@@ -7,7 +7,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.retardero.cardracter.app.model.User
-import com.retardero.cardracter.app.model.Users
 
 @Dao
 interface userDAO {

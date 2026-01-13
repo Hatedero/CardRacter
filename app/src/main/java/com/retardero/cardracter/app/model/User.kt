@@ -20,7 +20,7 @@ data class User(
                         "default user",
                         "default@user.fr",
                         LocalDate.of(2000,1,1),
-                        LocalDate.of(2026,1,1),
+                        LocalDate.now(),
                         image = 0
                 )
         }

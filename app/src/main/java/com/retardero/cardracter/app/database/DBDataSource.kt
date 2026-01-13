@@ -1,6 +1,7 @@
 package com.retardero.cardracter.app.database
 
 import android.content.Context
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -41,6 +42,5 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun cardDAO(): cardDAO
     abstract fun categoryDAO(): categoryDAO
     abstract fun attributeDAO(): attributeDAO
-
     abstract fun userDAO(): userDAO
 }
