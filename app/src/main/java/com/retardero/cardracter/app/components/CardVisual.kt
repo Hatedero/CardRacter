@@ -86,8 +86,6 @@ fun SimplifiedCardVisual(card: Card, option : () -> Unit) {
 
         }
     }
-
-
 }
 
 

@@ -27,7 +27,7 @@ fun Tag(){
         Image(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
             contentDescription="search Logo", painter= painterResource(R.drawable.trending_icon))
-        Text("Jefrey Jackob",
+        Text("Âmeless",
             modifier = Modifier
                 .padding(horizontal = 8.dp),
             color = Color(255,255,255)
