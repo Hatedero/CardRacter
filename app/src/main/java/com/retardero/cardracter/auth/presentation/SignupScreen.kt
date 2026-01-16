@@ -101,9 +101,9 @@ fun SignupScreen(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                ActionLogo(R.drawable.google_logo,{navigator.navigate(LoginScreenDestination)})
-                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(LoginScreenDestination)})
-                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(LoginScreenDestination)})
+                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Google button")
+                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Tiktok button")
+                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Facebook button")
             }
             Spacer(modifier = Modifier.height(40.dp))
             signUpButton(navigator,viewModel)

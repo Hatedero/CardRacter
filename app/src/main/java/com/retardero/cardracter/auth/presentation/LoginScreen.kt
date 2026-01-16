@@ -49,11 +49,6 @@ fun LoginScreen(
         modifier = Modifier.fillMaxSize()
             .background(Background)
     ) {
-        Row (
-            modifier = Modifier.background(Primary)
-                .fillMaxWidth()
-                .height(200.dp)
-        ) {  }
 
         Column (
             modifier = Modifier.fillMaxWidth()
@@ -82,9 +77,9 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)})
-                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)})
-                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)})
+                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)},"login with Google button")
+                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)},"login with Tiktok button")
+                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)},"login with Facebook button")
             }
             Spacer(modifier = Modifier.height(60.dp))
             Button(
