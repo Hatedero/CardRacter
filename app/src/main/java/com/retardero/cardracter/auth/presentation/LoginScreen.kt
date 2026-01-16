@@ -3,7 +3,6 @@ package com.retardero.cardracter.app.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +10,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -32,12 +29,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.R
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SignupScreenDestination
 import com.retardero.cardracter.homepage.domain.LoginSignUpViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.ui.theme.PrimaryBackground
 import com.retardero.cardracter.ui.theme.Secondary
 
 @Destination
@@ -85,22 +82,9 @@ fun LoginScreen(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = Modifier.clip(CircleShape)
-                        .background(Primary)
-                        .width(80.dp)
-                        .height(80.dp)
-                ) {
-
-                }
-                Box(
-                    modifier = Modifier.clip(CircleShape)
-                        .background(Primary)
-                        .width(80.dp)
-                        .height(80.dp)
-                ) {
-
-                }
+                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)})
+                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)})
+                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)})
             }
             Spacer(modifier = Modifier.height(60.dp))
             Button(

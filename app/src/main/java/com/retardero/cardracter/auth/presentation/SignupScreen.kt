@@ -12,15 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
-import com.retardero.cardracter.app.components.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -36,11 +33,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.R
+import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.LoginScreenDestination
 import com.retardero.cardracter.homepage.domain.LoginSignUpViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
-import com.retardero.cardracter.ui.theme.PrimaryBackground
 import com.retardero.cardracter.ui.theme.Secondary
 
 
@@ -103,22 +101,9 @@ fun SignupScreen(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Box(
-                    modifier = Modifier.clip(CircleShape)
-                        .background(Primary)
-                        .width(80.dp)
-                        .height(80.dp)
-                ) {
-
-                }
-                Box(
-                    modifier = Modifier.clip(CircleShape)
-                        .background(Primary)
-                        .width(80.dp)
-                        .height(80.dp)
-                ) {
-
-                }
+                ActionLogo(R.drawable.google_logo,{navigator.navigate(LoginScreenDestination)})
+                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(LoginScreenDestination)})
+                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(LoginScreenDestination)})
             }
             Spacer(modifier = Modifier.height(40.dp))
             signUpButton(navigator,viewModel)
