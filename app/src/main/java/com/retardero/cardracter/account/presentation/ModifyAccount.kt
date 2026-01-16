@@ -42,8 +42,10 @@ import com.retardero.cardracter.homepage.domain.AccountViewModel
 import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 import androidx.compose.ui.text.TextStyle
+import com.retardero.cardracter.BuildConfig.FLAVOR_ID
 import com.retardero.cardracter.NavGraphs
 import com.retardero.cardracter.app.components.AccountTextField
+import com.retardero.cardracter.app.components.TextDisplay
 import com.retardero.cardracter.destinations.AccountScreenDestination
 import com.retardero.cardracter.ui.theme.darkBackground
 
@@ -77,7 +79,10 @@ fun ModifyAccount(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            println("name "+activeAccount.name)
+            if (FLAVOR_ID == "debug") {
+                Spacer(modifier = Modifier.height(16.dp))
+                TextField("User id", "your",{viewModel.fetchAccount(it.length)})
+            }
             Spacer(modifier = Modifier.height(16.dp))
             AccountTextField("Username",activeAccount.name,{viewModel.updateName(it)})
             Spacer(modifier = Modifier.height(16.dp))
