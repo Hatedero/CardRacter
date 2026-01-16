@@ -20,7 +20,7 @@ import com.retardero.cardracter.destinations.AccountScreenDestination
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
-fun ActionLogo(drawable : Int, toDo: () -> Unit){
+fun ActionLogo(drawable : Int, toDo: () -> Unit, description : String = "login/sign up button"){
     Box(
         modifier = Modifier.clip(CircleShape)
         .background(Primary)
@@ -33,7 +33,7 @@ fun ActionLogo(drawable : Int, toDo: () -> Unit){
                 .clip(RoundedCornerShape(10000.dp))
                 .fillMaxSize().aspectRatio(1f),
             painter = painterResource(drawable),
-            contentDescription = "Google signUp button",
+            contentDescription = description,
             contentScale = ContentScale.Crop,
         )
     }
