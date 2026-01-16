@@ -81,11 +81,14 @@ fun ViewAccountBody(
             Spacer(modifier = Modifier.height(16.dp))
             TextDisplay("Email",activeAccount.mail)
             Spacer(modifier = Modifier.height(16.dp))
-            Row (modifier = Modifier.fillMaxWidth()) {
+            Row (modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Box(modifier = Modifier.fillMaxWidth(0.5F)){
                     DateDisplay("Date of Birth",activeAccount.dateOfBirth)
                 }
-                Spacer(modifier = Modifier.width(24.dp))
+                Spacer(modifier = Modifier.width(12.dp))
                 Box(modifier = Modifier.fillMaxWidth()) {
                     DateDisplay("Joined on the",activeAccount.dateJoined)
                 }

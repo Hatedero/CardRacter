@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -50,68 +51,84 @@ fun SignupScreen(
 ) {
     val activeAccount by viewModel.activeUser.collectAsState()
 
-    Column (
+    LazyColumn (
         modifier = Modifier.fillMaxSize()
             .background(Background)
-            .verticalScroll(rememberScrollState())
     ) {
-        CardRacterBanner()
-        Column (
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
-                .clip(RoundedCornerShape(10.dp))
-        ) {
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Username", "",{viewModel.updateName(it)})
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Email", "",  {viewModel.updateEmail(it)})
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Password")
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Confirm Password")
-            Box(
-                modifier = Modifier
-                    .fillMaxHeight(0.5F)
-                    .fillMaxWidth(0.8F)
-                    .background(Background)
-                    .padding(16.dp),
-            )
-            {
-                DateField(
-                    "Date of Birth", activeAccount.dateOfBirth, { viewModel.updateDateOfBirth(it) }
-                )
-            }
-        }
-        Text("Forgot your password ?", color = Color.Blue, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth(), textDecoration = TextDecoration.Underline)
-        Spacer(modifier = Modifier.height(30.dp))
-        Column (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text("Sign up with")
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+        item {
+            CardRacterBanner()
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+                    .clip(RoundedCornerShape(10.dp))
             ) {
-                ActionLogo(R.drawable.google_logo,{navigator.navigate(LoginScreenDestination)},"sign up with Google button")
-                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(LoginScreenDestination)},"sign up with Facebook button")
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Username", "", { viewModel.updateName(it) })
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Email", "", { viewModel.updateEmail(it) })
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Password")
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Confirm Password")
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight(0.5F)
+                        .fillMaxWidth(0.8F)
+                        .background(Background)
+                        .padding(16.dp),
+                )
+                {
+                    DateField(
+                        "Date of Birth",
+                        activeAccount.dateOfBirth,
+                        { viewModel.updateDateOfBirth(it) }
+                    )
+                }
             }
-            Spacer(modifier = Modifier.height(40.dp))
-            signUpButton(navigator,viewModel)
-            Spacer(modifier = Modifier.height(20.dp))
             Text(
-                "Already have an account?",
+                "Forgot your password ?",
                 color = Color.Blue,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable{navigator.navigate(LoginScreenDestination)}
-                ,
-                textDecoration = TextDecoration.Underline)
-            Spacer(modifier = Modifier.height(20.dp))
+                modifier = Modifier.fillMaxWidth(),
+                textDecoration = TextDecoration.Underline
+            )
+            Spacer(modifier = Modifier.height(30.dp))
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text("Sign up with")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ActionLogo(
+                        R.drawable.google_logo,
+                        { navigator.navigate(LoginScreenDestination) },
+                        "sign up with Google button"
+                    )
+                    ActionLogo(
+                        R.drawable.facebook_logo,
+                        { navigator.navigate(LoginScreenDestination) },
+                        "sign up with Facebook button"
+                    )
+                }
+                Spacer(modifier = Modifier.height(40.dp))
+                signUpButton(navigator, viewModel)
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    "Already have an account?",
+                    color = Color.Blue,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { navigator.navigate(LoginScreenDestination) },
+                    textDecoration = TextDecoration.Underline)
+                Spacer(modifier = Modifier.height(20.dp))
+            }
         }
     }
 }

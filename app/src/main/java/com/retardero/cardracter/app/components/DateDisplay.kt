@@ -36,7 +36,7 @@ fun DateDisplay(label : String, date : LocalDate) {
             .fillMaxWidth()
             .padding(8.dp),
             textAlign = Left,
-            fontSize = 20.sp,
+            fontSize = 18.sp,
             color = Primary
         )
     }

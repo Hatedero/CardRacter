@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
@@ -63,7 +64,7 @@ fun ModifyAccount(
     }
     val activeAccount by viewModel.activeUser.collectAsState()
 
-    Column (
+    LazyColumn (
         modifier = Modifier
             .fillMaxSize()
             .background(Background)
@@ -71,57 +72,68 @@ fun ModifyAccount(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        AccountPicture(tranparency = 0.5f)
-        Spacer(modifier = Modifier.height(16.dp))
-        Column (
-            modifier = Modifier.fillMaxWidth()
-                .clip(RoundedCornerShape(10.dp)),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            if (FLAVOR_ID == "debug") {
-                Spacer(modifier = Modifier.height(16.dp))
-                TextField("User id", "your",{viewModel.fetchAccount(it.length)})
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            AccountTextField("Username",activeAccount.name,{viewModel.updateName(it)})
-            Spacer(modifier = Modifier.height(16.dp))
-            AccountTextField("Email",activeAccount.mail,{viewModel.updateEmail(it)})
-            Spacer(modifier = Modifier.height(16.dp))
-            /*
-            AccountTextField("Change account","",{viewModel.fetchAccount(it.length)})
-            Spacer(modifier = Modifier.height(16.dp))
-            */
+        item {
             Box(
                 modifier = Modifier
-                .fillMaxHeight(0.5F)
-                .fillMaxWidth(0.9F)
-                .background(Background)
-                .padding(16.dp),
-            )
-            {
-                DateField(
-                    "Date of Birth", activeAccount.dateOfBirth, { viewModel.updateDateOfBirth(it) }
-                )
-            }
-            Column(modifier = Modifier.fillMaxHeight(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Bottom
+                    .fillMaxSize(0.7f)
             ) {
-                Row (modifier = Modifier.fillMaxWidth()) {
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Box(modifier = Modifier.fillMaxWidth(0.7F)){
-                        SaveButton(navigator,viewModel)
-                    }
-                    Box(modifier = Modifier.fillMaxWidth()) {
-                        UndoButton(navigator)
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                }
-                Spacer(modifier = Modifier.height(32.dp))
-                DeleteAccount(navigator)
+                AccountPicture(tranparency = 0.5f)
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(16.dp))
+            Column(
+                modifier = Modifier.fillMaxWidth()
+                    .clip(RoundedCornerShape(10.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                if (FLAVOR_ID == "debug") {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    TextField("User id", "your", { viewModel.fetchAccount(it.length) })
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                AccountTextField("Username", activeAccount.name, { viewModel.updateName(it) })
+                Spacer(modifier = Modifier.height(16.dp))
+                AccountTextField("Email", activeAccount.mail, { viewModel.updateEmail(it) })
+                Spacer(modifier = Modifier.height(16.dp))
+                /*
+                AccountTextField("Change account","",{viewModel.fetchAccount(it.length)})
+                Spacer(modifier = Modifier.height(16.dp))
+                */
+                Box(
+                    modifier = Modifier
+                        .fillMaxHeight(0.5F)
+                        .fillMaxWidth(0.9F)
+                        .background(Background)
+                        .padding(16.dp),
+                )
+                {
+                    DateField(
+                        "Date of Birth",
+                        activeAccount.dateOfBirth,
+                        { viewModel.updateDateOfBirth(it) }
+                    )
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Column(
+                    modifier = Modifier.fillMaxHeight(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Bottom
+                ) {
+                    Row(modifier = Modifier.fillMaxWidth()) {
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Box(modifier = Modifier.fillMaxWidth(0.7F)) {
+                            SaveButton(navigator, viewModel)
+                        }
+                        Box(modifier = Modifier.fillMaxWidth()) {
+                            UndoButton(navigator)
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                    }
+                    Spacer(modifier = Modifier.height(32.dp))
+                    DeleteAccount(navigator)
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+            }
         }
     }
 }

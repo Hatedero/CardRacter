@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
@@ -45,68 +48,83 @@ fun LoginScreen(
 ) {
     val activeAccount by viewModel.activeUser.collectAsState()
 
-    Column (
+    LazyColumn (
         modifier = Modifier.fillMaxSize()
             .background(Background)
     ) {
-        CardRacterBanner()
-        Column (
-            modifier = Modifier.fillMaxWidth()
-                .clip(RoundedCornerShape(10.dp))
-        ) {
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Email/Username")
-            Spacer(modifier = Modifier.height(10.dp))
-            TextField("Password")
-        }
-        Text("Forgot your password ?",
-            color = Color.Blue,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth(),
-            textDecoration = TextDecoration.Underline
-        )
-        Spacer(modifier = Modifier.height(80.dp))
-        Column (
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Text("Login with")
-            Row (
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically
+        item {
+            CardRacterBanner()
+            Column(
+                modifier = Modifier.fillMaxWidth()
+                    .clip(RoundedCornerShape(10.dp)),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)},"login with Google button")
-                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)},"login with Facebook button")
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Email/Username")
+                Spacer(modifier = Modifier.height(10.dp))
+                TextField("Password")
             }
-            Spacer(modifier = Modifier.height(60.dp))
-            Button(
-                modifier = Modifier.fillMaxWidth(0.6f).fillMaxHeight(0.25f),
-                colors = ButtonColors(
-                    containerColor = Secondary,
-                    contentColor = Color(red=0, green=0, blue=0),
-                    disabledContainerColor = Background,
-                    disabledContentColor = Secondary
-                ),
-                onClick = { navigator.navigate(IndexScreenDestination) }
-            ) { Text("LOGIN",
-                    style = TextStyle(
-                        fontSize = 28.sp
-                    ),
-                color = Primary
-                )
-            }
-            Spacer(modifier = Modifier.height(20.dp))
             Text(
-                "Don't have an account ?",
+                "Forgot your password ?",
                 color = Color.Blue,
                 textAlign = TextAlign.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable{navigator.navigate(SignupScreenDestination)},
+                modifier = Modifier.fillMaxWidth(),
                 textDecoration = TextDecoration.Underline
             )
+            Spacer(modifier = Modifier.height(80.dp))
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Text("Login with")
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    ActionLogo(
+                        R.drawable.google_logo,
+                        { navigator.navigate(IndexScreenDestination) },
+                        "login with Google button"
+                    )
+                    ActionLogo(
+                        R.drawable.facebook_logo,
+                        { navigator.navigate(IndexScreenDestination) },
+                        "login with Facebook button"
+                    )
+                }
+                Spacer(modifier = Modifier.height(60.dp))
+                Button(
+                    modifier = Modifier.fillMaxWidth(0.6f).fillMaxHeight(0.25f),
+                    colors = ButtonColors(
+                        containerColor = Secondary,
+                        contentColor = Color(red = 0, green = 0, blue = 0),
+                        disabledContainerColor = Background,
+                        disabledContentColor = Secondary
+                    ),
+                    onClick = { navigator.navigate(IndexScreenDestination) }
+                ) {
+                    Text(
+                        "LOGIN",
+                        style = TextStyle(
+                            fontSize = 28.sp
+                        ),
+                        color = Primary
+                    )
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                Text(
+                    "Don't have an account ?",
+                    color = Color.Blue,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { navigator.navigate(SignupScreenDestination) },
+                    textDecoration = TextDecoration.Underline
+                )
+            }
         }
     }
 }
