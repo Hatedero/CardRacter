@@ -55,12 +55,7 @@ fun SignupScreen(
             .background(Background)
             .verticalScroll(rememberScrollState())
     ) {
-        Row (
-            modifier = Modifier.background(Primary)
-                .fillMaxWidth()
-                .height(200.dp)
-        ) {  }
-
+        CardRacterBanner()
         Column (
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
@@ -101,9 +96,8 @@ fun SignupScreen(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Google button")
-                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Tiktok button")
-                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)},"sign up with Facebook button")
+                ActionLogo(R.drawable.google_logo,{navigator.navigate(LoginScreenDestination)},"sign up with Google button")
+                ActionLogo(R.drawable.facebook_logo,{navigator.navigate(LoginScreenDestination)},"sign up with Facebook button")
             }
             Spacer(modifier = Modifier.height(40.dp))
             signUpButton(navigator,viewModel)

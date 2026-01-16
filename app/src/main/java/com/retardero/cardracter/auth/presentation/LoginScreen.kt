@@ -49,7 +49,7 @@ fun LoginScreen(
         modifier = Modifier.fillMaxSize()
             .background(Background)
     ) {
-
+        CardRacterBanner()
         Column (
             modifier = Modifier.fillMaxWidth()
                 .clip(RoundedCornerShape(10.dp))
@@ -78,7 +78,6 @@ fun LoginScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 ActionLogo(R.drawable.google_logo,{navigator.navigate(IndexScreenDestination)},"login with Google button")
-                ActionLogo(R.drawable.tiktok_logo,{navigator.navigate(IndexScreenDestination)},"login with Tiktok button")
                 ActionLogo(R.drawable.facebook_logo,{navigator.navigate(IndexScreenDestination)},"login with Facebook button")
             }
             Spacer(modifier = Modifier.height(60.dp))
