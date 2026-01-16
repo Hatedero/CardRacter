@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "IntermediaryCard")
 data class IntermediaryCard(
     @PrimaryKey
     var cardId: Int,
@@ -14,9 +14,7 @@ data class IntermediaryCard(
     var cardImage: Int,
     @ColumnInfo
     var type: CardType
-) {
-
-}
+)
 
 enum class CardType {
     Collection,

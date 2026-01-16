@@ -1,18 +1,19 @@
 package com.retardero.cardracter.app.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
+import com.retardero.cardracter.app.database.intermediary.IntermediaryAttribute
+import com.retardero.cardracter.app.database.intermediary.IntermediaryCategory
 
 @Dao
 interface attributeDAO {
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(magicCard: MagicCard)
+    @Insert
+    suspend fun insertAttribute(attribute: IntermediaryAttribute)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(magicCards: List<MagicCard>)
+    @Query("SELECT * FROM intermediaryattribute WHERE categoryId = :categoryId")
+    suspend fun getAllAttributesFromCategory(categoryId: Int): List<IntermediaryAttribute>
 
-    @Query("Select * from magic_cards")
-    suspend fun getAll(): List<MagicCard>
-
-    @Delete
-    suspend fun delete(magicCard: MagicCard)*/
+    @Query("SELECT attributeId FROM intermediaryattribute ORDER BY attributeId DESC LIMIT 1")
+    suspend fun getHighestAttributeId(): Int
 }

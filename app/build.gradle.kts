@@ -22,6 +22,18 @@ android {
     }
 
     buildTypes {
+        getByName("release"){
+            isMinifyEnabled = true
+            buildConfigField("String","FLAVOR_ID","\"release\"")
+        }
+        getByName("debug"){
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+            buildConfigField("String","FLAVOR_ID","\"debug\"")
+        }
+    }
+
+    buildTypes {
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -41,6 +53,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     ksp {

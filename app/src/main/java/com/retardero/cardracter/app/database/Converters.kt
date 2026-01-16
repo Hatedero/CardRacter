@@ -22,6 +22,10 @@ import java.time.LocalDate
 
 class Converters {
 
+    /*WARNING : Après ré explication des types converters, on remarque une mauvaise utilisation ici :
+    on utilise les type converters comme mapper ailleurs dans  l'application, bien que les types converters soient théoriquement des mappers liés à room.
+    */
+
     //ATTRIBUTES
     @TypeConverter
     fun fromIntermediaryAttribute(attribute: IntermediaryAttribute): CustomAttribute {
@@ -53,21 +57,24 @@ class Converters {
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value.toString(),
-                AttributeType.Card
+                AttributeType.Card,
+                1
             )
 
             is CustomAttribute.TextAttribute -> IntermediaryAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value,
-                AttributeType.Text
+                AttributeType.Text,
+                1
             )
 
             is CustomAttribute.NumberAttribute -> IntermediaryAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
                 attribute.value.toString(),
-                AttributeType.Number
+                AttributeType.Number,
+                1
             )
         }
     }
@@ -75,30 +82,24 @@ class Converters {
     //CATEGORIES
     @TypeConverter
     fun fromIntermediaryCategory(category: IntermediaryCategory): CustomCategory {
-        var attributes = listOf<CustomAttribute>()
-        var converter = Converters()
-
-        /*category.attributes.forEach { intermediaryAttribute ->
-            attributes = attributes.plus(converter.fromIntermediaryAttribute(intermediaryAttribute))
-        }*/
 
         return when (category.type) {
             CategoryType.MultiAttributes -> CustomCategory.MultiAttributesCategory(
                 category.categoryId,
                 category.categoryTitle,
-                attributes
+                emptyList()
             )
 
             CategoryType.SingleAttribute -> CustomCategory.SingleAttributeCategory(
                 category.categoryId,
                 category.categoryTitle,
-                CustomAttribute.TextAttribute(0, "", "")
+                CustomAttribute.TextAttribute(0, "PLACEHOLDER", "PLACEHOLDER")
             )
 
             CategoryType.Cards -> CustomCategory.CardsCategory(
                 category.categoryId,
                 category.categoryTitle,
-                attributes as List<CustomAttribute.CardAttribute>
+                emptyList()
             )
         }
     }
@@ -110,18 +111,21 @@ class Converters {
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.Cards,
+                1
             )
 
             is CustomCategory.MultiAttributesCategory -> IntermediaryCategory(
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.MultiAttributes,
+                1
             )
 
             is CustomCategory.SingleAttributeCategory -> IntermediaryCategory(
                 category.categoryId,
                 category.categoryTitle,
                 CategoryType.SingleAttribute,
+                1
             )
         }
     }
@@ -129,13 +133,15 @@ class Converters {
     //CARD
     @TypeConverter
     fun fromIntermediaryCard(card: IntermediaryCard): Card {
+
+
         return when (card.type) {
             CardType.MultiCategory -> Card.MultiCategoryCard(
-                card.cardId,
-                card.cardTitle,
-                card.cardImage,
-                emptyList()
-            )
+                    card.cardId,
+                    card.cardTitle,
+                    card.cardImage,
+                    emptyList()
+                )
 
             CardType.Collection -> Card.MultiCategoryCard(
                 card.cardId,
@@ -178,13 +184,13 @@ class Converters {
             is ModifiableCustomAttribute.ModifiableNumberAttribute -> CustomAttribute.NumberAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
-                attribute.value.toFloat()
+                attribute.value
             )
 
             is ModifiableCustomAttribute.ModifiableCardAttribute -> CustomAttribute.CardAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
-                attribute.value.toInt()
+                attribute.value
             )
         }
     }
@@ -201,13 +207,13 @@ class Converters {
             is CustomAttribute.NumberAttribute -> ModifiableCustomAttribute.ModifiableNumberAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
-                attribute.value.toFloat()
+                attribute.value
             )
 
             is CustomAttribute.CardAttribute -> ModifiableCustomAttribute.ModifiableCardAttribute(
                 attribute.attributeId,
                 attribute.attributeTitle,
-                attribute.value.toInt()
+                attribute.value
             )
         }
     }
@@ -215,26 +221,49 @@ class Converters {
     //MODIFIABLE_CATEGORIES
     @TypeConverter
     fun fromModifiableCategory(category: ModifiableCustomCategory): CustomCategory {
-        return when (category) {
-            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> CustomCategory.MultiAttributesCategory(
-                category.categoryId,
-                category.categoryTitle,
-                emptyList()
-            )
+        val converter = Converters()
+        var attributes : List<CustomAttribute>
 
-            is ModifiableCustomCategory.ModifiableCardsCategory -> CustomCategory.CardsCategory(
-                category.categoryId,
-                category.categoryTitle,
-                emptyList()
-            )
+        var finishedCategory : CustomCategory
 
-            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> CustomCategory.SingleAttributeCategory(
+        when (category) {
+            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                attributes = listOf<CustomAttribute>()
+
+                category.attributes.forEach { attribute ->
+                    attributes = attributes.plus(converter.fromModifiableAttribute(attribute))
+                }
+
+                finishedCategory = CustomCategory.MultiAttributesCategory(
+                    category.categoryId,
+                    category.categoryTitle,
+                    attributes
+                )
+            }
+
+            is ModifiableCustomCategory.ModifiableCardsCategory -> {
+                attributes = listOf<CustomAttribute.CardAttribute>()
+
+                category.cards.forEach { attribute ->
+                    attributes = attributes.plus(converter.fromModifiableAttribute(attribute))
+                }
+
+                finishedCategory = CustomCategory.CardsCategory(
+                    category.categoryId,
+                    category.categoryTitle,
+                    attributes as List<CustomAttribute.CardAttribute>
+                )
+            }
+
+            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> finishedCategory = CustomCategory.SingleAttributeCategory(
                 category.categoryId,
                 category.categoryTitle,
                 fromModifiableAttribute(category.attribute)
             )
 
         }
+
+        return finishedCategory
     }
 
     @TypeConverter
@@ -263,21 +292,36 @@ class Converters {
     //MODIFIABLE_CARD
     @TypeConverter
     fun fromModifiableCard(card: ModifiableCard): Card {
-        return when (card) {
-            is ModifiableCard.ModifiableMultiCategoryCard -> Card.MultiCategoryCard(
-                card.cardId,
-                card.cardTitle,
-                card.cardImage,
-                emptyList()
-            )
+        val converter = Converters()
+        var categories : List<CustomCategory>
 
-            is ModifiableCard.ModifiableCollectionCard -> Card.CollectionCard(
+        var finishedCard : Card
+
+        when (card) {
+            is ModifiableCard.ModifiableMultiCategoryCard -> {
+                categories = listOf<CustomCategory>()
+
+                card.cardAttributes.forEach { category ->
+                    categories = categories.plus(converter.fromModifiableCategory(category))
+                }
+
+                finishedCard = Card.MultiCategoryCard(
+                    card.cardId,
+                    card.cardTitle,
+                    card.cardImage,
+                    categories
+                )
+            }
+
+            is ModifiableCard.ModifiableCollectionCard ->  finishedCard = Card.CollectionCard(
                 card.cardId,
                 card.cardTitle,
                 card.cardImage,
                 fromModifiableCategory(card.cardAttribute) as CustomCategory.CardsCategory
             )
         }
+
+        return finishedCard
     }
 
     @TypeConverter

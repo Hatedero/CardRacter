@@ -2,7 +2,6 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "5d43f12ba91082cd11ab5523c2277c29",
     "entities": [
       {
         "tableName": "IntermediaryCard",
@@ -44,7 +43,6 @@
       },
       {
         "tableName": "IntermediaryCategory",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`categoryId` INTEGER NOT NULL, `categoryTitle` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`categoryId`))",
         "fields": [
           {
             "fieldPath": "categoryId",
@@ -63,6 +61,12 @@
             "columnName": "type",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "cardId",
+            "columnName": "cardId",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -72,11 +76,23 @@
           ]
         },
         "indices": [],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "IntermediaryCard",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "cardId"
+            ],
+            "referencedColumns": [
+              "cardId"
+            ]
+          }
+        ]
       },
       {
         "tableName": "IntermediaryAttribute",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attributeId` INTEGER NOT NULL, `attributeTitle` TEXT NOT NULL, `attributeValue` TEXT NOT NULL, `type` TEXT NOT NULL, PRIMARY KEY(`attributeId`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attributeId` INTEGER NOT NULL, `attributeTitle` TEXT NOT NULL, `attributeValue` TEXT NOT NULL, `type` TEXT NOT NULL, `categoryId` INTEGER NOT NULL, PRIMARY KEY(`attributeId`), FOREIGN KEY(`categoryId`) REFERENCES `IntermediaryCategory`(`categoryId`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "attributeId",
@@ -101,6 +117,12 @@
             "columnName": "type",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "categoryId",
+            "columnName": "categoryId",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -110,6 +132,17 @@
           ]
         },
         "indices": [],
+        "foreignKeys": [
+          {
+            "table": "IntermediaryCategory",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "categoryId"
+            ],
+            "referencedColumns": [
+              "categoryId"
+            ]
         "foreignKeys": []
       },
       {
@@ -166,7 +199,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5d43f12ba91082cd11ab5523c2277c29')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0b9e7f3817f58ed87c7de098ac8d071a')"
     ]
   }
 }

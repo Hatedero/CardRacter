@@ -1,7 +1,6 @@
 package com.retardero.cardracter.app.database
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -23,6 +22,7 @@ object DBDataSource {
             Room.databaseBuilder(context,
                 AppDatabase::class.java,
                 "app_database",)
+                .fallbackToDestructiveMigration()
                 .build()
         return instance!!
     }
@@ -35,7 +35,7 @@ object DBDataSource {
     }
 }
 
-@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class, User::class], version = 2,
+@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class, User::class], version = 4,
     exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {

@@ -28,6 +28,9 @@ class ModifyCardViewModel: ViewModel() {
     private val activeCardState:MutableStateFlow<ModifiableCard> = MutableStateFlow<ModifiableCard>(ModifiableCard.ModifiableMultiCategoryCard.testData())
     val activeCard: StateFlow<ModifiableCard> = activeCardState.asStateFlow()
 
+    var lastAttributeId = 1
+    var lastCategoryId = 1
+
     fun fetchCard(cardId : Int, cardType : Int) {
         viewModelScope.launch {
             println("FETCH CARD")
@@ -54,7 +57,8 @@ class ModifyCardViewModel: ViewModel() {
             if (category.id == categoryId)
                 when (category) {
                     is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
-                        it[index] = category.copy(attributes = category.attributes.toMutableList().also { newCategory -> newCategory.add(ModifiableCustomAttribute.ModifiableTextAttribute(Random.nextInt(0,10000), "", "")) })
+                        it[index] = category.copy(attributes = category.attributes.toMutableList().also { newCategory -> newCategory.add(ModifiableCustomAttribute.ModifiableTextAttribute(lastAttributeId, "", "")) })
+                        lastAttributeId++
                     }
                     is ModifiableCustomCategory.ModifiableCardsCategory -> {
 
@@ -69,7 +73,8 @@ class ModifyCardViewModel: ViewModel() {
     }
 
     fun addNewCategory() {
-        val newCard = activeCard.value.copy(values = activeCard.value.returnValue<List<ModifiableCustomCategory>>().toMutableList().also { it.add(ModifiableCustomCategory.ModifiableMultiAttributesCategory(Random.nextInt(0,10000),"", emptyList())) } )
+        val newCard = activeCard.value.copy(values = activeCard.value.returnValue<List<ModifiableCustomCategory>>().toMutableList().also { it.add(ModifiableCustomCategory.ModifiableMultiAttributesCategory(lastCategoryId,"", emptyList()))
+        lastCategoryId++} )
         activeCardState.value = newCard
         println("ADD CATEGORY")
     }
@@ -130,22 +135,82 @@ class ModifyCardViewModel: ViewModel() {
         println("UPDATE ATTRIBUTE VALUE")
     }
 
-    fun saveCard(card: ModifiableCard) {
-        println("SEND CARD")
+    fun saveCard() {
         viewModelScope.launch {
             val converter = Converters()
+            var tempCard = activeCard.value
+            println("SEND CARD " + tempCard)
 
-            var cardToBeSaved = converter.fromModifiableCard(card)
+            when (tempCard) {
+                is ModifiableCard.ModifiableMultiCategoryCard -> {
+                    tempCard.cardAttributes.forEach { category ->
+                        var newCategoryId = CardRacterRepository.getHighestCategoryId()
+                        when (newCategoryId) {
+                            is Resource.Success -> {
+                                category.id = newCategoryId.data + 1
+                            }
+                            is Resource.Error -> println(newCategoryId.error)
+                        }
+                        when (category) {
+                            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                                category.attributes.forEach { attribute ->
+                                    var newAttributeId = CardRacterRepository.getHighestAttributeId()
+                                    when (newAttributeId) {
+                                        is Resource.Success -> {
+                                            attribute.id = newAttributeId.data + 1
+                                        }
 
-            if (cardToBeSaved.id == -1) {
-                var newId = CardRacterRepository.getHighestCardId()
-                when (newId) {
-                    is Resource.Success -> cardToBeSaved = cardToBeSaved.copy(id = newId.data + 1, values = emptyList<CustomCategory>())
-                    is Resource.Error -> println(newId.error)
+                                        is Resource.Error -> println(newAttributeId.error)
+                                    }
+                                }
+                            }
+                            is ModifiableCustomCategory.ModifiableCardsCategory -> {
+                                category.cards.forEach { attribute ->
+                                    var newAttributeId = CardRacterRepository.getHighestAttributeId()
+                                    when (newAttributeId) {
+                                        is Resource.Success -> {
+                                            attribute.id = newAttributeId.data + 1
+                                            attribute.attributeId = attribute.id
+                                        }
+
+                                        is Resource.Error -> println(newAttributeId.error)
+                                    }
+                                }
+                            }
+                            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+                                var newAttributeId = CardRacterRepository.getHighestAttributeId()
+                                when (newAttributeId) {
+                                    is Resource.Success -> {
+                                        category.attribute.id = newAttributeId.data + 1
+                                    }
+                                    is Resource.Error -> println(newAttributeId.error)
+                                }
+                            }
+                        }
+                    }
+                    if (tempCard.cardId == -1) {
+                        var newId = CardRacterRepository.getHighestCardId()
+                        when (newId) {
+                            is Resource.Success -> {
+                                tempCard.cardId = newId.data + 1
+                                tempCard.id = tempCard.cardId
+                                activeCardState.value = tempCard
+                            }
+                            is Resource.Error -> println(newId.error)
+                        }
+                    }
+
+                    println("CARD ID " + tempCard.id)
+                    println("CARD CARDID " + tempCard.cardId)
+
+                    var cardToBeSaved = converter.fromModifiableCard(tempCard)
+
+                    CardRacterRepository.postCard(cardToBeSaved)
+                }
+                is ModifiableCard.ModifiableCollectionCard -> {
+
                 }
             }
-
-            CardRacterRepository.postCard(cardToBeSaved)
         }
     }
 }

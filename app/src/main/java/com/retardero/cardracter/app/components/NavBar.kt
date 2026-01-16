@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,13 +16,19 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.BuildConfig.FLAVOR_ID
 import com.retardero.cardracter.destinations.CollectionsScreenDestination
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SearchScreenDestination
@@ -32,48 +39,38 @@ import com.retardero.cardracter.ui.theme.veryLightGrey
 @Destination
 @Composable
 fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier .fillMaxWidth()
+            .background(veryLightGrey)
+    ){
         Row(
             modifier = Modifier.clip(RoundedCornerShape(20.dp))
                 .fillMaxWidth()
                 .fillMaxHeight(0.08f)
-
                 .background(veryLightGrey)
                 .padding(5.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
-        ) {/*
-            index?.forEach { icon ->
-                Box(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(100))
-                        .clickable {  }
-                        .background(PrimaryContainer)
-                        .padding(7.dp)
-                ) {
-                    Icon(
-                        imageVector = icon,
-                        contentDescription = "icon",
-                        tint = Primary,
-                        modifier = Modifier.fillMaxHeight()
-                            .aspectRatio(1f)
-                    )
-                }
-            }*/
+        ) {
             var backgroundColorHome = Secondary
             var backgroundColorSearch = Secondary
             var backgroundColorLibrary = Secondary
             var foregroundColorHome = Primary
             var foregroundColorSearch = Primary
             var foregroundColorLibrary = Primary
-            when(index) {
+            when (index) {
                 0 -> {
                     backgroundColorHome = Primary
                     foregroundColorHome = Secondary
                 }
+
                 1 -> {
                     backgroundColorSearch = Primary
                     foregroundColorSearch = Secondary
                 }
+
                 2 -> {
                     backgroundColorLibrary = Primary
                     foregroundColorLibrary = Secondary
@@ -98,7 +95,7 @@ fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
-                    .clickable { navigator.navigate(SearchScreenDestination)  }
+                    .clickable { navigator.navigate(SearchScreenDestination) }
                     .background(backgroundColorSearch)
                     .padding(7.dp)
             ) {
@@ -114,7 +111,7 @@ fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(100))
-                    .clickable { navigator.navigate(CollectionsScreenDestination)  }
+                    .clickable { navigator.navigate(CollectionsScreenDestination) }
                     .background(backgroundColorLibrary)
                     .padding(7.dp)
             ) {
@@ -126,5 +123,27 @@ fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
                         .aspectRatio(1f)
                 )
             }
+        }
+        if (FLAVOR_ID == "debug") {
+            Box(modifier = Modifier
+                .background(
+                    color= Primary,
+                    shape =RoundedCornerShape(10.dp)
+                )
+                .padding(vertical = 4.dp, horizontal = 16.dp,),
+                contentAlignment = Alignment.Center,
+            ){
+                Text(
+                    text = "Welcome to Debug mode !",
+                    color = Color.Black,
+                    style = TextStyle(
+                        fontSize = 20.sp,
+                        fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                    ),
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+            }
+        }
     }
 }
