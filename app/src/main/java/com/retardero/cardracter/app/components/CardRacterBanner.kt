@@ -25,7 +25,7 @@ fun CardRacterBanner(drawable: Int = R.drawable.dix_yeux){
     ) {
         Image(
             modifier = Modifier
-                .fillMaxSize(),
+                .fillMaxWidth(),
             painter = painterResource(drawable),
             contentDescription = "Google signUp button",
             contentScale = ContentScale.Crop,
