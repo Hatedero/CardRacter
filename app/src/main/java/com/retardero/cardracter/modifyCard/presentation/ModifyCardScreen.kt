@@ -1,11 +1,15 @@
 package com.retardero.cardracter.collections.presentation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -18,11 +22,14 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +42,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -76,23 +85,18 @@ fun NewCardScreen(
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionMenuEditCard({
-                viewModel.saveCard()
-            }, {
-                navigator.navigateUp()
-            })
-        },
-        topBar = {
-            EditTopBar(
-                { navigator.navigateUp() },
-                { }
-            )
-        },
-        modifier = Modifier
+        FloatingActionMenuEditCard({
+            viewModel.saveCard()
+        }, {
+            navigator.navigateUp()
+        })
+    }, topBar = {
+        EditTopBar({ navigator.navigateUp() }, { })
+    }, modifier = Modifier
             .padding(16.dp)
             .background(Background)
     ) {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it)
@@ -116,8 +120,7 @@ fun NewCardScreen(
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(10.dp))
                                         .fillMaxHeight()
-                                        .clickable { }
-                                )
+                                        .clickable { })
                             }
                             Column(
                                 Modifier.fillMaxSize(),
@@ -138,12 +141,15 @@ fun NewCardScreen(
                                 Spacer(modifier = Modifier.height(32.dp))
 
                                 (activeCard as ModifiableCard.ModifiableMultiCategoryCard).cardAttributes.forEach { category ->
-                                    CategoryComposable(category, viewModel)
+                                    CategoryComposable(
+                                        category,
+                                        viewModel,
+                                        { viewModel.deleteCategory(category.id) })
                                 }
 
                                 Spacer(modifier = Modifier.height((32.dp)))
 
-                                Row (
+                                Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(8.dp),
@@ -174,53 +180,89 @@ fun NewCardScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AttributeComposable(attribute: ModifiableCustomAttribute, viewModel: ModifyCardViewModel) {
-    return when (attribute) {
-        is ModifiableCustomAttribute.ModifiableTextAttribute -> {
-            CardTextField(attribute.value, { viewModel.updateAttributeValue(it, attribute.id)})
-        }
+fun AttributeComposable(
+    attribute: ModifiableCustomAttribute,
+    viewModel: ModifyCardViewModel,
+) {
+    return Row() {
+        Button(
+            onClick = { println("DELETE ME") }) { }
+        when (attribute) {
+            is ModifiableCustomAttribute.ModifiableTextAttribute -> {
+                CardTextField(attribute.value, { viewModel.updateAttributeValue(it, attribute.id) })
+            }
 
-        is ModifiableCustomAttribute.ModifiableNumberAttribute -> {
-            CardTextField(attribute.value.toString(), {})
-        }
+            is ModifiableCustomAttribute.ModifiableNumberAttribute -> {
+                CardTextField(attribute.value.toString(), {})
+            }
 
-        is ModifiableCustomAttribute.ModifiableCardAttribute -> {
-            CardTextField(attribute.value.toString(), {})
+            is ModifiableCustomAttribute.ModifiableCardAttribute -> {
+                CardTextField(attribute.value.toString(), {})
+            }
         }
     }
 }
 
 @Composable
-fun CategoryComposable(category: ModifiableCustomCategory, viewModel: ModifyCardViewModel) {
-    return when (category) {
-        is ModifiableCustomCategory.ModifiableCardsCategory -> {
-            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
-            category.cards.forEach { card ->
-                AttributeComposable(card, viewModel)
-            }
-        }
+fun CategoryComposable(
+    category: ModifiableCustomCategory,
+    viewModel: ModifyCardViewModel,
+    deleteCategory: () -> Unit
+) {
 
-        is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
-            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
-            category.attributes.forEach { card ->
-                AttributeComposable(card, viewModel)
-            }
-            IconButton(
-                onClick = { viewModel.addNewAttribute(category.id) },
-                modifier = Modifier.clip(RoundedCornerShape(10.dp))
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = "icon",
-                    tint = Primary
-                )
-            }
+    return Row() {
+        IconButton(
+            onClick = deleteCategory
+        ) {
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "icon",
+                tint = Primary
+            )
         }
+        when (category) {
+            is ModifiableCustomCategory.ModifiableCardsCategory -> {
+                CardSubTitleTextField(
+                    category.title, { viewModel.updateCategoryTitle(it, category.id) })
+                category.cards.forEach { card ->
+                    AttributeComposable(card, viewModel)
+                }
+            }
 
-        is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
-            CardSubTitleTextField(category.title, { viewModel.updateCategoryTitle(it, category.id) })
-            AttributeComposable(category.attribute, viewModel)
+            is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                Row (
+
+                ) {
+                    IconButton(
+                        onClick = { viewModel.addNewAttribute(category.id) },
+                        modifier = Modifier.clip(RoundedCornerShape(10.dp)),
+
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "icon",
+                            tint = Primary
+                        )
+                    }
+                    CardSubTitleTextField(
+                        category.title, { viewModel.updateCategoryTitle(it, category.id) })
+                    Column (
+
+                    ) {
+                        category.attributes.forEach { card ->
+                            AttributeComposable(card, viewModel)
+                        }
+                    }
+                }
+            }
+
+            is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+                CardSubTitleTextField(
+                    category.title, { viewModel.updateCategoryTitle(it, category.id) })
+                AttributeComposable(category.attribute, viewModel)
+            }
         }
     }
 }

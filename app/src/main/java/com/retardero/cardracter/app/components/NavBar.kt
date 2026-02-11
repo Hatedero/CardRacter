@@ -1,5 +1,6 @@
 package com.retardero.cardracter.app.components
 
+import android.content.res.Resources.Theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import com.retardero.cardracter.BuildConfig.FLAVOR_ID
 import com.retardero.cardracter.destinations.CollectionsScreenDestination
 import com.retardero.cardracter.destinations.IndexScreenDestination
 import com.retardero.cardracter.destinations.SearchScreenDestination
+import com.retardero.cardracter.ui.theme.Background
 import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.Secondary
 import com.retardero.cardracter.ui.theme.veryLightGrey
@@ -135,7 +137,7 @@ fun NavBar(navigator: DestinationsNavigator, index : Int = -1) {
             ){
                 Text(
                     text = "Welcome to Debug mode !",
-                    color = Color.Black,
+                    color = Background ,
                     style = TextStyle(
                         fontSize = 20.sp,
                         fontWeight = androidx.compose.ui.text.font.FontWeight.Bold,

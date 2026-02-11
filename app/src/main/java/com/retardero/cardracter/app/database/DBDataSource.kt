@@ -35,7 +35,7 @@ object DBDataSource {
     }
 }
 
-@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class, User::class], version = 4,
+@Database(entities = [IntermediaryCard::class, IntermediaryCategory::class, IntermediaryAttribute::class, User::class], version = 5,
     exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
