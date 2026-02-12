@@ -110,14 +110,26 @@ class ModifyCardViewModel: ViewModel() {
             }
         }
 
-        //UNFINISHED
         if (category != null && attribute != null) {
+            var index = activeCard.value.returnValue<List<ModifiableCustomCategory>>().indexOf(category)
+            when (category!!) {
+                is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                    category = category!!.copy(attributes = category!!.returnValues().toMutableList().also { it.remove(attribute) })
+                }
+                is ModifiableCustomCategory.ModifiableCardsCategory -> {
+
+                }
+                is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+
+                }
+            }
             println(attribute)
             val newCard = activeCard.value.copy(
                 values = activeCard.value.returnValue<List<ModifiableCustomCategory>>()
-                    .toMutableList().also { it.removeAt(it.indexOf(category)) })
+                    .toMutableList().also { it.removeAt(index)
+                    it.add(index, category!!)})
             activeCardState.value = newCard
-            println("DELETE CATEGORY")
+            println("DELETE ATTRIBUTE")
         }
     }
 
