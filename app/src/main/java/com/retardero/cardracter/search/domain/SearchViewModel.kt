@@ -18,13 +18,29 @@ class SearchViewModel: ViewModel() {
 
     fun fetchHistory() {
         viewModelScope.launch {
-            historyState.value = emptyList()
+            historyState.value = listOf<String>("Lumos",
+                "Rudeus Graycat",
+                "Gragas",
+                "Corto Faury",
+                "Frimousse la grimousse",
+                "William Hunter",
+                "William Hunter Junior",
+                "Constance Ward")
         }
     }
 
     fun fetchTags() {
         viewModelScope.launch {
-            tagsState.value = emptyList()
+            tagsState.value = listOf<String>("Rouge",
+                "Orc",
+                "NSFW",
+                "Corto Faury",
+                "Pieds",
+                "Food || rat",
+                "Dark Tales",
+                "New born",
+                "Contrées du Lointain",
+                "Aman Emuil")
         }
     }
 }
