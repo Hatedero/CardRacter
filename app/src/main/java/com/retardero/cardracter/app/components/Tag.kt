@@ -16,7 +16,7 @@ import com.retardero.cardracter.R
 import com.retardero.cardracter.ui.theme.Primary
 
 @Composable
-fun Tag(){
+fun Tag(text : String,){
     Row(modifier = Modifier
         .background(
             color= Primary,
@@ -27,7 +27,7 @@ fun Tag(){
         Image(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
             contentDescription="search Logo", painter= painterResource(R.drawable.trending_icon))
-        Text("Âmeless",
+        Text(text,
             modifier = Modifier
                 .padding(horizontal = 8.dp),
             color = Color(255,255,255)

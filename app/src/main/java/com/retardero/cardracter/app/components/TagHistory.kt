@@ -23,7 +23,7 @@ import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @Composable
-fun TagHistory() {
+fun TagHistory(tags : List<String>) {
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(10.dp))
@@ -43,9 +43,9 @@ fun TagHistory() {
                 .verticalScroll(rememberScrollState())
                 .height(285.dp)
         ) {
-            for (i in 1..15) {
+            for(tag in tags) {
                 item {
-                    Tag()
+                    Tag(tag)
                     Spacer(modifier = Modifier.height(4.dp))
                 }
             }

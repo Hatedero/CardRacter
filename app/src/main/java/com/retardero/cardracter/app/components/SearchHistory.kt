@@ -22,7 +22,7 @@ import com.retardero.cardracter.ui.theme.Primary
 import com.retardero.cardracter.ui.theme.PrimaryBackground
 
 @Composable
-fun SearchHistory(){
+fun SearchHistory(history : List<String>){
     Column(
         modifier = Modifier
             .clip(RoundedCornerShape(10.dp))
@@ -42,9 +42,9 @@ fun SearchHistory(){
                 .verticalScroll(rememberScrollState())
                 .height(256.dp)
         ) {
-            for (i in 1..20) {
+            for(e in history) {
                 item {
-                    HistoryElement()
+                    HistoryElement(e)
                 }
             }
         }

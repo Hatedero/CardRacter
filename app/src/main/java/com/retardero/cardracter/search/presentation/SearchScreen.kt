@@ -17,14 +17,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.retardero.cardracter.homepage.domain.SearchViewModel
 import com.retardero.cardracter.ui.theme.Background
+import androidx.compose.runtime.collectAsState
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Destination
 @Composable
-fun SearchScreen(navigator: DestinationsNavigator) {
+fun SearchScreen(navigator: DestinationsNavigator, viewModel: SearchViewModel = viewModel()) {
     Scaffold (
         modifier = Modifier.padding(8.dp)
             .background(Background),
@@ -53,9 +56,9 @@ fun SearchScreen(navigator: DestinationsNavigator) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            SearchHistory()
+            SearchHistory(viewModel.history.collectAsState().value)
             Spacer(modifier = Modifier.height(8.dp))
-            TagHistory()
+            TagHistory(viewModel.tags.collectAsState().value)
         }
     }
 }

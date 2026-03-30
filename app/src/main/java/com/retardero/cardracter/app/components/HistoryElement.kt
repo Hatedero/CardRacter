@@ -18,9 +18,8 @@ import androidx.compose.ui.unit.sp
 import com.retardero.cardracter.R
 import com.retardero.cardracter.ui.theme.Primary
 
-@Preview(showBackground = true)
 @Composable
-fun HistoryElement(){
+fun HistoryElement(history_element : String){
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,7 +32,7 @@ fun HistoryElement(){
             painter = painterResource(R.drawable.search_icon)
         )
         Text(
-            "Jefrey Jackob",
+            history_element,
             modifier = Modifier.padding(horizontal = 8.dp),
             textAlign = TextAlign.Center,
             fontSize = 20.sp,

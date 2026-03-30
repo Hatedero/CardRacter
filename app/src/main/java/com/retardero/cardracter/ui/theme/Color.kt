@@ -3,7 +3,7 @@ package com.retardero.cardracter.ui.theme
 import androidx.compose.ui.graphics.Color
 import com.retardero.cardracter.BuildConfig.FLAVOR_ID
 
-val Primary = if (FLAVOR_ID == "debug") Color.Blue else Color(0xFFBD4C86)
+val Primary = Color(0xFFBD4C86)
 
 val PrimaryContainer = Color(0xFFBDA9B3)
 val Secondary = Color(189, 169, 179)
