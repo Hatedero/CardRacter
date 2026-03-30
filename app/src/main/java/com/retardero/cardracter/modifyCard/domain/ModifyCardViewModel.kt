@@ -52,6 +52,87 @@ class ModifyCardViewModel: ViewModel() {
         }
     }
 
+    fun deleteCategory(categoryId: Int) {
+        val card = activeCard.value
+        var category : ModifiableCustomCategory? = null
+        when (card) {
+            is ModifiableCard.ModifiableCollectionCard -> {
+
+            }
+
+            is ModifiableCard.ModifiableMultiCategoryCard -> {
+                card.cardAttributes.forEach { loopedCategory ->
+                    if (loopedCategory.id == categoryId)
+                        category = loopedCategory;
+                }
+            }
+        }
+        if (category != null) {
+            println(category)
+            val newCard = activeCard.value.copy(
+                values = activeCard.value.returnValue<List<ModifiableCustomCategory>>()
+                    .toMutableList().also { it.removeAt(it.indexOf(category)) })
+            activeCardState.value = newCard
+            println("DELETE CATEGORY")
+        }
+    }
+
+    fun deleteAttribute(attributeId: Int) {
+        val card = activeCard.value
+        var category : ModifiableCustomCategory? = null
+        var attribute : ModifiableCustomAttribute? = null
+        when (card) {
+            is ModifiableCard.ModifiableCollectionCard -> {
+
+            }
+
+            is ModifiableCard.ModifiableMultiCategoryCard -> {
+                card.cardAttributes.forEach { loopedCategory ->
+                    when (loopedCategory) {
+                        is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                            loopedCategory.attributes.forEach { loopedAttribute ->
+                                if (loopedAttribute.id  == attributeId) {
+                                    attribute = loopedAttribute
+                                    category = loopedCategory
+                                }
+                            }
+                        }
+
+                        is ModifiableCustomCategory.ModifiableCardsCategory -> {
+
+                        }
+
+                        is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+
+                        }
+                    }
+                }
+            }
+        }
+
+        if (category != null && attribute != null) {
+            var index = activeCard.value.returnValue<List<ModifiableCustomCategory>>().indexOf(category)
+            when (category!!) {
+                is ModifiableCustomCategory.ModifiableMultiAttributesCategory -> {
+                    category = category!!.copy(attributes = category!!.returnValues().toMutableList().also { it.remove(attribute) })
+                }
+                is ModifiableCustomCategory.ModifiableCardsCategory -> {
+
+                }
+                is ModifiableCustomCategory.ModifiableSingleAttributeCategory -> {
+
+                }
+            }
+            println(attribute)
+            val newCard = activeCard.value.copy(
+                values = activeCard.value.returnValue<List<ModifiableCustomCategory>>()
+                    .toMutableList().also { it.removeAt(index)
+                    it.add(index, category!!)})
+            activeCardState.value = newCard
+            println("DELETE ATTRIBUTE")
+        }
+    }
+
     fun addNewAttribute(categoryId : Int) {
         val newCard = activeCard.value.copy(values = activeCard.value.returnValue<List<ModifiableCustomCategory>>().toMutableList().also { activeCard.value.returnValue<List<ModifiableCustomCategory>>().forEachIndexed { index, category ->
             if (category.id == categoryId)
@@ -69,7 +150,7 @@ class ModifyCardViewModel: ViewModel() {
                 }
         } } )
         activeCardState.value = newCard
-        println("ADD CATEGORY")
+        println("ADD ATTRIBUTE")
     }
 
     fun addNewCategory() {
