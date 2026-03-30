@@ -16,6 +16,14 @@ class SearchViewModel: ViewModel() {
     private val tagsState:MutableStateFlow<List<String>> = MutableStateFlow<List<String>>(emptyList<String>())
     val tags: StateFlow<List<String>> = tagsState.asStateFlow()
 
+    fun checkHistory(){
+        historyState.value = historyState.value.stream().distinct().toList()
+    }
+
+    fun checkTags(){
+        tagsState.value = tagsState.value.stream().distinct().toList()
+    }
+
     fun fetchHistory() {
         viewModelScope.launch {
             historyState.value = listOf<String>("Lumos",
@@ -26,6 +34,7 @@ class SearchViewModel: ViewModel() {
                 "William Hunter",
                 "William Hunter Junior",
                 "Constance Ward")
+            checkHistory()
         }
     }
 
@@ -41,6 +50,7 @@ class SearchViewModel: ViewModel() {
                 "New born",
                 "Contrées du Lointain",
                 "Aman Emuil")
+            checkTags()
         }
     }
 }
